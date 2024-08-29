@@ -7,8 +7,9 @@ import home from '../assets/icons/home.svg'
 import { useNavigate } from 'react-router-dom';
 
 import CustomSelect from '../components/SelectComponent'
+import DisplayTable from '../components/DisplayTable';
 
-const VIShiftSummary = () => {
+const VIAcceptanceSummary = () => {
   const [lineNumber, setLineNumber] = useState('');
 
   const navigate = useNavigate();
@@ -37,11 +38,32 @@ const VIShiftSummary = () => {
     navigate('/visual/home');
   }
 
+  const lengthAcceptanceHeaders = ['', 'Insp.', '130', '117', '87', '65', '52', '26', '13'];
+  const lengthAcceptanceData = [
+    ['A', '', '', '', '', '', '', '', ''],
+    ['+0.1', '', '', '', '', '', '', '', ''],
+    ['Tot.', '', '', '', '', '', '', '', ''],
+  ];
+
+  const rejectionHeaders = ['13', '12', '11', '10', 'Component'];
+  const rejectionData = [
+    ['', '', '', '', ''],
+  ];
+
+  const compliedSummaryHeaders = [' ', 'No.', 'Tonnes'];
+  const compliedSummaryData = [
+    ['Rails Inspected', '', ''],
+    ['Rails Accepted (A)', '', ''],
+    ['Rails Accepted (A + 0.1)', '', ''],
+    ['Rails Accepted (Total)', '', ''],
+    ['Rails Rejected', '', ''],
+  ];
+
   return (
     <div className='flex h-screen max-h-screen'>
       <section className='bg-transparent flex-1 overflow-y-auto px-[5%] my-auto'>
         <div className='mx-auto flex size-full flex-col py-10 max-w-[720px] min-h-screen items-center justify-center'>
-          <div className="flex flex-col justify-center items-center h-[500px] bg-gray-200 w-full gap-y-8">
+          <div className="flex flex-col justify-center items-center min-h-screen bg-gray-200 w-full gap-y-8">
             <h1 className="text-3xl font-bold">Visual Inspection - Shift Summary</h1>
 
             <div className='w-full max-w-lg p-8 border border-gray-300 rounded-lg bg-white shadow-lg'>
@@ -95,13 +117,43 @@ const VIShiftSummary = () => {
 
               <hr />
 
-              <div className='flex items-center justify-center'>
-                <select onChange={handleSelectChange} className='h-10 w-48 border border-black rounded-xl pl-3 bg-slate-100 text-sm justify-center mt-4'>
+              <div className='flex items-center justify-center mb-6'>
+                <select onChange={handleSelectChange} className='h-10 w-48 border border-black rounded-xl pl-3 bg-slate-100 text-sm justify-center mt-4' value='Acceptance Summary'>
                   <option value="" disabled selected>Select Summary</option>
                   <option value="acceptance-summary">Acceptance Summary</option>
                   <option value="defect-analysis-summary">Defect Analysis Summary</option>
                   <option value="inspected-railwise-summary">Inspected Railwise Summary</option>
                 </select>
+              </div>
+
+              <hr />
+
+              <div className='flex flex-col items-center justify-between mb-6 mt-2'>
+                <h6 className="text-base font-bold mb-2">Length Wise Acceptance Summary</h6>
+
+                <DisplayTable headers={lengthAcceptanceHeaders} data={lengthAcceptanceData} />
+              </div>
+
+              <hr />
+
+              <div className='flex flex-col items-center justify-between mb-6 mt-2'>
+                <h2 className="text-base font-bold mb-2">Rejection Summary</h2>
+
+                <DisplayTable headers={rejectionHeaders} data={rejectionData} />
+              </div>
+
+              <hr />
+
+              <div className='flex flex-col items-center justify-between mb-6 mt-2'>
+                <h2 className="text-base font-bold mb-2">Complied Summary</h2>
+
+                <DisplayTable headers={compliedSummaryHeaders} data={compliedSummaryData} />
+              </div>
+
+              <hr />
+
+              <div className='flex items-center justify-center'>
+                <button type="submit" className='bg-yellow-700 text-sm text-white w-20 h-9 rounded-2xl mt-4' onClick={handleClick}>OK</button>
               </div>
             </div>
           </div>
@@ -111,4 +163,4 @@ const VIShiftSummary = () => {
   )
 }
 
-export default VIShiftSummary
+export default VIAcceptanceSummary

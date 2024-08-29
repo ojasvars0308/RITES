@@ -7,8 +7,9 @@ import home from '../assets/icons/home.svg'
 import { useNavigate } from 'react-router-dom';
 
 import CustomSelect from '../components/SelectComponent'
+import DisplayTable from '../components/DisplayTable';
 
-const VIShiftSummary = () => {
+const VIDefectAnalysisSummary = () => {
   const [lineNumber, setLineNumber] = useState('');
 
   const navigate = useNavigate();
@@ -37,11 +38,18 @@ const VIShiftSummary = () => {
     navigate('/visual/home');
   }
 
+  const defectAnalysisHeaders = ['LAP', 'HH', 'OHT', 'MDM', 'KK'];
+  const defectAnalysisData = [
+    ['1', '2', '1', '1', '4'],
+    ['LH', 'Asy -', 'Asy +', 'MDF', 'US'],
+    ['1', '2', '1', '1', '4'],
+  ];
+
   return (
     <div className='flex h-screen max-h-screen'>
       <section className='bg-transparent flex-1 overflow-y-auto px-[5%] my-auto'>
         <div className='mx-auto flex size-full flex-col py-10 max-w-[720px] min-h-screen items-center justify-center'>
-          <div className="flex flex-col justify-center items-center h-[500px] bg-gray-200 w-full gap-y-8">
+          <div className="flex flex-col justify-center items-center h-[700px] bg-gray-200 w-full gap-y-8">
             <h1 className="text-3xl font-bold">Visual Inspection - Shift Summary</h1>
 
             <div className='w-full max-w-lg p-8 border border-gray-300 rounded-lg bg-white shadow-lg'>
@@ -95,13 +103,21 @@ const VIShiftSummary = () => {
 
               <hr />
 
-              <div className='flex items-center justify-center'>
-                <select onChange={handleSelectChange} className='h-10 w-48 border border-black rounded-xl pl-3 bg-slate-100 text-sm justify-center mt-4'>
+              <div className='flex items-center justify-center mb-4'>
+                <select onChange={handleSelectChange} className='h-10 w-48 border border-black rounded-xl pl-3 bg-slate-100 text-sm justify-center mt-4' value='Defect Analysis Summary'>
                   <option value="" disabled selected>Select Summary</option>
-                  <option value="acceptance-summary">Acceptance Summary</option>
                   <option value="defect-analysis-summary">Defect Analysis Summary</option>
+                  <option value="acceptance-summary">Acceptance Summary</option>
                   <option value="inspected-railwise-summary">Inspected Railwise Summary</option>
                 </select>
+              </div>
+
+              <hr />
+
+              <div className='flex flex-col items-center justify-between mb-6 mt-2'>
+                <h6 className="text-base font-bold mb-2">Defect Analysis Summary</h6>
+
+                <DisplayTable headers={defectAnalysisHeaders} data={defectAnalysisData} />
               </div>
             </div>
           </div>
@@ -111,4 +127,4 @@ const VIShiftSummary = () => {
   )
 }
 
-export default VIShiftSummary
+export default VIDefectAnalysisSummary
