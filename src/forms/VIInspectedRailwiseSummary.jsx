@@ -173,6 +173,12 @@ const VIInspectedRailwiseSummary = () => {
 
                 <IRSTable headers={headers} data={input} />
               </div>
+
+              <hr />
+
+              <div className='flex items-center justify-center'>
+                <button type="submit" className='bg-yellow-700 text-sm text-white w-20 h-9 rounded-2xl mt-4' onClick={handleClick}>OK</button>
+              </div>
             </div>
           </div>
         </div>
