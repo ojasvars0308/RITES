@@ -7,8 +7,6 @@ import hamburger from '../assets/icons/hamburger.svg'
 
 import Search from '../components/Search'
 
-import data from '../utils/sampleData.json'
-
 const VIHome = () => {
     const [shiftRemarks, setShiftRemarks] = useState('');
     const [shiftDetails, setShiftDetails] = useState({});
