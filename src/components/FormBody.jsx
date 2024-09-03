@@ -7,7 +7,7 @@ const FormBody = ({children, onFinish, initialValues}) => {
     <Form
       form={form}
       layout='vertical'
-      className='p-4 mx-auto'
+      className='py-4 mx-auto'
       initialValues={initialValues}
       onFinish={onFinish}
     >

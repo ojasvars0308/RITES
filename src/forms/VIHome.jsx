@@ -6,6 +6,7 @@ import search from '../assets/icons/search.svg'
 import hamburger from '../assets/icons/hamburger.svg'
 
 import Search from '../components/Search'
+import data from '../utils/sampleData.json'
 
 const VIHome = () => {
     const [shiftRemarks, setShiftRemarks] = useState('');
@@ -50,7 +51,7 @@ const VIHome = () => {
     <div className='flex h-screen max-h-screen'>
         <section className='bg-transparent flex-1 overflow-y-auto px-[5%] my-auto'>
             <div className='mx-auto flex size-full flex-col py-10 max-w-[720px] min-h-screen items-center justify-center'>
-                <div className="flex flex-col justify-center items-center min-h-screen bg-gray-200 w-full gap-y-8">
+                {/* <div className="flex flex-col justify-center items-center min-h-screen bg-gray-200 w-full gap-y-8"> */}
                     <h1 className="text-3xl font-bold">Visual Inspection - Home</h1>
 
                     <div className='w-full max-w-lg p-8 border border-gray-300 rounded-lg bg-white shadow-lg'>
@@ -88,16 +89,17 @@ const VIHome = () => {
                         <hr />
 
                         <div className='flex mt-2'>
-                            {/* {data.users.map(( list ) => ( */}
+                            {data.users.map(( list ) => (
                                 <div className='flex flex-wrap mb-4'>
-                                    <h6 className='font-medium mr-5 mt-2'>Date - <span className='font-light'>{shiftDetails.date}</span></h6>
-                                    <h6 className='font-medium mr-5 mt-2'>Shift - <span className='font-light'>{shiftDetails.shift}</span></h6>
-                                    <h6 className='font-medium mr-5 mt-2'>Rail Grade - <span className='font-light'>{shiftDetails.railGrade}</span></h6>
-                                    <h6 className='font-medium mr-5 mt-2'>Mill - <span className='font-light'>{shiftDetails.mill}</span></h6>
-                                    <h6 className='font-medium mr-5 mt-2'>Line - <span className='font-light'>{shiftDetails.line}</span></h6>
-                                    <h6 className='font-medium mr-5 mt-2'>Rail Sec. - <span className='font-light'>{shiftDetails.railSec}</span></h6>
-                                    <h6 className='font-medium mr-5 mt-2'>Length - <span className='font-light'>{shiftDetails.length}</span></h6>
+                                    <h6 className='font-medium mr-5 mt-2'>Date - <span className='font-light'>{list.date}</span></h6>
+                                    <h6 className='font-medium mr-5 mt-2'>Shift - <span className='font-light'>{list.shift}</span></h6>
+                                    <h6 className='font-medium mr-5 mt-2'>Rail Grade - <span className='font-light'>{list.railGrade}</span></h6>
+                                    <h6 className='font-medium mr-5 mt-2'>Mill - <span className='font-light'>{list.mill}</span></h6>
+                                    <h6 className='font-medium mr-5 mt-2'>Line - <span className='font-light'>{list.line}</span></h6>
+                                    <h6 className='font-medium mr-5 mt-2'>Rail Sec. - <span className='font-light'>{list.railSec}</span></h6>
+                                    <h6 className='font-medium mr-5 mt-2'>Length - <span className='font-light'>{list.length}</span></h6>
                                 </div>
+                            ))}
                         </div>
 
                         <hr />
@@ -157,7 +159,6 @@ const VIHome = () => {
                         </form>
 
                     </div>
-                </div>
             </div>
         </section>
     </div>
