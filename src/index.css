@@ -45,3 +45,12 @@ label{
 .icon svg{
   @apply font-semibold
 }
+
+/* styles.css or any other CSS file */
+.ant-table-thead > tr > th {
+  @apply !bg-darkBlue !text-offWhite border-2 border-darkBlue
+}
+
+.ant-table, .ant-table-tbody > tr > td {
+  @apply border-0 border-darkBlue
+}
