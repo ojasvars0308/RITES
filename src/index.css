@@ -2,16 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  @apply !text-base
+}
+label{
+  @apply !font-medium
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.ant-menu-submenu-arrow{
+  @apply hidden
+}
+
+.dashboard-search .ant-input, .dashboard-search .ant-btn{
+  @apply !bg-darkBlue !text-offWhite !transition-none border-0 outline-none
+}
+.dashboard-search .ant-btn{
+  @apply border-l-2
+}
+.dashboard-search .ant-input:hover, .dashboard-search .ant-input:focus{
+  @apply bg-darkBlue text-offWhite !outline-none !border-none !shadow-none
+}
+.dashboard-search .ant-btn:hover, .dashboard-search .ant-btn:focus{
+  @apply bg-darkBlue text-offWhite !outline-none !border-none !shadow-none
+}
+.dashboard-search .ant-input::placeholder{
+  @apply text-offWhite
+}
+.dashboard-tab-icon svg{
+  @apply !text-4xl 
+}
+.dashboard-tab-icon{
+  @apply flex justify-center items-center
+}
+
+.duty-tab-icon svg, .icon svg {
+  @apply !text-2xl
+}
+
+.icon svg{
+  @apply font-semibold
 }
