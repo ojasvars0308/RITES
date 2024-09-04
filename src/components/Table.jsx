@@ -4,7 +4,7 @@ const RejectionDetailsTable = () => {
   return (
     <div className="p-5">
       <table
-        className="w-full border-collapse text-center border-black"
+        className="border-collapse text-center border-black"
       >
         <thead>
           <tr>

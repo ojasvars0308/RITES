@@ -7,7 +7,7 @@ import data from '../utils/sampleData.json'
 import SelectComponent from '../components/SelectComponent';
 
 import { useNavigate } from 'react-router-dom';
-import RejectionDetailsTable from '../components/Table';
+import DisplayTable from '../components/DisplayTable';
 
 const VisualInspection = () => {
   const [date, setDate] = useState('17/08/2024');
@@ -32,6 +32,11 @@ const VisualInspection = () => {
   const [shiftRemarks, setShiftRemarks] = useState('');
 
   const [errors, setErrors] = useState({});
+
+  const rejectionDetailsHeaders = ['Length', '13m', '12m', '11m', '10m', 'Comp. len.'];
+  const rejectionDetailsData = [
+    ['No.of Pcs', '', '', '', '', ''],
+  ];
 
   const [file, setFile] = useState(null);
 
@@ -186,8 +191,8 @@ const VisualInspection = () => {
                   <div className="flex flex-col gap-6 mt-2">
                       <h6 className='font-semibold'>Rail ID - U110324B034</h6> 
 
-                      <div className='flex justify-between'>
-                        <div className='flex flex-col'>
+                      <div className='flex justify-between flex-wrap'>
+                        <div className='flex flex-col mb-2'>
                           <label className='font-bold mb-1 text-sm'>Date</label>
 
                           {data.users.map(( list ) => (
@@ -214,8 +219,8 @@ const VisualInspection = () => {
                         </div>
                       </div>
 
-                      <div className='flex justify-evenly'>
-                        <div className='flex flex-col'>
+                      <div className='flex justify-between flex-wrap'>
+                        <div className='flex flex-col mb-2'>
                           <label className='font-bold mb-1 text-sm'>Heat Number</label>
 
                           <input
@@ -276,8 +281,8 @@ const VisualInspection = () => {
                       />
                     </div> */}
 
-                    <div className='flex justify-evenly'>
-                      <div className='flex flex-col'>
+                    <div className='flex justify-between flex-wrap'>
+                      <div className='flex flex-col mb-2'>
                         <label className='font-bold mb-1 text-sm'>Dim</label>
 
                         <input 
@@ -329,12 +334,12 @@ const VisualInspection = () => {
 
                     <form>
                       {formFieldsAcceptance.map((field, index) => (
-                        <div key={index} className='flex justify-evenly mb-2'>
+                        <div key={index} className='flex justify-between mb-2 flex-wrap'>
                             <select
                               name="railLength"
                               value={field.railLength}
                               onChange={(e) => handleChangeAcceptance(index, e)}
-                              className='h-10 w-40 border border-black rounded-xl pl-2 bg-slate-100 text-sm'
+                              className='h-10 w-40 border border-black rounded-xl pl-2 bg-slate-100 text-sm mb-2'
                               required
                             >
                               <option value="" disabled>Select rail length</option>
@@ -401,7 +406,7 @@ const VisualInspection = () => {
                               name="defectType"
                               value={field.defectType}
                               onChange={(e) => handleChangeDefect(index, e)}
-                              className='h-10 w-40 border border-black rounded-xl pl-3 bg-slate-100 text-sm'
+                              className='h-10 w-40 border border-black rounded-xl pl-3 bg-slate-100 text-sm mb-2'
                               required
                             >
                               <option value="" disabled>Select defect type</option>
@@ -417,7 +422,7 @@ const VisualInspection = () => {
                                 onChange={(e) => handleChangeDefect(e.target.value)}
                                 placeholder='Location'
                                 required
-                                className='h-10 w-40 border border-black rounded-xl pl-3 pr-3 bg-slate-100 text-sm mr-2'
+                                className='h-10 w-40 border border-black rounded-xl pl-3 pr-3 bg-slate-100 text-sm mr-2 mb-2'
                             />
 
                             <select
@@ -445,9 +450,9 @@ const VisualInspection = () => {
                   <hr />
 
                   <div className='flex flex-col'>
-                    <h6 className='font-semibold mb-4 underline'>Rejection Details <span className='ml-14 text-sm'>min (std. off len , off. len) - acp. len.</span></h6>
+                    <h6 className='font-semibold mb-4 underline'>Rejection Details :- <span className='ml-2 text-sm font-normal'>min (std. off len , off. len) - acp. len.</span></h6>
 
-                    <RejectionDetailsTable />
+                    <DisplayTable headers={rejectionDetailsHeaders} data={rejectionDetailsData} />
                   </div>
 
                   <hr />
@@ -455,7 +460,7 @@ const VisualInspection = () => {
                   <div className='flex flex-col'>
                     <h6 className='font-semibold mb-4 underline'>Remarks</h6>
 
-                    <div className='flex justify-between items-center w-[85%]'>
+                    <div className='flex justify-between items-center w-[85%] flex-wrap'>
                       <div>
                         <input
                           type="text"
@@ -463,7 +468,7 @@ const VisualInspection = () => {
                           onChange={(e) => setShiftRemarks(e.target.value)}
                           placeholder='Shift Remarks'
                           required
-                          className='h-10 w-32 border border-black rounded-xl pl-3 pr-3 text-sm'
+                          className='h-10 w-32 border border-black rounded-xl pl-3 pr-3 text-sm mb-2'
                         />
                       </div>
                       

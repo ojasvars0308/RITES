@@ -102,7 +102,7 @@ const VIInspectedRailwiseSummary = () => {
   return (
     <div className='flex h-screen max-h-screen'>
       <section className='bg-transparent flex-1 overflow-y-auto px-[5%] my-auto'>
-        <div className='mx-auto flex size-full flex-col py-10 max-w-[720px] min-h-screen items-center justify-center'>
+        <div className='mx-auto flex size-full flex-col py-10 max-w-[820px] min-h-screen items-center justify-center'>
           {/* <div className="flex flex-col justify-center items-center min-h-screen bg-gray-200 w-full gap-y-8"> */}
             <h1 className="text-3xl font-bold">Visual Inspection - Shift Summary</h1>
 

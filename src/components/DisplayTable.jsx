@@ -8,7 +8,7 @@ const DisplayTable = ({ headers, data }) => {
           {headers.map((header, index) => (
             <th
               key={index}
-              className="py-2 px-3 border-b-2 border-gray-300 bg-gray-100 text-left"
+              className="py-2 px-1 border-b-2 border-gray-300 bg-gray-100 text-left"
             >
               {header}
             </th>

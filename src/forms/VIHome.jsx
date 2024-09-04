@@ -108,7 +108,7 @@ const VIHome = () => {
                             <button onClick={handleClick} className='flex flex-col p-4 bg-slate-900 rounded-3xl rounded-br-sm text-gray-300 shadow-lg'>
                                 <div className="w-[1px] h-[1px] bg-gradient-to-br from-green-300 via-yellow-100 to-orange-300 p-6 rounded-2xl rounded-br-sm" />
 
-                                <p className='mt-3 text-gray-300 font-medium'>Visual Inspection</p>
+                                <p className='mt-3 text-gray-300 text-left font-medium'>Visual Inspection</p>
                             </button>
 
                             <button onClick={handleClickSec} className='flex flex-col p-4 bg-slate-900 rounded-3xl rounded-br-sm text-gray-300 shadow-lg'>
