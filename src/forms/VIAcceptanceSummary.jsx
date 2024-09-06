@@ -69,7 +69,7 @@ const VIAcceptanceSummary = () => {
             <div className='w-full max-w-lg p-8 border border-gray-300 rounded-lg bg-white shadow-lg'>
               <div className='flex mt-2'>
                 {data.users.map(( list ) => (
-                    <div className='flex flex-wrap mb-4'>
+                    <div key={list.id} className='flex flex-wrap mb-4'>
                         <h6 className='font-medium mr-5 mt-2'>Date - <span className='font-light'>{list.date}</span></h6>
                         <h6 className='font-medium mr-5 mt-2'>Shift - <span className='font-light'>{list.shift}</span></h6>
                         <h6 className='font-medium mr-5 mt-2'>Rail Grade - <span className='font-light'>{list.railGrade}</span></h6>

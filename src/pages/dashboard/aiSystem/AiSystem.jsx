@@ -183,8 +183,8 @@ const AiSystem = () => {
       columns={columns}
       dataSource={data}
       pagination={{
-        pageSize: 5, // Number of items per page
-        showSizeChanger: true, // Allow user to change page size
+        pageSize: 5,
+        showSizeChanger: true, 
         pageSizeOptions: ['5', '10', '20'], // Options for page size
       }}
     />
