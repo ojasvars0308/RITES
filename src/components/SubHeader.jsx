@@ -1,13 +1,13 @@
 import React from 'react'
 import {ArrowLeftOutlined} from '@ant-design/icons';
-import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import IconBtn from './IconBtn';
 
 const SubHeader = ({title, link}) => {
     const navigate = useNavigate()
   return (
     <header className='shadow-sm py-2'>
-      <Button onClick={()=>navigate(link)} className='icon mr-4 bg-offWhite border-0'><ArrowLeftOutlined /></Button>
+      <IconBtn icon={ArrowLeftOutlined} onClick={()=>navigate(link)} className='mr-4 shadow-none bg-inherit'/>
       <span className='font-medium'>{title}</span>
     </header>
   )

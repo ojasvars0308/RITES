@@ -1,15 +1,15 @@
 import React from 'react'
 
-const Search = () => {
+const Search = ({ className, placeholder, svgClass }) => {
   return (
     <div className="relative">
         <input
             type="text"
-            placeholder="Hello User !"
-            className="pl-10 pr-4 py-2 rounded-full bg-slate-900 focus:outline-none w-full text-gray-300"
+            placeholder={placeholder}
+            className={className}
         />
         <svg
-            className="absolute left-2 top-3 h-4 w-4 text-gray-300"
+            className={svgClass}
             fill="currentColor"
             viewBox="0 0 20 20"
         >

@@ -13,6 +13,8 @@ const VIShiftDetails = () => {
     const [ieName, setIeName] = useState('');
     const [rclIeName, setRclIeName] = useState('');
 
+    const [isLoading, setIsLoading] = useState(false)
+
     const navigate = useNavigate();
     
     const lineNumberOptions = mill === 'URM' ? ['1', '2', '3', '4', '5', '6'] : mill === 'RSM' ? ['1', '2'] : [];
@@ -20,6 +22,19 @@ const VIShiftDetails = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        const shiftDetail = { date, shift, mill, lineNumber, railGrade, railSection, railLength, ieName, rclIeName };
+
+        setIsLoading(true);
+
+        fetch('http://localhost:8000/shiftDetails', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(shiftDetail)
+        }).then(() => {
+            console.log('new shift details added');
+            setIsLoading(false);
+        })
 
         navigate('/visual/home');
     };
@@ -121,7 +136,8 @@ const VIShiftDetails = () => {
                             </div>
 
                             <div className='flex justify-center'>
-                                <button type="submit" className='bg-red-500 text-sm text-white w-36 h-9 rounded-2xl mt-4'>Start Inspection</button>
+                                {!isLoading && <button type="submit" className='bg-red-500 text-sm text-white w-36 h-9 rounded-2xl mt-4'>Start Inspection</button>}
+                                {isLoading && <button type="submit" className='bg-red-500 text-sm text-white w-36 h-9 rounded-2xl mt-4' disabled>Inspection starting...</button>}
                             </div>
                         </form>
                     </div>

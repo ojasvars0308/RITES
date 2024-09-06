@@ -54,3 +54,39 @@ label{
 .ant-table, .ant-table-tbody > tr > td {
   @apply border-0 border-darkBlue
 }
+
+.horizontal-form .ant-form-item-label, .horizontal-form .ant-form-item-control {
+  @apply !flex-none
+}
+
+.horizontal-form .ant-form-item {
+  @apply mb-3 md:mb-6
+}
+
+.horizontal-form .ant-form-item-label{
+  @apply w-[40%] text-left text-balance !h-max overflow-auto
+}
+
+.horizontal-form .ant-form-item-control{
+  @apply w-[60%]
+}
+
+.responsive-table .table-column {
+  word-wrap: break-word; /* Allows long words to break and wrap onto the next line */
+  white-space: normal;   /* Allows text to wrap */
+}
+
+.responsive-table {
+  width: 100%;
+}
+
+.checkbox-group .ant-checkbox-input, .checkbox-group .ant-checkbox-inner {
+  @apply !w-6 !h-6
+}
+
+.checkbox-group, .checkbox-group label{
+  @apply gap-2
+}
+.checkbox-group label{
+  @apply border-b-2 w-full pb-1
+}

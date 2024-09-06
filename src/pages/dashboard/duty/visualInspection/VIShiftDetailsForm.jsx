@@ -1,12 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SubHeader from '../../../../components/SubHeader'
 import CustomDatePicker from '../../../../components/CustomDatePicker'
 import FormBody from '../../../../components/FormBody'
 import FormDropdownItem from '../../../../components/FormDropdownItem'
 import FormInputItem from '../../../../components/FormInputItem'
 import Btn from '../../../../components/Btn'
-import moment from 'moment'
 import { message } from 'antd'
+
+const millMapping = {
+  'URM': ['1', '2', '3', '4', '5', '6'],
+  'RSM': ['1', '2'],
+}
+
+const millsMapping = {
+  'URM': ['130'],
+  'RSM': ['78', '65']
+}
 
 const shiftDropdownList = [
   {
@@ -109,6 +118,9 @@ const railSectionList = [
 
 const VIShiftDetailsForm = () => {
   const [lineNumbers, setLineNumbers] = useState([]);
+  const [millDropdownList, setMillDropdownList] = useState([])
+  const [lineNumberDropdownList, setLineNumberDropdownList] = useState([])
+  const [stdRailLengthList, setStdRailLengthList] = useState([])
 
   const [formData, setFormData] = useState(
     {
@@ -124,6 +136,16 @@ const VIShiftDetailsForm = () => {
     }
   )
 
+  const populateData = () => {
+    const millDropdownList = Object.keys(millMapping).map( mill => {
+      return {
+        key: mill,
+        value: mill
+      }
+    })
+    setMillDropdownList([...millDropdownList])
+  }
+
   const handleChange = (fieldName, value) => {
     setFormData(prev => {
       return {
@@ -133,7 +155,33 @@ const VIShiftDetailsForm = () => {
     })
   }
 
-  const lineNumberOptions = formData.mill === 'URM' ? ['1', '2', '3', '4', '5', '6'] : formData.mill === 'RSM' ? ['1', '2'] : [];
+  useEffect(()=> {
+    populateData()
+  }, [])
+
+  useEffect(()=>{
+    if(millMapping[formData.mill]){
+      const lineNumberDropdownList = millMapping[formData.mill].map(mill => {
+        return {
+          key: mill,
+          value: mill
+        }
+      })
+      setLineNumberDropdownList([...lineNumberDropdownList])
+    }
+  }, [formData.mill, millDropdownList])
+
+  useEffect(()=>{
+    if(millsMapping[formData.mill]){
+      const stdRailLengthList = millsMapping[formData.mill].map(mill => {
+        return {
+          key: mill,
+          value: mill
+        }
+      })
+      setStdRailLengthList([...stdRailLengthList])
+    }
+  }, [formData.mill, millDropdownList])
 
   const handleFormSubmit = () => {
     console.log("FORM SUBMIT CALLED")
@@ -148,15 +196,17 @@ const VIShiftDetailsForm = () => {
         onFinish={handleFormSubmit}
       >
         <div className="grid grid-cols-2">
-          <CustomDatePicker label='Date' name='date' value={formData?.date} onChange={handleChange}/>
-          <FormDropdownItem label='Shift' dropdownArray={shiftDropdownList} name='shift' onChange={handleChange} valueField='key' visibleField='value' />
+          <CustomDatePicker label='Date' name='date' value={formData?.date} onChange={handleChange} required/>
+          <FormDropdownItem label='Shift' dropdownArray={shiftDropdownList} name='shift' onChange={handleChange} valueField='key' visibleField='value' required/>
         </div>
 
-        <FormDropdownItem label="Mill" name='mill' dropdownArray={millDropdownList} visibleField='value' valueField='key' onChange={handleChange} />
-        <FormDropdownItem label="Line Number" name='lineNumber' dropdownArray={lineNumberDropdownList} visibleField='value' valueField='key' onChange={handleChange} />
-        <FormDropdownItem label="Rail Grade" name='railGrade' dropdownArray={railGradeList} visibleField='value' valueField='key' onChange={handleChange} />
-        <FormDropdownItem label="Rail Section" name='railSection' dropdownArray={railSectionList} visibleField='value' valueField='key' onChange={handleChange} />
-        <FormDropdownItem label="Std. offered Rail Length" name='railGrade' dropdownArray={railGradeList} visibleField='value' valueField='key' onChange={handleChange} />
+        <FormDropdownItem label='Mill' name='mill' dropdownArray={millDropdownList} valueField={'key'} visibleField={'value'} onChange={handleChange} required />
+        <FormDropdownItem label ='Line Number' name='lineNumber' dropdownArray={lineNumberDropdownList} valueField={'key'} visibleField={'value'} onChange = {handleChange} required />
+
+        <FormDropdownItem label="Rail Grade" name='railGrade' dropdownArray={railGradeList} visibleField='value' valueField='key' onChange={handleChange} required/>
+        <FormDropdownItem label="Rail Section" name='railSection' dropdownArray={railSectionList} visibleField='value' valueField='key' onChange={handleChange} required />
+        <FormDropdownItem label="Std. offered Rail Length" name='stdRailLength' dropdownArray={stdRailLengthList} visibleField={'value'} valueField={'key'} onChange={handleChange} required />
+        <FormInputItem label='Add Other IE' name='otherIE' value={formData.otherIE} onChange={handleChange} required/>
         <Btn htmlType='submit'>Submit</Btn>
       </FormBody>
     </>

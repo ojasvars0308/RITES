@@ -32,8 +32,8 @@ const Header = () => {
     }
   ]
   return (
-    <header className="bg-white py-4 px-4 flex justify-between items-center sticky top-0 w-full">
-      <div>
+    <header className="!bg-white py-4 px-4 flex justify-between items-center sticky top-0 w-full z-10">
+      <div onClick={() => navigate('/')}>
         <Logo height={40} width={40} />
       </div>
       <div className="flex gap-4">

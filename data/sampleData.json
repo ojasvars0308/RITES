@@ -1,0 +1,16 @@
+{
+  "shiftDetails": [
+    {
+      "id": "411e",
+      "date": "2024-09-05",
+      "shift": "C",
+      "mill": "RSM",
+      "lineNumber": "1",
+      "railGrade": "880",
+      "railSection": "60E1A1",
+      "railLength": "65",
+      "ieName": "IE Name 3",
+      "rclIeName": "anjali"
+    }
+  ]
+}

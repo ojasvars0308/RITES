@@ -3,7 +3,7 @@ import { DatePicker, Form } from 'antd';
 import moment from 'moment';
 import 'moment/locale/en-gb'; // To support locale formatting
 
-const CustomDatePicker = ({ label, value, onChange, name, disabled }) => {
+const CustomDatePicker = ({ label, value, onChange, name, disabled, required }) => {
   const handleChange = (date, dateString) => {
     if (onChange) {
       onChange(name, date ? dateString : null);
@@ -17,7 +17,7 @@ const CustomDatePicker = ({ label, value, onChange, name, disabled }) => {
   }
 
   return (
-    <Form.Item label={label} 
+    <Form.Item label={label} rules={[{ required: required ? true : false, message: 'Please input your value!' }]}
     // name={name}
     shouldUpdate={(prevValues, currentValues) => {
       console.log("PREV CURR: ", prevValues, currentValues)

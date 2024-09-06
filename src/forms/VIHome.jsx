@@ -6,11 +6,10 @@ import search from '../assets/icons/search.svg'
 import hamburger from '../assets/icons/hamburger.svg'
 
 import Search from '../components/Search'
-import data from '../utils/sampleData.json'
 
 const VIHome = () => {
     const [shiftRemarks, setShiftRemarks] = useState('');
-    const [shiftDetails, setShiftDetails] = useState({});
+    const [shiftDetails, setShiftDetails] = useState(null);
 
     const navigate = useNavigate();
 
@@ -39,14 +38,17 @@ const VIHome = () => {
     }
 
     useEffect(() => {
-        // Fetch data from JSON file
-        fetch('../utils/shiftDetails.json')
-          .then(response => response.json())
-          .then(data => setShiftDetails(data))
-          .catch(error => console.error('Error fetching shift details:', error));
+        fetch('http://localhost:8000/shiftDetails')
+            .then(res => {
+                return res.json()
+            })
+            .then((data) => {
+                console.log(data);
+                setShiftDetails([...data])
+            })
+            .catch(error => console.error('Error fetching shift details:', error));
     }, []);
     
-
   return (
     <div className='flex h-screen max-h-screen'>
         <section className='bg-transparent flex-1 overflow-y-auto px-[5%] my-auto'>
@@ -89,17 +91,17 @@ const VIHome = () => {
                         <hr />
 
                         <div className='flex mt-2'>
-                            {data.users.map(( list ) => (
+                            {shiftDetails && 
                                 <div className='flex flex-wrap mb-4'>
-                                    <h6 className='font-medium mr-5 mt-2'>Date - <span className='font-light'>{list.date}</span></h6>
-                                    <h6 className='font-medium mr-5 mt-2'>Shift - <span className='font-light'>{list.shift}</span></h6>
-                                    <h6 className='font-medium mr-5 mt-2'>Rail Grade - <span className='font-light'>{list.railGrade}</span></h6>
-                                    <h6 className='font-medium mr-5 mt-2'>Mill - <span className='font-light'>{list.mill}</span></h6>
-                                    <h6 className='font-medium mr-5 mt-2'>Line - <span className='font-light'>{list.line}</span></h6>
-                                    <h6 className='font-medium mr-5 mt-2'>Rail Sec. - <span className='font-light'>{list.railSec}</span></h6>
-                                    <h6 className='font-medium mr-5 mt-2'>Length - <span className='font-light'>{list.length}</span></h6>
+                                    <h6 className='font-medium mr-5 mt-2'>Date - <span className='font-light'>{shiftDetails[0].date}</span></h6>
+                                    <h6 className='font-medium mr-5 mt-2'>Shift - <span className='font-light'>{shiftDetails[0].shift}</span></h6>
+                                    <h6 className='font-medium mr-5 mt-2'>Rail Grade - <span className='font-light'>{shiftDetails[0].railGrade}</span></h6>
+                                    <h6 className='font-medium mr-5 mt-2'>Mill - <span className='font-light'>{shiftDetails[0].mill}</span></h6>
+                                    <h6 className='font-medium mr-5 mt-2'>Line - <span className='font-light'>{shiftDetails[0].lineNumber}</span></h6>
+                                    <h6 className='font-medium mr-5 mt-2'>Rail Sec. - <span className='font-light'>{shiftDetails[0].railSection}</span></h6>
+                                    <h6 className='font-medium mr-5 mt-2'>Length - <span className='font-light'>{shiftDetails[0].railLength}</span></h6>
                                 </div>
-                            ))}
+                            }
                         </div>
 
                         <hr />

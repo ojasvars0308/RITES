@@ -1,37 +1,14 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import SubHeader from '../../../../components/SubHeader'
 import CustomDatePicker from '../../../../components/CustomDatePicker'
 import FormBody from '../../../../components/FormBody'
 import FormDropdownItem from '../../../../components/FormDropdownItem'
-import FormInputItem from '../../../../components/FormInputItem'
 import Btn from '../../../../components/Btn'
-import moment from 'moment'
 import { message } from 'antd'
+import data from '../../../../utils/db.json'
+import { useNavigate } from 'react-router-dom'
 
-const shiftDropdownList = [
-  {
-    key: 'A',
-    value: 'A'
-  },
-  {
-    key: 'B',
-    value: 'B'
-  },
-  {
-    key: 'C',
-    value: 'C'
-  },
-]
-const smsList = [
-  {
-    key: 'SMS 2',
-    value: 'SMS 2'
-  },
-  {
-    key: 'SMS 3',
-    value: 'SMS 3'
-  },
-]
+// console.log("DATA DUTY START: ", shiftList)
 
 const railGradeList = [
   {
@@ -60,6 +37,21 @@ const SmsDutyStartForm = () => {
       railGrade: ''
     }
   )
+  const [shiftList, setShiftList] = useState([])
+  const [smsList, setSmsList] = useState([])
+
+  const navigate = useNavigate()
+
+  const populateShiftSmsList = useCallback(() => {
+    setShiftList([...data.shiftList])
+    setSmsList([...data.smsList])
+  }, [])
+
+  useEffect(() => {
+    populateShiftSmsList()
+  }, [populateShiftSmsList])
+
+
   const handleChange = (fieldName, value) => {
     setFormData(prev => {
       return {
@@ -70,8 +62,8 @@ const SmsDutyStartForm = () => {
   }
 
   const handleFormSubmit = () => {
-    console.log("FORM SUBMIT CALLED")
-    message.success('Form Submit Called')
+    message.success('SMS duty start triggered.')
+    navigate('/sms/dutyEnd')
   }
   return (
     <>
@@ -82,7 +74,7 @@ const SmsDutyStartForm = () => {
     >
       <div className="grid grid-cols-2">
       <CustomDatePicker label='Date' name='date' value={formData?.date} onChange={handleChange}/>
-      <FormDropdownItem label='Shift' dropdownArray={shiftDropdownList} name='shift' onChange={handleChange} valueField='key' visibleField='value' />
+      <FormDropdownItem label='Shift' dropdownArray={shiftList} name='shift' onChange={handleChange} valueField='key' visibleField='value' />
       </div>
       <FormDropdownItem label="SMS" name='sms' dropdownArray={smsList} visibleField='value' valueField='key' onChange={handleChange} />
       <FormDropdownItem label="Rail Grade" name='railGrade' dropdownArray={railGradeList} visibleField='value' valueField='key' onChange={handleChange} />

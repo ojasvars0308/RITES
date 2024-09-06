@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import {HomeOutlined, BellOutlined, FileTextOutlined, RobotOutlined, LineChartOutlined, ProfileOutlined, UserOutlined} from '@ant-design/icons';
+import React from 'react'
+import {HomeOutlined} from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import Tab from '../../../components/Tab';
 const dutyItemTabs = [
   {
     id: 1,
     title: 'SMS',
     icon: <HomeOutlined />,
-    link: '/smsDutyStart'
+    link: '/sms/dutyStart'
   },
   {
     id: 2,
@@ -47,7 +48,8 @@ const dutyItemTabs = [
   {
     id: 9,
     title: 'Calibration',
-    icon: <HomeOutlined />
+    icon: <HomeOutlined />,
+    link: '/calibrationList'
   },
   {
     id: 10,
@@ -57,25 +59,16 @@ const dutyItemTabs = [
 ]
 
 const Duty = () => {
-  const [activeTab, setActiveTab] = useState(1)
   const navigate = useNavigate()
   const renderDutyItemTabs = () =>
     dutyItemTabs.map(item => {
       return (
-        <div 
-          key={item.id} 
-          // className='bg-darkBlue text-offWhite px-4 py-4 rounded-t-3xl rounded-l-3xl'
-          onClick={() => navigate(item.link)}
-          className={`cursor-pointer bg-darkBlue text-offWhite px-4 py-4 rounded-t-3xl rounded-l-3xl ${activeTab === item.id ? 'border-b-2 border-pink' : ''}`}
-        >
-          <span className='duty-tab-icon'>{item.icon}</span> <br /> <br />
-          <div>{item.title}</div>
-        </div>
+        <Tab  title={item.title} icon={item.icon} onClick={()=> navigate(item.link)} />
       )
     })
   return (
     <section>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-16 gap-y-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {renderDutyItemTabs()}
       </div>
     </section>
