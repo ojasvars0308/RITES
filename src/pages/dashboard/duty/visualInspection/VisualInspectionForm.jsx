@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SubHeader from '../../../../components/SubHeader'
 import CustomDatePicker from '../../../../components/CustomDatePicker'
-import {EditOutlined, PlusCircleOutlined }from '@ant-design/icons';
+import {EditOutlined, PlusCircleOutlined, PlusOutlined }from '@ant-design/icons';
 import IconBtn from '../../../../components/IconBtn';
 import FormDropdownItem from '../../../../components/FormDropdownItem'
 import { message, Checkbox } from 'antd';
@@ -10,6 +10,8 @@ import FormInputItem from '../../../../components/FormInputItem';
 import Btn from '../../../../components/Btn';
 import { useNavigate } from 'react-router-dom'
 import TextAreaComponent from '../../../../components/TextAreaComponent';
+import InteractionTable from '../../../../components/InteractionTable';
+import FileUploader from '../../../../components/FileUploader';
 
 const checkBoxItems = [
   { "key": 1, "value": "Gauging & End Straightness Checked at both the ends" },
@@ -161,19 +163,30 @@ const VisualInspectionForm = () => {
   const [remarks, setRemarks] = useState('')
   const [shiftDetails, setShiftDetails] = useState(null);
   const [checkedValues, setCheckedValues] = useState([]);
-  const [formFieldsAcceptance, setFormFieldsAcceptance] = useState([
-    { acceptedLength: '', number: '', railClass: '' },
-  ]);
 
   const [defectCategoryDropdownList, setDefectCategoryDropdownList] = useState([])
   const [defectTypeDropdownList, setDefectTypeDropdownList] = useState([])
 
+  const [acceptanceFields, setAcceptanceFields] = useState([0]);
+  const [defectFields, setDefectFields] = useState([0]);
+
   const [fields, setFields] = useState([{ id: 1 }]);
 
-  const addField = () => {
-    setFields([...fields, { id: fields.length + 1 }]);
+  const addField = (type) => {
+    if (type === 'acceptance') {
+      setAcceptanceFields([...acceptanceFields, acceptanceFields.length]);
+    } else {
+      setDefectFields([...defectFields, defectFields.length]);
+    }
   };
 
+  // const removeField = (type, index) => {
+  //   if (type === 'acceptance') {
+  //     setAcceptanceFields(acceptanceFields.filter((_, i) => i !== index));
+  //   } else {
+  //     setDefectFields(defectFields.filter((_, i) => i !== index));
+  //   }
+  // };
 
   const [formData, setFormData] = useState(
     {
@@ -186,13 +199,21 @@ const VisualInspectionForm = () => {
       feedback: '',
       dim: '',
       visual: '',
-      acceptedLength: '',
-      number: '',
-      railClass: '',
-      defectCategory: '',
-      defectType: '',
-      location: '',
-      position: ''
+      acceptedDataList: [
+        {
+          acceptedLength: '',
+          number: '',
+          railClass: '',
+        }
+      ],
+      defectDataList: [
+        {
+          defectCategory: '',
+          defectType: '',
+          location: '',
+          position: '',
+        }
+      ]
     }
   );
 
@@ -215,6 +236,52 @@ const VisualInspectionForm = () => {
     })
   }
 
+  const handleAddAcceptanceFields = () => {
+    setFormData(prev => {
+      return {
+        ...prev,
+        acceptedDataList: [
+          ...prev.acceptedDataList,
+          { acceptedLength: '', number: '', railClass: '' }
+        ]
+      }
+    })
+  };
+
+  const handleAddDefectFields = () => {
+    setFormData(prev => {
+      return {
+        ...prev,
+        defectDataList: [
+          ...prev.defectDataList,
+          { defectCategory: '', defectType: '', location: '', position: '' }
+        ]
+      }
+    })
+  };
+  
+  const handleAcceptanceValueChange = (index, fieldName, value) => {
+    setFormData(prev => {
+      const prevAcceptedDataList = [...prev.acceptedDataList]
+      prevAcceptedDataList[index][fieldName] = value
+      return {
+        ...prev, 
+        acceptedDataList: [...prevAcceptedDataList]
+      }
+    })
+  };
+
+  const handleDefectValueChange = (index, fieldName, value) => {
+    setFormData(prev => {
+      const prevDefectDataList = [...prev.defectDataList]
+      prevDefectDataList[index][fieldName] = value
+      return {
+        ...prev, 
+        defectDataList: [...prevDefectDataList]
+      }
+    })
+  };
+
   useEffect(()=> {
     populateData()
   }, [])
@@ -231,15 +298,11 @@ const VisualInspectionForm = () => {
     }
   }, [formData.defectCategory, defectCategoryDropdownList])
 
-  const handleAddAcceptanceFields = () => {
-    setFormFieldsAcceptance([...formFieldsAcceptance, { acceptedLength: '', number: '', railClass: '' }]);
-  };
-
   const navigate = useNavigate()
 
   const handleFormSubmit = () => {
     message.success("Duty End Called")
-    navigate('/login')
+    navigate('/visual/home')
   }
 
   useEffect(() => {
@@ -282,46 +345,53 @@ const VisualInspectionForm = () => {
             <section>
                 <h3 className='mb-4 font-semibold'>Rail ID - U110324B034</h3>
 
-                <div className='grid grid-cols-3'>
+                <div className='flex flex-wrap'>
                     <CustomDatePicker label='Date' name='date' value={formData.date} onChange={handleChange} required/>
                     <FormDropdownItem label='Shift' dropdownArray={shiftDropdownList} name='shift' onChange={handleChange} valueField='key' visibleField='value' className='mr-2 ml-2' required/>
                     <FormInputItem label='S. No.' name='serialNumber' value={formData.serialNumber} onChange={handleChange} defaultValue='001' minLength='3' maxLength='3' required/>
                 </div>
 
-                <div className='grid grid-cols-2'>
+                <div className='flex flex-wrap'>
                     <FormInputItem label='Heat Number' name='heatNumber' value={formData.serialNumber} onChange={handleChange} className='mr-2' required/>
                     <FormInputItem label='Heat Status' name='heatStatus' value={formData.heatStatus} onChange={handleChange} required/>
                 </div>
 
-                <div className='grid grid-cols-1'>
+                <div className='flex flex-wrap'>
                     <FormInputItem label='Actual Offered Length (m)' name='offeredLength' value={formData.offeredLength} onChange={handleChange} required/>
                 </div>
             </section>
 
-            <hr />
+            <hr className='w-[78%]' />
 
             <section className='mt-4 mb-4'>
                 <h3 className='mb-4 font-semibold'>Feed back from AI System for Dim. & Visual</h3>
 
-                <TextAreaComponent label='UT - ' name='feedback' value={formData.feedback} onChange={handleChange} rows='1' />
+                <div className='flex flex-wrap'>
+                  <TextAreaComponent label='UT - ' name='feedback' value={formData.feedback} onChange={handleChange} rows='1' />
+                </div>
 
-                <FormInputItem label='Dim - ' name='dim' value={formData.dim} onChange={handleChange}/>
-                <FormInputItem label='Visual - ' name='visual' value={formData.visual} onChange={handleChange}/>
+                <div className='flex flex-wrap'>
+                  <FormInputItem label='Dim - ' name='dim' value={formData.dim} onChange={handleChange}/>
+                </div>
+
+                <div className='flex flex-wrap'>
+                  <FormInputItem label='Visual - ' name='visual' value={formData.visual} onChange={handleChange}/>
+                </div>
                 
-                <div className='grid grid-cols-2'>
-                    <a href='#' className='text-blue-500 mt-6 underline'>Hyperlink to AI Photo</a>
+                <div className='flex flex-wrap'>
+                    <a href='#' className='text-blue-500 mt-6 underline mr-6'>Hyperlink to AI Photo</a>
                     <a href='#' className='text-blue-500 mt-6 underline'>Hyperlink to NDT Report</a>
                 </div>
             </section>
 
-            <hr />
+            <hr className='w-[78%]' />
 
-            <section className='mt-4'>
+            <section className='mt-4 flex flex-wrap'>
                 <Checkbox.Group
                     options={checkBoxItems.map(item => ({key: item.key, label: item.value, value: item.key }))}
                     value={checkedValues}
                     onChange={(checkedValues) => setCheckedValues(checkedValues)}
-                    className='checkbox-group mb-6'
+                    className='checkbox-group mb-6 w-[80%]'
                 />
             </section>
 
@@ -329,57 +399,89 @@ const VisualInspectionForm = () => {
                 <h3 className='underline font-semibold'>
                     Add Acceptance Data
                 </h3>
+                {/* {shiftDetails[0].mill === 'URM' &&
+                    <FormDropdownItem name='acceptedLength' dropdownArray={acceptedLengthUList} visibleField='value' valueField='key' onChange={handleChange} required/>
+                }
+                {shiftDetails[0].mill === 'RSM' &&
+                    <FormDropdownItem name='acceptedLength' dropdownArray={acceptedLengthRList} visibleField='value' valueField='key' onChange={handleChange} required/>
+                } */}
+                {formData.acceptedDataList?.map((record, index) => (
+                  <>
+                    <div className='flex flex-wrap mt-4' key={index}>
+                      <FormDropdownItem label='Acc. Length' placeholder='Select acceptance length' key={record.id} dropdownArray={acceptedLengthUList} name='acceptedLength' onChange={(fieldName, value) => handleAcceptanceValueChange(index, fieldName, value)} valueField='key' visibleField='value' className='w-[30%] mr-2' required/>
 
-                <div className='grid grid-cols-3 mt-4'>
-                    {/* {shiftDetails[0].mill === 'URM' &&
-                        <FormDropdownItem name='acceptedLength' dropdownArray={acceptedLengthUList} visibleField='value' valueField='key' onChange={handleChange} required/>
-                    }
-                    {shiftDetails[0].mill === 'RSM' &&
-                        <FormDropdownItem name='acceptedLength' dropdownArray={acceptedLengthRList} visibleField='value' valueField='key' onChange={handleChange} required/>
-                    } */}
-                    <FormDropdownItem label='Acc. Length' placeholder='Select acceptance length' key={fields.id} dropdownArray={acceptedLengthUList} name='acceptedLength' onChange={handleChange} defaultValue='130' valueField='key' visibleField='value' className='mr-2 ml-2' required/>
+                      <FormInputItem label='Number' name='numberOfItems' value={record?.numberOfItems} onChange={(fieldName, value) => handleAcceptanceValueChange(index, fieldName, value)} className='w-[20%]' required/>
 
-                    <FormInputItem label='Number' name='numberOfItems' defaultValue={fields.id} value={formData?.numberOfItems} onChange={handleChange} required/>
+                      <FormDropdownItem label='Rail Class' dropdownArray={railClassList} name='railClass' key={record.id} onChange={(fieldName, value) => handleAcceptanceValueChange(index, fieldName, value)} valueField='key' visibleField='value'  className='ml-2 w-[22%]' required/>
+                    </div>
+                  </>
+                ))}
 
-                    <FormDropdownItem label='Rail Class' dropdownArray={railClassList} name='railClass' key={fields.id} onChange={handleChange} valueField='key' visibleField='value' defaultValue='A' className='mr-2 ml-2' required/>
-                </div>
-
-                {/* <IconBtn 
-                    icon={PlusOutlined} 
-                    text='add new heat' 
-                    className='absolute left-0 bottom-4'
-                    onClick={handleAddAcceptanceFields}
-                /> */}
-
-                <Btn onClick={addField} icon={<PlusCircleOutlined />}>Add More Acceptance Data</Btn>
+                <div className='mb-4'>
+                  <IconBtn 
+                      icon={PlusOutlined} 
+                      text='Add More Acceptance Data' 
+                      onClick={handleAddAcceptanceFields}
+                  />
+                </div>     
             </section>
 
-            <hr />
+            <hr className='w-[78%]' />
 
             <section>
                 <h3 className='underline font-semibold mt-4'>
                     Add Defect Data
                 </h3>
 
-                <div className='grid grid-cols-3 mt-4'>
-                    <FormDropdownItem label='Defect Cat.' name='defectCategory' dropdownArray={defectCategoryDropdownList} valueField={'key'} visibleField={'value'} onChange={handleChange} required />
-                    <FormDropdownItem label='Defect Type' name='defectType' className='ml-2 mr-2' dropdownArray={defectTypeDropdownList} valueField={'key'} visibleField={'value'} onChange = {handleChange} required />
+                {
+                  formData.defectDataList?.map((record,index) => (
+                    <>
+                      <div className='flex flex-wrap mt-4' key={index}>
+                        <FormDropdownItem label='Defect Cat.' name='defectCategory' dropdownArray={defectCategoryDropdownList} valueField={'key'} visibleField={'value'} onChange={(fieldName, value) => handleDefectValueChange(index, fieldName, value)} className='w-[20%]' required />
+                        <FormDropdownItem label='Defect Type' name='defectType' className='ml-2 mr-2' dropdownArray={defectTypeDropdownList} valueField={'key'} visibleField={'value'} onChange = {(fieldName, value) => handleDefectValueChange(index, fieldName, value)} />
 
-                    <FormInputItem label='Location' name='location' defaultValue={fields.id} value={formData.location} onChange={handleChange} required/>
+                        <FormInputItem label='Location' name='location' value={record?.location} onChange={(fieldName, value) => handleDefectValueChange(index, fieldName, value)} className='w-[15%]' required/>
 
-                    <FormDropdownItem label='Position' dropdownArray={positionList} name='position' key={fields.id} onChange={handleChange} valueField='key' visibleField='value' className='mr-2' required/>
-                </div>
+                        <FormDropdownItem label='Position' dropdownArray={positionList} name='position' key={record.id} onChange={(fieldName, value) => handleDefectValueChange(index, fieldName, value)} valueField='key' visibleField='value' className='ml-2' required/>
+                      </div>
+                    </>
+                  ))
+                }
 
-                <Btn onClick={addField} icon={<PlusCircleOutlined />}>Add More Defect Data</Btn>
+                <div className='mb-4'>
+                  <IconBtn 
+                      icon={PlusOutlined} 
+                      text='Add More Defect Data' 
+                      onClick={handleAddDefectFields}
+                  />
+                </div> 
             </section>
 
-            <hr />
+            <hr className='w-[78%]' />
 
-            <section>
-                
+            <section className='mt-4'>
+              <h3 className='font-semibold underline mb-4'>Rejection Details <span className='font-light ml-4'>min (std. off len , off. len) - acp. len.</span></h3>
+
+              <div className='w-[78%]'>
+                <InteractionTable />
+              </div>
             </section>
 
-            <Btn htmlType='submit' >End Duty</Btn>
+            <hr className='w-[78%]' />
+
+            <div className='flex flex-wrap mt-4'>
+              <FormInputItem label='Remarks' placeholder='Enter Remarks' onChange={(_, value) => setRemarks(value)} name='remarks'/>
+
+              <div className='mt-8 ml-4'>
+                <FileUploader />
+              </div>
+            </div>
+
+            <hr className='w-[78%]' />
+
+            <div className='mt-8'>
+              <Btn htmlType='submit' className='w-[50%]'>Save Inspection Data</Btn>
+            </div>
         </FormBody>        
     </>
   )

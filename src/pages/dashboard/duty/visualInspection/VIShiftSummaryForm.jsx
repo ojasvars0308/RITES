@@ -5,10 +5,13 @@ import {EditOutlined }from '@ant-design/icons';
 import IconBtn from '../../../../components/IconBtn';
 import FormDropdownItem from '../../../../components/FormDropdownItem'
 import FormBody from '../../../../components/FormBody'
+import Btn from '../../../../components/Btn'
 
 import filter from '../../../../assets/icons/filter.svg'
 import DisplayIcon from '../../../../components/DisplayIcon'
 import FilterTable from '../../../../components/FilterTable';
+
+import { useNavigate } from 'react-router-dom'
 
 const { Option } = Select;
 
@@ -18,14 +21,22 @@ const acceptanceData = [
   { key: '3', null: 'Tot.' },
 ];
 
+const rejectionData = [
+  {key: '1', 13: '', 12: '', 11: '', 10: '', component: ''},
+];
+
+const compiledData = [
+  {key: '1', nill: 'Rails Inspected'},
+  {key: '2', nill: 'Rails Accepted (A)'},
+  {key: '3', nill: 'Rails Accepted (A + 0.1)'},
+  {key: '4', nill: 'Rails Accepted (Total)'},
+  {key: '5', nill: 'Rails Rejected'},
+];
+
 const defectAnalysisData = [
   { key: '1', lap: '1', hh: '2', oht: '1', mdm: '1', kk: '4' },
   { key: '2', lap: 'LH', hh: 'Asy-', oht: 'Asy+', mdm: 'MDF', kk: 'US' },
   { key: '3', lap: '1', hh: '2', oht: '1', mdm: '1', kk: '4' },
-];
-const railwiseData = [
-  { key: '1', rail: 'Rail 1', summary: 'Summary 1' },
-  { key: '2', rail: 'Rail 2', summary: 'Summary 2' },
 ];
 
 const lineNumberList = [
@@ -68,6 +79,8 @@ const VIShiftSummaryForm = () => {
     setSelectedOption(value);
   };
 
+  const navigate = useNavigate()
+
   const acceptanceColumns = [
     { title: '', dataIndex: 'null', key: 'null' },
     { title: 'Insp.', dataIndex: 'Insp.', key: 'Insp.' },
@@ -80,17 +93,26 @@ const VIShiftSummaryForm = () => {
     { title: '13', dataIndex: '13', key: '13' },
   ];
 
+  const rejectionColumns = [
+    {title: '13', dataIndex: '13', key: '13'},
+    {title: '12', dataIndex: '12', key: '12'},
+    {title: '11', dataIndex: '11', key: '11'},
+    {title: '10', dataIndex: '10', key: '10'},
+    {title: 'Component', dataIndex: 'component', key: 'component'},
+  ];
+
+  const compiledColumns = [
+    {title: '', dataIndex: 'nill', key: 'nill'},
+    {title: 'Number', dataIndex: 'number', key: 'number'},
+    {title: 'Tonnes', dataIndex: 'tonnes', key: 'tonnes'},
+  ];
+
   const defectColumns = [
     { title: 'LAP', dataIndex: 'lap', key: 'lap' },
     { title: 'HH', dataIndex: 'hh', key: 'hh' },
     { title: 'OHT', dataIndex: 'oht', key: 'oht' },
     { title: 'MDM', dataIndex: 'mdm', key: 'mdm' },
     { title: 'KK', dataIndex: 'kk', key: 'kk' },
-  ];
-
-  const railwiseColumns = [
-    { title: 'Rail', dataIndex: 'rail', key: 'rail' },
-    { title: 'Summary', dataIndex: 'summary', key: 'summary' },
   ];
 
   const handleChange = (fieldName, value) => {
@@ -118,6 +140,12 @@ const VIShiftSummaryForm = () => {
         })
         .catch(error => console.error('Error fetching shift details:', error));
   }, []);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    navigate('/visual/home')
+  }
 
   return (
     <>
@@ -189,6 +217,38 @@ const VIShiftSummaryForm = () => {
           />
 
           <hr />
+
+          <Divider>Rejection Summary</Divider>
+
+          <Table
+            dataSource={rejectionData}
+            columns={rejectionColumns}
+            scroll={{ x: true }}
+            pagination={{
+              pageSize: 5,
+              showSizeChanger: true,
+              pageSizeOptions: ["5", "10", "20"],
+            }}
+          />
+
+          <hr />
+
+          <Divider>Compiled Summary</Divider>
+
+          <Table
+            dataSource={compiledData}
+            columns={compiledColumns}
+            scroll={{ x: true }}
+            pagination={{
+              pageSize: 5,
+              showSizeChanger: true,
+              pageSizeOptions: ["5", "10", "20"],
+            }}
+          />
+
+          <hr />
+
+          <Btn htmlType='submit' onClick={handleClick} className='w-[22%]'>Ok</Btn>
         </>
       )}
 
@@ -205,18 +265,20 @@ const VIShiftSummaryForm = () => {
               pageSizeOptions: ["5", "10", "20"],
             }}
           />
+
+          <hr />
+
+          <Btn htmlType='submit' onClick={handleClick} className='w-[22%]'>Ok</Btn>
         </>
       )}
 
       {selectedOption === 'Inspected Railwise Summary' && (
         <>
-          {/* <Table 
-            dataSource={railwiseData} 
-            columns={railwiseColumns} 
-            pagination={false} 
-          /> */}
-
           <FilterTable />
+          
+          <hr />
+
+          <Btn htmlType='submit' onClick={handleClick} className='w-[22%]'>Ok</Btn>
         </>
       )}
     </>
