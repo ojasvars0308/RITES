@@ -28,7 +28,7 @@ const dutyItemTabs = [
     id: 5,
     title: 'Visual Inspection',
     icon: <HomeOutlined />,
-    link: '/visual'
+    link: '/viShiftStart'
   },
   {
     id: 6,

@@ -7,13 +7,7 @@ import Login from '../auth/Login'
 import PageNotFound from '../pageNotFound/PageNotFound'
 import SmsDutyStartForm from '../dashboard/duty/sms/SmsDutyStartForm'
 import VIShiftDetailsForm from '../dashboard/duty/visualInspection/VIShiftDetailsForm'
-import VIShiftDetails from '../../forms/VIShiftDetails'
-import VIHome from '../../forms/VIHome'
-import VisualInspection from '../../forms/VisualInspection'
-import VIShiftSummary from '../../forms/VIShiftSummary'
-import VIAcceptanceSummary from '../../forms/VIAcceptanceSummary'
-import VIDefectAnalysisSummary from '../../forms/VIDefectAnalysisSummary'
-import VIInspectedRailwiseSummary from '../../forms/VIInspectedRailwiseSummary'
+import VIHomeForm from '../dashboard/duty/visualInspection/VIHomeForm'
 import CalibrationListForm from '../dashboard/duty/calibration/CalibrationListForm'
 import NMCalibrationForm from '../dashboard/duty/calibration/NMCalibrationForm'
 import BulkCalibrationForm from '../dashboard/duty/calibration/BulkCalibrationForm'
@@ -24,6 +18,8 @@ import SmsHeatList from '../dashboard/duty/sms/SmsHeatList'
 import SmsCheckList from '../dashboard/duty/sms/SmsCheckList'
 import SmsVerification from '../dashboard/duty/sms/SmsVerification'
 import SmsHeatSummary from '../dashboard/duty/sms/SmsHeatSummary'
+import VisualInspectionForm from '../dashboard/duty/visualInspection/VisualInspectionForm'
+import VIShiftSummaryForm from '../dashboard/duty/visualInspection/VIShiftSummaryForm'
 
 const RoutesComponent = () => {
   return (
@@ -47,13 +43,16 @@ const RoutesComponent = () => {
             </Route>
 
             <Route path='/viShiftStart' element={<VIShiftDetailsForm />} />
-            <Route path='/visual' element={<VIShiftDetails />} />
+            <Route path='/visual/home' element={<VIHomeForm />} />
+            <Route path='/visual/inspection' element={<VisualInspectionForm />} />
+            <Route path='/visual/shiftSummary' element={<VIShiftSummaryForm />} />
+            {/* <Route path='/visual' element={<VIShiftDetails />} />
             <Route path='/visual/home' element={<VIHome />} />
             <Route path='/visual/inspection' element={<VisualInspection />} />
             <Route path='/visual/shiftSummary' element={<VIShiftSummary />} />
             <Route path='/acceptance-summary' element={<VIAcceptanceSummary />} />
             <Route path='/defect-analysis-summary' element={<VIDefectAnalysisSummary />} />
-            <Route path='/inspected-railwise-summary' element={<VIInspectedRailwiseSummary />} />
+            <Route path='/inspected-railwise-summary' element={<VIInspectedRailwiseSummary />} /> */}
             <Route path='/calibrationList' element={<CalibrationListForm />} />
             <Route path='/new-modify-calibration' element={<NMCalibrationForm />} />
             <Route path='/bulkCalibration' element={<BulkCalibrationForm />} />

@@ -6,6 +6,8 @@ import FormDropdownItem from '../../../../components/FormDropdownItem'
 import FormInputItem from '../../../../components/FormInputItem'
 import Btn from '../../../../components/Btn'
 import { message } from 'antd'
+import SelectSearch from '../../../../components/SelectSearch'
+import { useNavigate } from 'react-router-dom'
 
 const millMapping = {
   'URM': ['1', '2', '3', '4', '5', '6'],
@@ -132,9 +134,11 @@ const VIShiftDetailsForm = () => {
       railSection: '',
       stdRailLength: '',
       otherIE: '',
-      rclIE: '',
+      rclIE: ''
     }
-  )
+  );
+
+  const navigate = useNavigate()
 
   const populateData = () => {
     const millDropdownList = Object.keys(millMapping).map( mill => {
@@ -183,9 +187,40 @@ const VIShiftDetailsForm = () => {
     }
   }, [formData.mill, millDropdownList])
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    const shiftDetail = { formData };
+
+    fetch('http://localhost:8000/shiftDetails', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(shiftDetail)
+    }).then(() => {
+        console.log('new shift details added');
+    })
+
     console.log("FORM SUBMIT CALLED")
     message.success('Form Submit Called')
+    navigate('/visual/home')
+  }
+
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    const shiftDetail = { formData };
+
+    fetch('http://localhost:8000/shiftDetails', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(shiftDetail)
+    }).then(() => {
+        console.log('new shift details added');
+    })
+
+    console.log("FORM SUBMIT CALLED")
+    message.success('Form Submit Called')
+    navigate('/visual/home')
   }
 
   return (
@@ -206,8 +241,9 @@ const VIShiftDetailsForm = () => {
         <FormDropdownItem label="Rail Grade" name='railGrade' dropdownArray={railGradeList} visibleField='value' valueField='key' onChange={handleChange} required/>
         <FormDropdownItem label="Rail Section" name='railSection' dropdownArray={railSectionList} visibleField='value' valueField='key' onChange={handleChange} required />
         <FormDropdownItem label="Std. offered Rail Length" name='stdRailLength' dropdownArray={stdRailLengthList} visibleField={'value'} valueField={'key'} onChange={handleChange} required />
-        <FormInputItem label='Add Other IE' name='otherIE' value={formData.otherIE} onChange={handleChange} required/>
-        <Btn htmlType='submit'>Submit</Btn>
+        <SelectSearch label='Add Other IE' placeholder='Search a IE' name='otherIE' value={formData.otherIE} onChange={handleChange} className='w-full' required />
+        <FormInputItem label='Add Name of RCL IE' name='rclIE' value={formData.rclIE} onChange={handleChange} required/>
+        <Btn htmlType='submit' onClick={handleClick}>Submit</Btn>
       </FormBody>
     </>
   )

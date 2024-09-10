@@ -70,6 +70,20 @@
         "degTime": "15"
       }
     ],
+    "visualAcceptanceSummaryData": [
+      {
+        "key": "1",
+        "railClass": "A"
+      },
+      {
+        "key": "2",
+        "railClass": "+0.1"
+      },
+      {
+        "key": "3",
+        "railClass": "Tot."
+      }
+    ],
     "smsVerificationReportData":[
       {
         "key": "1",
