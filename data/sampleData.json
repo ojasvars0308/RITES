@@ -193,6 +193,20 @@
         "otherIE": "",
         "rclIE": ""
       }
+    },
+    {
+      "id": "94b2",
+      "formData": {
+        "date": "",
+        "shift": "",
+        "mill": "",
+        "lineNumber": "",
+        "railGrade": "",
+        "railSection": "",
+        "stdRailLength": "",
+        "otherIE": "",
+        "rclIE": ""
+      }
     }
   ]
 }

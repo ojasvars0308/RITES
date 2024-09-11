@@ -1,60 +1,60 @@
 import React from 'react'
-import {HomeOutlined} from '@ant-design/icons';
+import { MessageOutlined, RollbackOutlined, RadarChartOutlined, WarningOutlined, EyeOutlined, InsuranceOutlined, SmallDashOutlined, FieldTimeOutlined, TrademarkCircleOutlined, FileUnknownOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import Tab from '../../../components/Tab';
 const dutyItemTabs = [
   {
     id: 1,
     title: 'SMS',
-    icon: <HomeOutlined />,
+    icon: <MessageOutlined />,
     link: '/sms/dutyStart'
   },
   {
     id: 2,
     title: 'Rolling Stage',
-    icon: <HomeOutlined />
+    icon: <RollbackOutlined />
   },
   {
     id: 3,
     title: 'NDT',
-    icon: <HomeOutlined />
+    icon: <RadarChartOutlined />
   },
   {
     id: 4,
     title: 'Testing',
-    icon: <HomeOutlined />
+    icon: <WarningOutlined />
   },
   {
     id: 5,
     title: 'Visual Inspection',
-    icon: <HomeOutlined />,
+    icon: <EyeOutlined />,
     link: '/viShiftStart'
   },
   {
     id: 6,
     title: 'Welding Inspection',
-    icon: <HomeOutlined />
+    icon: <InsuranceOutlined />
   },
   {
     id: 7,
     title: 'Short Rail Inspection',
-    icon: <HomeOutlined />
+    icon: <SmallDashOutlined />
   },
   {
     id: 8,
     title: 'QCT',
-    icon: <HomeOutlined />
+    icon: <FieldTimeOutlined />
   },
   {
     id: 9,
     title: 'Calibration',
-    icon: <HomeOutlined />,
+    icon: <TrademarkCircleOutlined />,
     link: '/calibrationList'
   },
   {
     id: 10,
     title: 'Info',
-    icon: <HomeOutlined />
+    icon: <FileUnknownOutlined />
   },
 ]
 
