@@ -25,6 +25,8 @@ import NDTHomeForm from '../dashboard/duty/ndt/NDTHomeForm'
 import NDTCalibration from '../dashboard/duty/ndt/NDTCalibration'
 import NDTShiftSummary from '../dashboard/duty/ndt/NDTShiftSummary'
 import NDTReport from '../dashboard/duty/ndt/NDTReport'
+import QCTSamples from '../dashboard/duty/qct/QCTSamples/qctSamples'
+import QCTSampleDec from '../dashboard/duty/qct/QCTSampleDec/qctSampleDec'
 
 const RoutesComponent = () => {
   return (
@@ -54,6 +56,15 @@ const RoutesComponent = () => {
               <Route path='calibration' element={<NDTCalibration />} />
               <Route path='shiftSummary' element={<NDTShiftSummary />} />
               <Route path='report' element={<NDTReport />} />
+            </Route>
+
+            <Route path='/qct'>
+              <Route index element={<QCTSamples />} />
+              <Route path='samples' element={<QCTSamples />} />
+              <Route path='sampleDec' element={<QCTSampleDec />} />
+              {/* <Route path='calibration' element={<NDTCalibration />} />
+              <Route path='shiftSummary' element={<NDTShiftSummary />} />
+              <Route path='report' element={<NDTReport />} /> */}
             </Route>
 
             <Route path='/viShiftStart' element={<VIShiftDetailsForm />} />

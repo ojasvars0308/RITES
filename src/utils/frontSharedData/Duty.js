@@ -42,7 +42,8 @@ const dutyItemTabs = [
     {
       id: 8,
       title: 'QCT',
-      icon: <FieldTimeOutlined />
+      icon: <FieldTimeOutlined />,
+      link: '/qct/samples'
     },
     {
       id: 9,

@@ -3,7 +3,7 @@ import { DatePicker, Form } from 'antd';
 import moment from 'moment';
 import 'moment/locale/en-gb'; // To support locale formatting
 
-const DKG_CustomDatePicker = ({ label, value, onChange, name, disabled, required }) => {
+const DKG_CustomDatePicker = ({ label, value, onChange, name, className, disabled, required }) => {
   const handleChange = (date, dateString) => {
     if (onChange) {
       onChange(name, date ? dateString : null);
@@ -26,6 +26,7 @@ const DKG_CustomDatePicker = ({ label, value, onChange, name, disabled, required
         console.log("UPATE OR NO: ",name, update)
         return update
       }}
+      className={className}
     >
 
     <DatePicker
