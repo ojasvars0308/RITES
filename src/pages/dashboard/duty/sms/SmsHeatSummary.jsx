@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
-import SubHeader from "../../../../components/SubHeader";
+import SubHeader from "../../../../components/DKG_SubHeader";
 import data from "../../../../utils/db.json";
-import GeneralInfo from "../../../../components/GeneralInfo";
-import IconBtn from "../../../../components/IconBtn";
+import GeneralInfo from "../../../../components/DKG_GeneralInfo";
+import IconBtn from "../../../../components/DKG_IconBtn";
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { Checkbox, message, Modal, Table } from "antd";
-import FormInputItem from "../../../../components/FormInputItem";
-import Btn from "../../../../components/Btn";
+import FormInputItem from "../../../../components/DKG_FormInputItem";
+import Btn from "../../../../components/DKG_Btn";
 import { useNavigate } from "react-router-dom";
 
 const {

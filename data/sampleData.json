@@ -13,199 +13,53 @@
       "rclIeName": "anjali"
     },
     {
-      "id": "f09b",
+      "id": "b69b",
       "formData": {
-        "date": "",
-        "shift": "",
-        "mill": "",
-        "lineNumber": "",
-        "railGrade": "",
-        "railSection": "",
-        "stdRailLength": "",
-        "otherIE": "",
-        "rclIE": ""
-      }
-    },
-    {
-      "id": "a8e6",
-      "formData": {
-        "date": "",
-        "shift": "B",
+        "date": "16/09/2024",
+        "shift": "C",
         "mill": "RSM",
-        "lineNumber": "2",
-        "railGrade": "R260",
-        "railSection": "136RE",
-        "stdRailLength": "78",
-        "otherIE": "",
-        "rclIE": "ojas"
+        "ndt": "SR",
+        "railGrade": "1080HH",
+        "railSection": "136RE"
       }
     },
     {
-      "id": "718d",
+      "id": "9b2a",
       "formData": {
-        "date": "",
-        "shift": "",
-        "mill": "",
-        "lineNumber": "",
-        "railGrade": "",
-        "railSection": "",
-        "stdRailLength": "",
-        "otherIE": "",
-        "rclIE": ""
-      }
-    },
-    {
-      "id": "2d3b",
-      "formData": {
-        "date": "",
-        "shift": "",
-        "mill": "",
-        "lineNumber": "",
-        "railGrade": "",
-        "railSection": "",
-        "stdRailLength": "",
-        "otherIE": "",
-        "rclIE": ""
-      }
-    },
-    {
-      "id": "255f",
-      "formData": {
-        "date": "",
-        "shift": "",
-        "mill": "",
-        "lineNumber": "",
-        "railGrade": "",
-        "railSection": "",
-        "stdRailLength": "",
-        "otherIE": "",
-        "rclIE": ""
-      }
-    },
-    {
-      "id": "0c87",
-      "formData": {
-        "date": "",
-        "shift": "",
-        "mill": "",
-        "lineNumber": "",
-        "railGrade": "",
-        "railSection": "",
-        "stdRailLength": "",
-        "otherIE": "",
-        "rclIE": ""
-      }
-    },
-    {
-      "id": "ad07",
-      "formData": {
-        "date": "",
-        "shift": "",
-        "mill": "",
-        "lineNumber": "",
-        "railGrade": "",
-        "railSection": "",
-        "stdRailLength": "",
-        "otherIE": "",
-        "rclIE": ""
-      }
-    },
-    {
-      "id": "3abd",
-      "formData": {
-        "date": "",
-        "shift": "",
-        "mill": "",
-        "lineNumber": "",
-        "railGrade": "",
-        "railSection": "",
-        "stdRailLength": "",
-        "otherIE": "",
-        "rclIE": ""
-      }
-    },
-    {
-      "id": "f75a",
-      "formData": {
-        "date": "",
-        "shift": "B",
+        "date": "10/09/2024",
+        "shift": "C",
         "mill": "RSM",
-        "lineNumber": "2",
+        "ndt": "SR",
+        "railGrade": "350HT",
+        "railSection": "136RE"
+      }
+    },
+    {
+      "id": "6c6b",
+      "formData": {
+        "date": "02/09/2024",
+        "shift": "B",
+        "mill": "URM",
+        "lineNumber": "5",
         "railGrade": "350HT",
         "railSection": "UIC 60",
-        "stdRailLength": "65",
+        "stdRailLength": "130",
         "otherIE": "",
         "rclIE": "ojas"
       }
     },
     {
-      "id": "cb8d",
+      "id": "5c38",
       "formData": {
-        "date": "",
-        "shift": "",
-        "mill": "",
-        "lineNumber": "",
-        "railGrade": "",
-        "railSection": "",
-        "stdRailLength": "",
+        "date": "21/09/2024",
+        "shift": "C",
+        "mill": "URM",
+        "lineNumber": "5",
+        "railGrade": "880",
+        "railSection": "IRS 52",
+        "stdRailLength": "130",
         "otherIE": "",
-        "rclIE": ""
-      }
-    },
-    {
-      "id": "503b",
-      "formData": {
-        "date": "",
-        "shift": "",
-        "mill": "",
-        "lineNumber": "",
-        "railGrade": "",
-        "railSection": "",
-        "stdRailLength": "",
-        "otherIE": "",
-        "rclIE": ""
-      }
-    },
-    {
-      "id": "0b93",
-      "formData": {
-        "date": "",
-        "shift": "",
-        "mill": "",
-        "lineNumber": "",
-        "railGrade": "",
-        "railSection": "",
-        "stdRailLength": "",
-        "otherIE": "",
-        "rclIE": ""
-      }
-    },
-    {
-      "id": "d09d",
-      "formData": {
-        "date": "",
-        "shift": "",
-        "mill": "",
-        "lineNumber": "",
-        "railGrade": "",
-        "railSection": "",
-        "stdRailLength": "",
-        "otherIE": "",
-        "rclIE": ""
-      }
-    },
-    {
-      "id": "94b2",
-      "formData": {
-        "date": "",
-        "shift": "",
-        "mill": "",
-        "lineNumber": "",
-        "railGrade": "",
-        "railSection": "",
-        "stdRailLength": "",
-        "otherIE": "",
-        "rclIE": ""
+        "rclIE": "ojas"
       }
     }
   ]

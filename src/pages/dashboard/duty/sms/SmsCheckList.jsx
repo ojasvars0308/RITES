@@ -1,11 +1,10 @@
-
 import React from 'react'
-import SubHeader from '../../../../components/SubHeader'
+import SubHeader from '../../../../components/DKG_SubHeader'
 import data from "../../../../utils/db.json";
-import GeneralInfo from '../../../../components/GeneralInfo';
+import GeneralInfo from '../../../../components/DKG_GeneralInfo';
 import { Table } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import Btn from '../../../../components/Btn';
+import Btn from '../../../../components/DKG_Btn';
 
 const { smsCheckListData: sampleData, smsGeneralInfo } = data;
 

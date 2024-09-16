@@ -1,0 +1,132 @@
+{
+    "tableData": [
+        {
+          "key": "1",
+          "railID": "U100824B034",
+          "surfaceDefectDetection": { "precision": 0.95, "recall": 0.93 },
+          "dimensionalVariationDetection": { "precision": 0.90, "recall": 0.88 },
+          "ocr": "True"
+        },
+        {
+          "key": "2",
+          "railID": "U170824C031",
+          "surfaceDefectDetection": { "precision": 0.92, "recall": 0.90 },
+          "dimensionalVariationDetection": { "precision": 0.87, "recall": 0.85 },
+          "ocr": "True"
+        },
+        {
+          "key": "3",
+          "railID": "R070824A010",
+          "surfaceDefectDetection": { "precision": 0.97, "recall": 0.82 },
+          "dimensionalVariationDetection": { "precision": 0.81, "recall": 0.93 },
+          "ocr": "False"
+        },
+        {
+          "key": "4",
+          "railID": "U190724B089",
+          "surfaceDefectDetection": { "precision": 0.98, "recall": 0.91 },
+          "dimensionalVariationDetection": { "precision": 0.83, "recall": 0.75 },
+          "ocr": "False"
+        },
+        {
+          "key": "5",
+          "railID": "R290824C149",
+          "surfaceDefectDetection": { "precision": 0.68, "recall": 0.62 },
+          "dimensionalVariationDetection": { "precision": 0.89, "recall": 0.81 },
+          "ocr": "True"
+        },
+        {
+          "key": "6",
+          "railID": "R090924B732",
+          "surfaceDefectDetection": { "precision": 0.77, "recall": 0.71 },
+          "dimensionalVariationDetection": { "precision": 0.80, "recall": 0.95 },
+          "ocr": "True"
+        },
+        {
+          "key": "7",
+          "railID": "R200624B290",
+          "surfaceDefectDetection": { "precision": 0.95, "recall": 0.64 },
+          "dimensionalVariationDetection": { "precision": 0.73, "recall": 0.86 },
+          "ocr": "True"
+        },
+        {
+          "key": "8",
+          "railID": "U110624B079",
+          "surfaceDefectDetection": { "precision": 0.95, "recall": 0.99 },
+          "dimensionalVariationDetection": { "precision": 0.66, "recall": 0.78 },
+          "ocr": "False"
+        },
+        {
+          "key": "9",
+          "railID": "R300524C002",
+          "surfaceDefectDetection": { "precision": 0.90, "recall": 0.70 },
+          "dimensionalVariationDetection": { "precision": 0.84, "recall": 0.88 },
+          "ocr": "False"
+        },
+        {
+          "key": "10",
+          "railID": "R260724A005",
+          "surfaceDefectDetection": { "precision": 0.92, "recall": 0.91 },
+          "dimensionalVariationDetection": { "precision": 0.87, "recall": 0.83 },
+          "ocr": "True"
+        }
+    ],
+    "shiftDropdownList": [
+        {
+          "key": "A",
+          "value": "A"
+        },
+        {
+          "key": "B",
+          "value": "B"
+        },
+        {
+          "key": "C",
+          "value": "C"
+        }
+    ],
+    "columns": [
+        {
+          "title": "Rail ID",
+          "dataIndex": "railID",
+          "key": "railID"
+        },
+        {
+          "title": "Surface Defect Detection",
+          "key": "surfaceDefectDetection",
+          "children": [
+            {
+              "title": "Precision",
+              "dataIndex": ["surfaceDefectDetection", "precision"],
+              "key": "surfaceDefectDetectionPrecision"
+            },
+            {
+              "title": "Recall",
+              "dataIndex": ["surfaceDefectDetection", "recall"],
+              "key": "surfaceDefectDetectionRecall"
+            }
+          ]
+        },
+        {
+          "title": "Dimensional Variation Detection",
+          "key": "dimensionalVariationDetection",
+          "children": [
+            {
+              "title": "Precision",
+              "dataIndex": ["dimensionalVariationDetection", "precision"],
+              "key": "dimensionalVariationDetectionPrecision"
+            },
+            {
+              "title": "Recall",
+              "dataIndex": ["dimensionalVariationDetection", "recall"],
+              "key": "dimensionalVariationDetectionRecall"
+            }
+          ]
+        },
+        {
+          "title": "OCR",
+          "dataIndex": "ocr",
+          "key": "ocr"
+        }
+    ]
+}

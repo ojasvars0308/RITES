@@ -1,33 +1,17 @@
 import { Radio, Table } from 'antd'
 import React, { useState } from 'react'
-import CustomDatePicker from '../../../components/CustomDatePicker'
-import FormBody from '../../../components/FormBody'
+import CustomDatePicker from '../../../components/DKG_CustomDatePicker'
+import FormBody from '../../../components/DKG_FormBody'
+import FormDropdownItem from '../../../components/DKG_FormDropdownItem'
 import moment from 'moment'
+import data from '../../../utils/frontSharedData/AISystem.json'
 
-// Sample data
-const data = [
-  {
-    key: '1',
-    railID: '001',
-    surfaceDefectDetection: { precision: 0.95, recall: 0.93 },
-    dimensionalVariationDetection: { precision: 0.90, recall: 0.88 },
-    ocr: 'True',
-  },
-  {
-    key: '2',
-    railID: '002',
-    surfaceDefectDetection: { precision: 0.92, recall: 0.90 },
-    dimensionalVariationDetection: { precision: 0.87, recall: 0.85 },
-    ocr: 'True',
-  },
-  // Add more data as needed
-];
-
-
+const { tableData, shiftDropdownList, columns } = data;
 
 const AiSystem = () => {
   const [timePeriod, setTimePeriod] = useState('shift')
-  const [shiftDate, setShiftDate] =useState('')
+  const [shiftDate, setShiftDate] = useState('')
+  const [shift, setShift] = useState('')
   const [weekStartDate, setWeekStartDate] = useState('')
   const [weekEndDate, setWeekEndDate] = useState('')
   const [monthStartDate, setMonthStartDate] = useState('')
@@ -36,7 +20,8 @@ const AiSystem = () => {
   const [yearEndDate, setYearEndDate] = useState('')
 
   const handleShiftChange = (_, value) => {
-    setShiftDate(value)
+    setShiftDate(value);
+    setShift(value);
   }
 
   const handleWeekEndChange = (_, value) => {
@@ -52,142 +37,99 @@ const AiSystem = () => {
   }
 
   const handleMonthEndChange = (_, value) => {
-  const date = moment(value, 'DD/MM/YYYY', true);
-  if (!date.isValid()) {
-    throw new Error('Invalid date format. Please use DD/MM/YYYY.');
-  }
-  const oneMonthBefore = date.subtract(1, 'months');
-  const formattedValue = oneMonthBefore.format('DD/MM/YYYY');
-  setMonthStartDate(formattedValue)
-  setMonthEndDate(value)
+    const date = moment(value, 'DD/MM/YYYY', true);
+    if (!date.isValid()) {
+      throw new Error('Invalid date format. Please use DD/MM/YYYY.');
+    }
+    const oneMonthBefore = date.subtract(1, 'months');
+    const formattedValue = oneMonthBefore.format('DD/MM/YYYY');
+    setMonthStartDate(formattedValue)
+    setMonthEndDate(value)
   }
 
   const handleYearEndChange = (_, value) => {
-  const date = moment(value, 'DD/MM/YYYY', true);
-  if (!date.isValid()) {
-    throw new Error('Invalid date format. Please use DD/MM/YYYY.');
+    const date = moment(value, 'DD/MM/YYYY', true);
+    if (!date.isValid()) {
+      throw new Error('Invalid date format. Please use DD/MM/YYYY.');
+    }
+    const oneYearBefore = date.subtract(1, 'years');
+      const formattedValue = oneYearBefore.format('DD/MM/YYYY');
+      setYearStartDate(formattedValue)
+      setYearEndDate(value)
   }
-  const oneYearBefore = date.subtract(1, 'years');
-    const formattedValue = oneYearBefore.format('DD/MM/YYYY');
-    setYearStartDate(formattedValue)
-    setYearEndDate(value)
-  }
-
-  const columns = [
-    {
-      title: 'Rail ID',
-      dataIndex: 'railID',
-      key: 'railID',
-    },
-    {
-      title: 'Surface Defect Detection',
-      key: 'surfaceDefectDetection',
-      children: [
-        {
-          title: 'Precision',
-          dataIndex: ['surfaceDefectDetection', 'precision'],
-          key: 'surfaceDefectDetectionPrecision',
-        },
-        {
-          title: 'Recall',
-          dataIndex: ['surfaceDefectDetection', 'recall'],
-          key: 'surfaceDefectDetectionRecall',
-        },
-      ],
-    },
-    {
-      title: 'Dimensional Variation Detection',
-      key: 'dimensionalVariationDetection',
-      children: [
-        {
-          title: 'Precision',
-          dataIndex: ['dimensionalVariationDetection', 'precision'],
-          key: 'dimensionalVariationDetectionPrecision',
-        },
-        {
-          title: 'Recall',
-          dataIndex: ['dimensionalVariationDetection', 'recall'],
-          key: 'dimensionalVariationDetectionRecall',
-        },
-      ],
-    },
-    {
-      title: 'OCR',
-      dataIndex: 'ocr',
-      key: 'ocr',
-    },
-  ];
-
 
   return (
     <>
-    <FormBody
-      initialValues={
-        {
-          timePeriod,
-          weekStartDate,
-          weekEndDate,
-          monthStartDate,
-          monthEndDate,
-          yearStartDate,
-          yearEndDate
+      <FormBody
+        initialValues={
+          {
+            timePeriod, weekStartDate, weekEndDate, monthStartDate, monthEndDate, yearStartDate, yearEndDate
+          }
         }
-      }
-    >
+      >
 
-     <h1 className='font-semibold mb-4'>AI System Accuracy Dashboard</h1> 
-     <div>
-      <h2 className='font-medium'>
-      Time Period
-      </h2>
-      <Radio.Group value={timePeriod} onChange={(e) => setTimePeriod(e.target.value)} className='flex gap-8 mb-4'>
-        <Radio value='shift'>Shift</Radio>
-        <Radio value='weekly'>Weekly</Radio>
-        <Radio value='monthly'>Monthly</Radio>
-        <Radio value='yearly'>Annually</Radio>
-      </Radio.Group>
-    </div>
-      <div>
-    {
-      timePeriod === 'shift' &&
-      <CustomDatePicker label='Shift Date' value={shiftDate} name='shiftDate' onChange={handleShiftChange} />
-    }
+        <h1 className='font-semibold mb-4'>AI System Accuracy Dashboard</h1>
 
-    {
-      timePeriod === 'weekly' && 
-      <>
-      <CustomDatePicker label='Week End Date' name='weekEndDate' value={weekEndDate} onChange={handleWeekEndChange}/>
-      <CustomDatePicker label='Week Start Date' name='weekStartDate' value={weekStartDate} disabled />
-      </>
-    }
-    {
-      timePeriod === 'monthly' &&
-      <>
-      <CustomDatePicker label='Month End Date' name='monthEndDate' value={monthEndDate} onChange={handleMonthEndChange}/>
-      <CustomDatePicker label='Month Start Date' name='monthStartDate' value={monthStartDate} disabled />
-      </>
-    }
-    {
-      timePeriod === 'yearly' &&
-      <>
-       <>
-      <CustomDatePicker label='Year End Date' name='yearEndDate' value={yearEndDate} onChange={handleYearEndChange}/>
-      <CustomDatePicker label='Year Start Date' name='weekStartDate' value={yearStartDate} disabled />
-      </>
-      </>
-    }
-     </div>
-    </FormBody>
+        <hr />
 
-    <Table
-      columns={columns}
-      dataSource={data}
-      pagination={{
-        pageSize: 5,
-        showSizeChanger: true, 
-        pageSizeOptions: ['5', '10', '20'], // Options for page size
-      }}
-    />
+        <div className='mt-4'>
+          <h2 className='font-medium'>
+            Time Period
+          </h2>
+
+          <Radio.Group value={timePeriod} onChange={(e) => setTimePeriod(e.target.value)} className='flex gap-6 mb-4'>
+            <Radio value='shift'>Shift</Radio>
+            <Radio value='weekly'>Weekly</Radio>
+            <Radio value='monthly'>Monthly</Radio>
+            <Radio value='yearly'>Annually</Radio>
+          </Radio.Group>
+        </div>
+
+        <div>
+          {
+            timePeriod === 'shift' &&
+            <div className='flex'>
+              <CustomDatePicker label='Shift Date' value={shiftDate} name='shiftDate' onChange={handleShiftChange} />
+              <FormDropdownItem label='Shift' value={shift} dropdownArray={shiftDropdownList} name='shift' onChange={handleShiftChange} valueField='key' visibleField='value' className='ml-2 w-[30%]' required/>
+            </div>
+          }
+
+          {
+            timePeriod === 'weekly' && 
+            <>
+              <CustomDatePicker label='Week End Date' name='weekEndDate' value={weekEndDate} onChange={handleWeekEndChange}/>
+              <CustomDatePicker label='Week Start Date' name='weekStartDate' value={weekStartDate} disabled />
+            </>
+          }
+
+          {
+            timePeriod === 'monthly' &&
+            <>
+              <CustomDatePicker label='Month End Date' name='monthEndDate' value={monthEndDate} onChange={handleMonthEndChange}/>
+              <CustomDatePicker label='Month Start Date' name='monthStartDate' value={monthStartDate} disabled />
+            </>
+          }
+
+          {
+            timePeriod === 'yearly' &&
+            <>
+              <CustomDatePicker label='Year End Date' name='yearEndDate' value={yearEndDate} onChange={handleYearEndChange}/>
+              <CustomDatePicker label='Year Start Date' name='weekStartDate' value={yearStartDate} disabled />
+            </>
+          }
+        </div>
+      </FormBody>
+
+      <Table
+        columns={columns}
+        dataSource={tableData}
+        scroll={{ x: true }}
+        pagination={{
+          pageSize: 10,
+          showSizeChanger: true, 
+          pageSizeOptions: ['10', '20', '30'],
+        }}
+      />
     </>
   )
 }

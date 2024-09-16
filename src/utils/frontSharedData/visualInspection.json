@@ -1,0 +1,287 @@
+{
+    "millMaping": {
+        "URM": ["1", "2", "3", "4", "5", "6"],
+        "RSM": ["1", "2"]
+    },
+    "millsMaping": {
+        "URM": ["130"],
+        "RSM": ["78", "65"]
+    },
+    "shiftDropdownList": [
+        {
+          "key": "A",
+          "value": "A"
+        },
+        {
+          "key": "B",
+          "value": "B"
+        },
+        {
+          "key": "C",
+          "value": "C"
+        }
+    ],
+    "railGradeList": [
+        {
+          "key": "R260",
+          "value": "R260"
+        },
+        {
+          "key": "350HT",
+          "value": "R260"
+        },
+        {
+          "key": "1080HH",
+          "value": "1080HH"
+        },
+        {
+          "key": "880",
+          "value": "880"
+        },
+        {
+          "key": "880NC",
+          "value": "880NC"
+        }
+    ],
+    "railSectionList": [
+        {
+          "key": "60E1",
+          "value": "60E1"
+        },
+        {
+          "key": "IRS 52",
+          "value": "IRS 52"
+        },
+        {
+          "key": "UIC 60",
+          "value": "UIC 60"
+        },
+        {
+          "key": "60E1A1",
+          "value": "60E1A1"
+        },
+        {
+          "key": "136RE",
+          "value": "136RE"
+        }
+    ],
+    "checkBoxItem": [
+        { "key": 1,
+          "value": "Mark right if other IEs confirmation are done"
+        }
+    ],
+    "checkBoxItemSec": [
+        { "key": 1,
+          "value": "Mark right if Gauging & End Straightness present at both the ends"
+        }
+    ],
+    "defectMapping": {
+        "Dimension": [ "HH", "LH", "OHT", "UHT", "NF", "WF", "TF(+)", "TF(-)", "HF(+)", "HF(-)", "HS", "LS", "TNW", "TKW", "Asy(+)", "Asy(-)", "OL", "SL", "OS", "FBC", "FBCX", "CP(+)", "CP(-)", "Other" ],
+        "Surface": [ "NMI", "MDF", "MDM", "LAP", "GM", "BR", "Crack", "BNT", "CE", "Other" ],
+        "Straightness": [ "KK", "TW", "-C -R/C", "WY", "NS", "BE", "US", "DS", "Other" ],
+        "Others": [ "NHN", "RM", "UT", "HNP", "Other" ]
+    },
+    "railClassList": [
+        {
+          "key": "A",
+          "value": "A"
+        },
+        {
+          "key": "A + 0.1",
+          "value": "A + 0.1"
+        }
+    ],
+    "positionList": [
+        {
+          "key": "Head",
+          "value": "Head"
+        },
+        {
+          "key": "Foot",
+          "value": "Foot"
+        },
+        {
+            "key": "WBS",
+            "value": "WBS"
+        },
+        {
+            "key": "WNBS",
+            "value": "WNBS"
+        }
+    ],
+    "acceptedLengthUList": [
+        {
+          "key": "130",
+          "value": "130"
+        },
+        {
+          "key": "117",
+          "value": "117"
+        },
+        {
+          "key": "86.67",
+          "value": "86.67"
+        },
+        {
+          "key": "65",
+          "value": "65"
+        },
+        {
+          "key": "52",
+          "value": "52"
+        },
+        {
+            "key": "26",
+            "value": "26"
+        },
+        {
+            "key": "25",
+            "value": "25"
+        },
+        {
+            "key": "24",
+            "value": "24"
+        },
+        {
+            "key": "13",
+            "value": "13"
+        },
+        {
+            "key": "12",
+            "value": "12"
+        },
+        {
+            "key": "11",
+            "value": "11"
+        },
+        {
+            "key": "10",
+            "value": "10"
+        }
+    ],
+   "acceptanceData": [
+        {   "key": "1",
+            "null": "A"
+        },
+        {   "key": "2",
+            "null": "+0.1"
+        },
+        {   "key": "3",
+            "null": "Tot."
+        }
+    ],
+    "rejectionData": [
+        {
+            "key": "1", 
+            "13": "",
+            "12": "", 
+            "11": "",
+            "10": "", 
+            "component": ""
+        }
+    ],
+    "compiledData": [
+        {
+            "key": "1",
+            "nill": "Rails Inspected"
+        },
+        {
+            "key": "2",
+            "nill": "Rails Accepted (A)"
+        },
+        {
+            "key": "3",
+            "nill": "Rails Accepted (A + 0.1)"
+        },
+        {
+            "key": "4", 
+            "nill": "Rails Accepted (Total)"
+        },
+        {
+            "key": "5", 
+            "nill": "Rails Rejected"
+        }
+    ],
+    "defectAnalysisData": [
+        { 
+            "key": "1", 
+            "lap": "1", 
+            "hh": "2", 
+            "oht": "1", 
+            "mdm": "1", 
+            "kk": "4" 
+        },
+        { 
+            "key": "2", 
+            "lap": "LH", 
+            "hh": "Asy-", 
+            "oht": "Asy+", 
+            "mdm": "MDF", 
+            "kk": "US" 
+        },
+        { 
+            "key": "3", 
+            "lap": "1", 
+            "hh": "2", 
+            "oht": "1", 
+            "mdm": "1", 
+            "kk": "4" 
+        }
+    ],
+    "lineNumberList": [
+        {
+          "key": "Line 1",
+          "value": "Line 1"
+        },
+        {
+          "key": "Line 2",
+          "value": "Line 2"
+        },
+        {
+          "key": "Line 3",
+          "value": "Line 3"
+        },
+        {
+            "key": "Line 4",
+            "value": "Line 4"
+        },
+        {
+            "key": "Line 5",
+            "value": "Line 5"
+        },
+        {
+            "key": "Line 6",
+            "value": "Line 6"
+        }
+    ],
+    "acceptanceColumns": [
+        { "title": "", "dataIndex": "null", "key": "null" },
+        { "title": "Insp.", "dataIndex": "Insp.", "key": "Insp." },
+        { "title": "130", "dataIndex": "130", "key": "130" },
+        { "title": "117", "dataIndex": "117", "key": "117" },
+        { "title": "87", "dataIndex": "87", "key": "87" },
+        { "title": "65", "dataIndex": "65", "key": "65" },
+        { "title": "52", "dataIndex": "52", "key": "52" },
+        { "title": "26", "dataIndex": "26", "key": "26" },
+        { "title": "13", "dataIndex": "13", "key": "13" }
+    ],
+    "rejectionColumns": [
+        {"title": "13", "dataIndex": "13", "key": "13"},
+        {"title": "12", "dataIndex": "12", "key": "12"},
+        {"title": "11", "dataIndex": "11", "key": "11"},
+        {"title": "10", "dataIndex": "10", "key": "10"},
+        {"title": "Component", "dataIndex": "component", "key": "component"}
+    ],
+    "compiledColumns": [
+        {"title": "", "dataIndex": "nill", "key": "nill"},
+        {"title": "Number", "dataIndex": "number", "key": "number"},
+        {"title": "Tonnes", "dataIndex": "tonnes", "key": "tonnes"}
+    ],
+    "defectColumns": [
+        { "title": "LAP", "dataIndex": "lap", "key": "lap" },
+        { "title": "HH", "dataIndex": "hh", "key": "hh" },
+        { "title": "OHT", "dataIndex": "oht", "key": "oht" },
+        { "title": "MDM", "dataIndex": "mdm", "key": "mdm" },
+        { "title": "KK", "dataIndex": "kk", "key": "kk" }
+    ]
+}

@@ -1,9 +1,9 @@
 import React from "react";
 import { Table } from "antd";
-import SubHeader from "../../../../components/SubHeader";
-import GeneralInfo from "../../../../components/GeneralInfo";
+import SubHeader from "../../../../components/DKG_SubHeader";
+import GeneralInfo from "../../../../components/DKG_GeneralInfo";
 import { useNavigate } from "react-router-dom";
-import Btn from "../../../../components/Btn";
+import Btn from "../../../../components/DKG_Btn";
 import data from "../../../../utils/db.json";
 
 const { smsVerificationReportData: sampleData, smsGeneralInfo } = data;

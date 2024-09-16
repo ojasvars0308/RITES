@@ -1,10 +1,9 @@
-
 import React, { useState } from 'react'
-import SubHeader from '../../../../components/SubHeader'
-import FormBody from '../../../../components/FormBody'
-import FormInputItem from '../../../../components/FormInputItem'
-import FormDropdownItem from '../../../../components/FormDropdownItem'
-import Btn from '../../../../components/Btn'
+import SubHeader from '../../../../components/DKG_SubHeader'
+import FormBody from '../../../../components/DKG_FormBody'
+import FormInputItem from '../../../../components/DKG_FormInputItem'
+import FormDropdownItem from '../../../../components/DKG_FormDropdownItem'
+import Btn from '../../../../components/DKG_Btn'
 import { message } from 'antd'
 
 const bloomIdentificationList = [

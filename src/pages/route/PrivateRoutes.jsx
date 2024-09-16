@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, Outlet } from 'react-router-dom'
 
@@ -7,7 +7,7 @@ const PrivateRoutes = () => {
   
   return (
     <> 
-    {token ? <Outlet /> : <Navigate to='/login' />}
+      {token ? <Outlet /> : <Navigate to='/login' />}
     </>
   )
   

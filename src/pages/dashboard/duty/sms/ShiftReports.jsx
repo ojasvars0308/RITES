@@ -1,11 +1,11 @@
 import React from 'react'
-import SubHeader from '../../../../components/SubHeader'
+import SubHeader from '../../../../components/DKG_SubHeader'
 import { FireOutlined, CheckCircleOutlined, CheckSquareOutlined } from '@ant-design/icons';
-import TabList from '../../../../components/TabList';
-import Btn from '../../../../components/Btn';
+import TabList from '../../../../components/DKG_TabList';
+import Btn from '../../../../components/DKG_Btn';
 import { useNavigate } from 'react-router-dom';
 import data from '../../../../utils/db.json'
-import GeneralInfo from '../../../../components/GeneralInfo';
+import GeneralInfo from '../../../../components/DKG_GeneralInfo';
 
 const {smsGeneralInfo} = data
 
