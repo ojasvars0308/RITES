@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate()
   const handleFormSubmit = async () => {
     await dispatch(login()).unwrap()
-    navigate('/')
+    navigate('/dashboard')
   }
 
   const [formData, setFormData] = useState(

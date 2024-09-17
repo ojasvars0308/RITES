@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import SubHeader from '../../../../components/DKG_SubHeader'
-import FormDropdownItem from '../../../../components/DKG_FormDropdownItem'
-import FormBody from '../../../../components/DKG_FormBody'
-import CustomDatePicker from '../../../../components/DKG_CustomDatePicker'
+import SubHeader from '../../../../../components/DKG_SubHeader'
+import FormDropdownItem from '../../../../../components/DKG_FormDropdownItem'
+import FormBody from '../../../../../components/DKG_FormBody'
+import CustomDatePicker from '../../../../../components/DKG_CustomDatePicker'
 import { message, Table } from 'antd'
 import { useNavigate } from 'react-router-dom';
-
-import filter from '../../../../assets/icons/filter.svg'
-import DisplayIcon from '../../../../components/DKG_DisplayIcon'
-import Search from '../../../../components/DKG_Search'
-import Btn from '../../../../components/DKG_Btn'
+import configData from '../../../../../utils/configureData/fetchData.json'
+import IconBtn from '../../../../../components/DKG_IconBtn';
+import { EditOutlined }from '@ant-design/icons';
+import filter from '../../../../../assets/icons/filter.svg'
+import DisplayIcon from '../../../../../components/DKG_DisplayIcon'
+import Search from '../../../../../components/DKG_Search'
+import Btn from '../../../../../components/DKG_Btn'
 
 const instrumentMapping = {
     'Measuring Instrument': ['Vernier', 'Micrometer', 'Feeler Gauge', 'Weighing Scale', 'Measuring Tape', 'Measuring Scale'],
@@ -105,7 +107,7 @@ const columns = [
 
 const onSearch = (value, _e, info) => console.log(info?.source, value);
 
-const CalibrationListForm = () => {
+const CalibrationLists = () => {
     const [shiftDetails, setShiftDetails] = useState(null);
     const [instrumentCategoryList, setInstrumentCategoryList] = useState([])
     const [instrumentList, setInstrumentList] = useState([])
@@ -178,12 +180,11 @@ const CalibrationListForm = () => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:8000/shiftDetails')
+        fetch(configData.JSON_SERVER_URL)
             .then(res => {
                 return res.json()
             })
             .then((data) => {
-                console.log(data);
                 setShiftDetails([...data])
             })
             .catch(error => console.error('Error fetching shift details:', error));
@@ -191,18 +192,17 @@ const CalibrationListForm = () => {
 
   return (
     <>
-        <SubHeader title='Calibration List' link='/' />
+        <SubHeader title='Calibration List' link='/dashboard' />
 
-        <div className='flex mt-2'>
-            {shiftDetails && 
-                <div className='flex flex-wrap mb-4'>
-                    <h6 className='font-medium mr-5 mt-2'>Date - <span className='font-light'>{shiftDetails[0].date}</span></h6>
-                    <h6 className='font-medium mr-5 mt-2'>Shift - <span className='font-light'>{shiftDetails[0].shift}</span></h6>
-                </div>
-            }
-        </div>
-        
-        <hr />
+        {shiftDetails && 
+            <section className="grid grid-cols-2 md:grid-cols-4 gap-2 lg:gap-8 relative border p-1 border-gray-500 rounded-sm">
+            <h3>Date: {shiftDetails[0].date}</h3>
+            <h3>Shift: {shiftDetails[0].shift}</h3>
+            <div className='absolute top-0 right-0'>
+                <IconBtn icon={EditOutlined} onClick={() => message.success("Clicked")} />
+            </div>
+          </section>
+        }
 
         <FormBody
             initialValues={formData}
@@ -288,4 +288,4 @@ const CalibrationListForm = () => {
   )
 }
 
-export default CalibrationListForm
+export default CalibrationLists

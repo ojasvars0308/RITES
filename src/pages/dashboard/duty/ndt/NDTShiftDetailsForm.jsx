@@ -143,7 +143,7 @@ const NDTShiftDetailsForm = () => {
 
   return (
     <>
-        <SubHeader title='NDT - Shift Details' link='/' />
+        <SubHeader title='NDT - Shift Details' link='/dashboard' />
 
         <FormBody
             initialValues={formData}

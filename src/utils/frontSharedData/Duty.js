@@ -49,7 +49,7 @@ const dutyItemTabs = [
       id: 9,
       title: 'Calibration',
       icon: <TrademarkCircleOutlined />,
-      link: '/calibrationList'
+      link: '/calibration/lists'
     },
     {
       id: 10,

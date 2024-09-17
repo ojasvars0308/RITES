@@ -34,7 +34,7 @@ const SmsDutyEnd = () => {
   }
   return (
     <>
-    <SubHeader title='SMS - Duty End' link='/' />
+    <SubHeader title='SMS - Duty End' link='/dashboard' />
       <section className="grid grid-cols-2 md:grid-cols-4 gap-2 lg:gap-8 relative border p-1 border-gray-500 rounded-sm">
         <h3>Date: 13/12/2001</h3>
         <h3>Shift: A</h3>

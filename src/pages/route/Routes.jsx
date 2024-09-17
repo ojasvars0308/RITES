@@ -8,7 +8,6 @@ import PageNotFound from '../pageNotFound/PageNotFound'
 import SmsDutyStartForm from '../dashboard/duty/sms/SmsDutyStart/SmsDutyStartForm'
 import VIShiftDetailsForm from '../dashboard/duty/visualInspection/VIShiftDetails/VIShiftDetailsForm'
 import VIHome from '../dashboard/duty/visualInspection/VIHome/VIHome'
-import CalibrationListForm from '../dashboard/duty/calibration/CalibrationListForm'
 import NMCalibrationForm from '../dashboard/duty/calibration/NMCalibrationForm'
 import BulkCalibrationForm from '../dashboard/duty/calibration/BulkCalibrationForm'
 import SmsDutyEnd from '../dashboard/duty/sms/SmsDutyEnd'
@@ -27,14 +26,23 @@ import NDTShiftSummary from '../dashboard/duty/ndt/NDTShiftSummary'
 import NDTReport from '../dashboard/duty/ndt/NDTReport'
 import QCTSamples from '../dashboard/duty/qct/QCTSamples/qctSamples'
 import QCTSampleDec from '../dashboard/duty/qct/QCTSampleDec/qctSampleDec'
+import CalibrationLists from '../dashboard/duty/calibration/CalibrationList/CalibrationLists'
+import TestSampleList from '../dashboard/duty/stage/testSample/TestSampleList/TestSampleList'
 
 const RoutesComponent = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='*' element={<PageNotFound />} />
+
+        
+
         <Route element = {<PrivateRoutes />}>
-          <Route path='/' element={<Layout />}>
-            <Route index element={<Dashboard />} />
+            <Route path='/' element={<Layout />}>
+            <Route index element={<Login />} />
+            <Route path='/dashboard' element={<Dashboard />}></Route>
+
             <Route path='/sms'>
               <Route index element={<SmsDutyStartForm />} />
               <Route path='heatSummary' element={<SmsHeatSummary />} />
@@ -72,15 +80,29 @@ const RoutesComponent = () => {
             <Route path='/visual/inspection' element={<VisualInspectionForm />} />
             <Route path='/visual/shiftSummary' element={<VIShiftSummary />} />
             
-            <Route path='/calibrationList' element={<CalibrationListForm />} />
-            <Route path='/new-modify-calibration' element={<NMCalibrationForm />} />
-            <Route path='/bulkCalibration' element={<BulkCalibrationForm />} />
+            <Route path='/calibration'>
+              <Route index element={<CalibrationLists />} />
+              <Route path='lists' element={<CalibrationLists />} />
+              <Route path='home' element={<NDTHomeForm />} />
+              <Route path='calibration' element={<NDTCalibration />} />
+              <Route path='shiftSummary' element={<NDTShiftSummary />} />
+              <Route path='report' element={<NDTReport />} />
+            </Route>
+
+            <Route path='/stage/testSample'>
+              <Route index element={<TestSampleList />} />
+              <Route path='list' element={<TestSampleList />} />
+              {/* <Route path='home' element={<NDTHomeForm />} />
+              <Route path='calibration' element={<NDTCalibration />} />
+              <Route path='shiftSummary' element={<NDTShiftSummary />} />
+              <Route path='report' element={<NDTReport />} /> */}
+            </Route>
+
+
+            {/* <Route path='/new-modify-calibration' element={<NMCalibrationForm />} />
+            <Route path='/bulkCalibration' element={<BulkCalibrationForm />} /> */}
           </Route>
         </Route>
-
-        <Route path='/login' element={<Login />} />
-        <Route path='*' element={<PageNotFound />} />
-
       </Routes>
       
     </BrowserRouter>

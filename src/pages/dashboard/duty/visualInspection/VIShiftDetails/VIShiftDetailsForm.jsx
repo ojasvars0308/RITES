@@ -88,7 +88,7 @@ const VIShiftDetailsForm = () => {
 
   return (
     <>
-      <SubHeader title='Visual Inspection - Shift Details' link='/' />
+      <SubHeader title='Visual Inspection - Shift Details' link='/dashboard' />
       <FormBody
         initialValues={formData}
         onFinish={handleFormSubmit}

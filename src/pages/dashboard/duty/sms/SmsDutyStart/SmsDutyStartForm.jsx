@@ -46,7 +46,7 @@ const SmsDutyStartForm = () => {
   }
   return (
     <>
-      <SubHeader title='SMS - Duty Start' link='/' />
+      <SubHeader title='SMS - Duty Start' link='/dashboard' />
 
       <FormBody
         initialValues={formData}
