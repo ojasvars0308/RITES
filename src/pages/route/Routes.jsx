@@ -34,7 +34,7 @@ const RoutesComponent = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login />} />
-        <Route path='*' element={<PageNotFound />} />
+        <Route path='*' element={<Login />} />
 
         
 
