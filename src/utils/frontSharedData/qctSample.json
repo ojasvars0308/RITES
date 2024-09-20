@@ -47,12 +47,8 @@
             "value": "Fatigue"
         },
         {
-            "key": "Fracture",
-            "value": "Fracture"
-        },
-        {
-            "key": "Toughness",
-            "value": "Toughness"
+            "key": "Fracture Toughness",
+            "value": "Fracture Toughness"
         },
         {
             "key": "Residual Stress",
@@ -63,12 +59,8 @@
             "value": "FCGR"
         },
         {
-            "key": "Center Line",
-            "value": "Center Line"
-        },
-        {
-            "key": "RSH",
-            "value": "RSH"
+            "key": "Centerline RSH",
+            "value": "Centerline RSH"
         }
     ],
     "sampleDeclarationColumns": [

@@ -1,17 +1,17 @@
 import React from "react";
-import { ReactComponent as Logo } from "../assets/images/logo.svg";
+import { ReactComponent as Logo } from "../assets/icons/RITES_logo.svg";
 import { MenuOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../store/slice/authSlice";
 import { Menu } from "antd";
 
 const DKG_Header = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleMenuClick = (e) => {
     if (e.key === '1.1') {
-        navigate('/');
+        // navigate('/');
       } else if (e.key === '1.2') {
         dispatch(logout())
       }
@@ -33,9 +33,9 @@ const DKG_Header = () => {
     }
   ]
   return (
-    <header className="!bg-white py-4 px-4 flex justify-between items-center sticky top-0 w-full z-10">
-      <div onClick={() => navigate('/')}>
-        <Logo height={40} width={40} />
+    <header className="!bg-white px-4 flex justify-between items-center w-full z-10 rounded-2xl">
+      <div>
+        <Logo height={90} width={180} />
       </div>
       <div className="flex gap-4">
         <span>Hello User !</span>

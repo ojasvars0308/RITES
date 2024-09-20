@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import FormDropdownItem from '../../../../components/DKG_FormDropdownItem'
-import SubHeader from '../../../../components/DKG_SubHeader'
-import FormBody from '../../../../components/DKG_FormBody'
+import FormDropdownItem from '../../../../../components/DKG_FormDropdownItem'
+import SubHeader from '../../../../../components/DKG_SubHeader'
+import FormBody from '../../../../../components/DKG_FormBody'
 import { message } from 'antd'
-import FormInputItem from '../../../../components/DKG_FormInputItem'
-import CustomDatePicker from '../../../../components/DKG_CustomDatePicker'
-import Btn from '../../../../components/DKG_Btn'
+import FormInputItem from '../../../../../components/DKG_FormInputItem'
+import CustomDatePicker from '../../../../../components/DKG_CustomDatePicker'
+import Btn from '../../../../../components/DKG_Btn'
 import { useNavigate } from 'react-router-dom';
 
 const instrumentMapping = {

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import SubHeader from '../../../../components/DKG_SubHeader'
-import FormDropdownItem from '../../../../components/DKG_FormDropdownItem'
-import FormBody from '../../../../components/DKG_FormBody'
-import CustomDatePicker from '../../../../components/DKG_CustomDatePicker'
+import SubHeader from '../../../../../components/DKG_SubHeader'
+import FormDropdownItem from '../../../../../components/DKG_FormDropdownItem'
+import FormBody from '../../../../../components/DKG_FormBody'
+import CustomDatePicker from '../../../../../components/DKG_CustomDatePicker'
 import { message, Table } from 'antd'
 import { useNavigate } from 'react-router-dom';
 
-import filter from '../../../../assets/icons/filter.svg'
-import DisplayIcon from '../../../../components/DKG_DisplayIcon'
-import Search from '../../../../components/DKG_Search'
-import Btn from '../../../../components/DKG_Btn'
+import filter from '../../../../../assets/icons/filter.svg'
+import DisplayIcon from '../../../../../components/DKG_DisplayIcon'
+import Search from '../../../../../components/DKG_Search'
+import Btn from '../../../../../components/DKG_Btn'
 
 const instrumentMapping = {
   'Measuring Instrument': ['Vernier', 'Micrometer', 'Feeler Gauge', 'Weighing Scale', 'Measuring Tape', 'Measuring Scale'],

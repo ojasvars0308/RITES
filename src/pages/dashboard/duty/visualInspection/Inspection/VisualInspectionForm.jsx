@@ -24,6 +24,8 @@ const VisualInspectionForm = () => {
   const [defectCategoryDropdownList, setDefectCategoryDropdownList] = useState([])
   const [defectTypeDropdownList, setDefectTypeDropdownList] = useState([])
 
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState(
     {
       date: new Date(), shift: 'A', serialNumber: '001', heatNumber: '', heatStatus: '', offeredLength: '', feedback: '', dim: '', visual: '', remarks: '',
@@ -133,8 +135,6 @@ const VisualInspectionForm = () => {
     }
   }, [formData.defectCategory, defectCategoryDropdownList])
 
-  const navigate = useNavigate()
-
   const handleFormSubmit = () => {
     // const shiftDetail = { formData };
 
@@ -160,11 +160,12 @@ const VisualInspectionForm = () => {
   }, []);
 
   return (
-    <>
+    <div className='flex flex-col justify-center w-[410px]'>
         <SubHeader title='Visual Inspection' link='/visual/home' />
+      
         {
             shiftDetails &&
-            <section className="grid grid-cols-2 md:grid-cols-4 gap-2 lg:gap-8 relative border p-1 border-gray-500 rounded-sm">
+            <section className="!bg-offWhite opacity-70 grid grid-cols-2 md:grid-cols-2 gap-2 lg:gap-2 relative border p-1 border-gray-100 rounded-md mb-4 shadow-[15px_15px_30px_-15px_rgba(0,0,0,0.2)]">
               <h3>Date: {shiftDetails[0].date}</h3>
               <h3>Shift: {shiftDetails[0].shift}</h3>
               <h3>Mill: {shiftDetails[0].mill}</h3>
@@ -190,8 +191,8 @@ const VisualInspectionForm = () => {
 
                 <div className='flex flex-wrap'>
                     <CustomDatePicker label='Date' name='date' value={formData.date} onChange={handleChange} required/>
-                    <FormDropdownItem label='Shift' dropdownArray={shiftDropdownList} name='shift' onChange={handleChange} valueField='key' visibleField='value' className='mr-2 ml-2 w-28' required/>
-                    <FormInputItem label='S. No.' name='serialNumber' value={formData.serialNumber} onChange={handleChange} defaultValue='001' minLength='3' maxLength='3' className='w-32' required/>
+                    <FormDropdownItem label='Shift' dropdownArray={shiftDropdownList} name='shift' onChange={handleChange} valueField='key' visibleField='value' className='mr-2 ml-2 w-32' required/>
+                    <FormInputItem label='S. No.' name='serialNumber' value={formData.serialNumber} onChange={handleChange} defaultValue='001' minLength='3' maxLength='3' className='w-28' required/>
                 </div>
 
                 <div className='flex flex-wrap'>
@@ -234,7 +235,7 @@ const VisualInspectionForm = () => {
                     options={checkBoxItemSec.map(item => ({key: item.key, label: item.value, value: item.key }))}
                     value={checkedValues}
                     onChange={(checkedValues) => setCheckedValues(checkedValues)}
-                    className='mb-6 w-[80%]'
+                    className='mb-6 w-[78%]'
                 />
             </section>
 
@@ -250,7 +251,7 @@ const VisualInspectionForm = () => {
                     <div className='flex flex-wrap mt-4' key={index}>
                       <FormDropdownItem label='Acc. Length' key={record.id} dropdownArray={acceptedLengthUList} name='acceptedLength' onChange={(fieldName, value) => handleAcceptanceValueChange(index, fieldName, value)} valueField='key' visibleField='value' className='w-[33%] mr-2' required/>
 
-                      <FormInputItem label='Number' name='numberOfItems' value={record?.numberOfItems} onChange={(fieldName, value) => handleAcceptanceValueChange(index, fieldName, value)} className='w-[20%]' required/>
+                      <FormInputItem label='Number' name='numberOfItems' value={record?.numberOfItems} onChange={(fieldName, value) => handleAcceptanceValueChange(index, fieldName, value)} className='w-[18%]' required/>
 
                       <FormDropdownItem label='Rail Class' dropdownArray={railClassList} name='railClass' key={record.id} onChange={(fieldName, value) => handleAcceptanceValueChange(index, fieldName, value)} valueField='key' visibleField='value'  className='ml-2 w-[22%]' required/>
                     </div>
@@ -300,7 +301,7 @@ const VisualInspectionForm = () => {
             <hr className='w-[77%]' />
 
             <section className='mt-4'>
-              <h3 className='font-semibold underline mb-4'>Rejection Details <span className='font-light ml-4'>min (std. off len , off. len) - acp. len.</span></h3>
+              <h3 className='font-semibold underline mb-4'>Rejection Details</h3>
 
               <div className='w-[78%]'>
                 <InteractionTable />
@@ -323,7 +324,7 @@ const VisualInspectionForm = () => {
               <Btn htmlType='submit'>Save Inspection Data</Btn>
             </div>
         </FormBody>        
-    </>
+    </div>
   )
 }
 

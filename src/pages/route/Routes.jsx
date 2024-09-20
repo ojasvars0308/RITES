@@ -8,8 +8,6 @@ import PageNotFound from '../pageNotFound/PageNotFound'
 import SmsDutyStartForm from '../dashboard/duty/sms/SmsDutyStart/SmsDutyStartForm'
 import VIShiftDetailsForm from '../dashboard/duty/visualInspection/VIShiftDetails/VIShiftDetailsForm'
 import VIHome from '../dashboard/duty/visualInspection/VIHome/VIHome'
-import NMCalibrationForm from '../dashboard/duty/calibration/NMCalibrationForm'
-import BulkCalibrationForm from '../dashboard/duty/calibration/BulkCalibrationForm'
 import SmsDutyEnd from '../dashboard/duty/sms/SmsDutyEnd'
 import SmsBloomInspection from '../dashboard/duty/sms/SmsBloomInspection'
 import ShiftReports from '../dashboard/duty/sms/ShiftReports'
@@ -28,12 +26,18 @@ import QCTSamples from '../dashboard/duty/qct/QCTSamples/qctSamples'
 import QCTSampleDec from '../dashboard/duty/qct/QCTSampleDec/qctSampleDec'
 import CalibrationLists from '../dashboard/duty/calibration/CalibrationList/CalibrationLists'
 import TestSampleList from '../dashboard/duty/stage/testSample/TestSampleList/TestSampleList'
+import SRInspectionHome from '../dashboard/duty/shortRail/shortRailHome/SRInspectionHome'
+import SRInspectionForm from '../dashboard/duty/shortRail/shortRailForm/SRInspectionForm'
+import WSRemarks from '../dashboard/duty/shortRail/WSRemarks/WSRemarks'
+import BulkCalibrationForm from '../dashboard/duty/calibration/BulkCalibration/BulkCalibrationForm'
+import NMCalibrationForm from '../dashboard/duty/calibration/NMCalibration/NMCalibrationForm'
 
 const RoutesComponent = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login />} />
+        {/* Correct this path */}
         <Route path='*' element={<Login />} />
 
         
@@ -66,6 +70,13 @@ const RoutesComponent = () => {
               <Route path='report' element={<NDTReport />} />
             </Route>
 
+            <Route path='/shortRail'>
+              <Route index element={<SRInspectionHome />} />
+              <Route path='home' element={<SRInspectionHome />} />
+              <Route path='form' element={<SRInspectionForm />} />
+              <Route path='wsRemarks' element={< WSRemarks />} />
+            </Route>
+
             <Route path='/qct'>
               <Route index element={<QCTSamples />} />
               <Route path='samples' element={<QCTSamples />} />
@@ -83,10 +94,8 @@ const RoutesComponent = () => {
             <Route path='/calibration'>
               <Route index element={<CalibrationLists />} />
               <Route path='lists' element={<CalibrationLists />} />
-              <Route path='home' element={<NDTHomeForm />} />
-              <Route path='calibration' element={<NDTCalibration />} />
-              <Route path='shiftSummary' element={<NDTShiftSummary />} />
-              <Route path='report' element={<NDTReport />} />
+              <Route path='bulkCalibration' element={<BulkCalibrationForm />} />
+              <Route path='NMCalibration' element={<NMCalibrationForm />} />
             </Route>
 
             <Route path='/stage/testSample'>

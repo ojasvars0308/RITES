@@ -37,7 +37,8 @@ const dutyItemTabs = [
     {
       id: 7,
       title: 'Short Rail Inspection',
-      icon: <SmallDashOutlined />
+      icon: <SmallDashOutlined />,
+      link: '/shortRail/home'
     },
     {
       id: 8,
