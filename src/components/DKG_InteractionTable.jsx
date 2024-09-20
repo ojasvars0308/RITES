@@ -190,23 +190,26 @@ const DKG_InteractionTable = () => {
       <Button
         onClick={handleAdd}
         type="primary"
-        className='bg-pink mb-2'
+        className='bg-emerald-900 mb-2'
       >
         Add a row
       </Button>
-      <Table
-        components={components}
-        rowClassName={() => 'editable-row'}
-        scroll={{ x: true }}
-        bordered
-        dataSource={dataSource}
-        columns={columns}
-        pagination={{
-          pageSize: 5,
-          showSizeChanger: true, 
-          pageSizeOptions: ['5', '10', '20']
-        }}
-      />
+
+      <div className=''>
+        <Table
+          components={components}
+          rowClassName={() => 'editable-row'}
+          scroll={{ x: true }}
+          bordered
+          dataSource={dataSource}
+          columns={columns}
+          pagination={{
+            pageSize: 5,
+            showSizeChanger: true, 
+            pageSizeOptions: ['5', '10', '20']
+          }}
+        />
+      </div>
     </div>
   );
 };

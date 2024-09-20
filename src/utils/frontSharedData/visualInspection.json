@@ -283,5 +283,36 @@
         { "title": "OHT", "dataIndex": "oht", "key": "oht" },
         { "title": "MDM", "dataIndex": "mdm", "key": "mdm" },
         { "title": "KK", "dataIndex": "kk", "key": "kk" }
+    ],
+    "rejectionDetailsColumns": [
+      { "title": "Length", "dataIndex": "length", "key": "length" },
+      { "title": "No. of Pieces", "dataIndex": "numberPieces", "key": "numberPieces" }
+    ],
+    "rejectionDetailsData": [
+      { 
+          "key": "1", 
+          "length": "13m", 
+          "numberPieces": "" 
+      },
+      { 
+          "key": "2", 
+          "length": "12m", 
+          "numberPieces": "" 
+      },
+      { 
+          "key": "3", 
+          "length": "11m", 
+          "numberPieces": ""
+      },
+      { 
+          "key": "4", 
+          "length": "10m", 
+          "numberPieces": ""
+      },
+      { 
+          "key": "5", 
+          "length": "Comp. Length", 
+          "numberPieces": ""
+      }
     ]
 }
