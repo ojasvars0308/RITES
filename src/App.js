@@ -11,7 +11,7 @@ function App() {
       // }}
       className='bg-zinc-100 bg-cover w-[700px] max-w-[800px] pt-10 pl-32 pr-32 pb-10 shadow-[0_0_10px_rgba(0,0,0,0)] border border-stone-300 rounded-2xl'
     >
-      <div className='w-full'>
+      <div className='flex flex-col items-center w-full'>
         <Routes />
       </div>
     </div>

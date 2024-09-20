@@ -14,7 +14,7 @@ body {
   overflow-x: hidden;
   background-size: cover; 
   background-repeat: no-repeat;
-  @apply overflow-x-hidden;
+  /* @apply overflow-x-hidden; */
 }
 
 *{
@@ -23,7 +23,7 @@ body {
   outline: none;
   font-family:Arial, Helvetica, sans-serif;
   box-sizing: border-box;
-  @apply !text-base
+  @apply !text-base;
 }
 label{
   @apply !font-medium
