@@ -31,6 +31,7 @@ import SRInspectionForm from '../dashboard/duty/shortRail/shortRailForm/SRInspec
 import WSRemarks from '../dashboard/duty/shortRail/WSRemarks/WSRemarks'
 import BulkCalibrationForm from '../dashboard/duty/calibration/BulkCalibration/BulkCalibrationForm'
 import NMCalibrationForm from '../dashboard/duty/calibration/NMCalibration/NMCalibrationForm'
+import NewTestSampleDeclaration from '../dashboard/duty/stage/testSample/NewTestSample/NewTestSampleDeclaration'
 
 const RoutesComponent = () => {
   return (
@@ -101,6 +102,7 @@ const RoutesComponent = () => {
             <Route path='/stage/testSample'>
               <Route index element={<TestSampleList />} />
               <Route path='list' element={<TestSampleList />} />
+              <Route path='newSampleDeclaration' element={<NewTestSampleDeclaration />} />
               {/* <Route path='home' element={<NDTHomeForm />} />
               <Route path='calibration' element={<NDTCalibration />} />
               <Route path='shiftSummary' element={<NDTShiftSummary />} />

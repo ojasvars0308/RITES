@@ -195,7 +195,7 @@ const VisualInspectionForm = () => {
                 </div>
 
                 <div className='flex flex-wrap'>
-                    <FormInputItem label='Heat Number' name='heatNumber' value={formData.serialNumber} onChange={handleChange} className='mr-2' required/>
+                    <FormInputItem label='Heat Number' name='heatNumber' value={formData.heatNumber} onChange={handleChange} className='mr-2' required/>
                     <FormInputItem label='Heat Status' name='heatStatus' value={formData.heatStatus} onChange={handleChange} required/>
                 </div>
 

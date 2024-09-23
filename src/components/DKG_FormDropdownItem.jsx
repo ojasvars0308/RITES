@@ -5,7 +5,7 @@ const { Option } = Select;
 
 const DKG_FormDropdownItem = ({label, name, placeholder, onChange, dropdownArray, defaultValue, valueField, visibleField, required, className }) => {
   return (
-    <Form.Item label={label} name={name} rules={[{ required: required ? true : false, message: 'Required!' }]} className={className}>
+    <Form.Item label={label} name={name} rules={[{ required: required ? true : false, message: 'Required!' }]} className={className} placeholder={placeholder}>
       <Select onChange={(value)=>onChange(name, value)} placeholder={placeholder} defaultValue={defaultValue} >
         {
             dropdownArray.map((item, key)=>(

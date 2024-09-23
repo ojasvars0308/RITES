@@ -198,12 +198,12 @@ const SmsHeatSummary = () => {
           value={checkedValues}
           onChange={(checkedValues) => setCheckedValues(checkedValues)}
           className='checkbox-group mb-4'
-          />
+        />
 
           <FormInputItem label='Make of Casting Powder Used' />
           <FormInputItem label='Make of Hydris Probe' />
           <div className="w-full text-right">
-          <Btn onClick={handleSave}>Save</Btn>
+            <Btn onClick={handleSave}>Save</Btn>
           </div>
       </section>
 

@@ -323,6 +323,26 @@
         "stage": "Converter",
         "heatRemark": ""
       }
+    ],
+    "testSampleTableData": [
+      {
+        "sNo": 1,
+        "heatNo": "076229",
+        "timing": "11:02",
+        "type": "Accp"
+      },
+      {
+        "sNo": 2,
+        "heatNo": "076230",
+        "timing": "12:40",
+        "type": "Retest"
+      },
+      {
+        "sNo": 3,
+        "heatNo": "076232",
+        "timing": "14:42",
+        "type": "Q. Cr."
+      }
     ]
   
   }
