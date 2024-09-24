@@ -182,6 +182,50 @@
         "ndtReport": ""
       }
     ],
+    "columns": [
+      {
+        "title": "S.No.",
+        "dataIndex": "serialNumber",
+        "key": "serialNumber",
+        "fixed": "left"
+      },
+      {
+        "title": "Rail ID",
+        "dataIndex": "railID",
+        "key": "railID",
+        "fixed": "left"
+      },
+      {
+        "title": "Heat No.",
+        "dataIndex": "heatNumber",
+        "key": "heatNumber"
+      },
+      {
+        "title": "Date & Time",
+        "dataIndex": "dateTime",
+        "key": "dateTime"
+      },
+      {
+        "title": "Surface Defect",
+        "dataIndex": "surfaceDefect",
+        "key": "surfaceDefect"
+      },
+      {
+        "title": "Dimensional Defect",
+        "dataIndex": "dimensionDefect",
+        "key": "dimensionDefect"
+      },
+      {
+        "title": "UT Defect",
+        "dataIndex": "utDefect",
+        "key": "utDefect"
+      },
+      {
+        "title": "NDT Report",
+        "dataIndex": "ndtReport",
+        "key": "ndtReport"
+      }
+    ],
     "visualAcceptanceSummaryData": [
       {
         "key": "1",

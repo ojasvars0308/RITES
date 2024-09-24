@@ -23,7 +23,7 @@ const VIHomeForm = () => {
 
   const handleFormSubmit = () => {
     message.success("Duty End Called")
-    navigate('/login')
+    navigate('/dashboard')
   }
 
   useEffect(() => {

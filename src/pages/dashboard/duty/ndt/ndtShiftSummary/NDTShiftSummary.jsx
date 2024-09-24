@@ -1,9 +1,9 @@
 import React, { useState,useEffect } from 'react'
-import SubHeader from '../../../../components/DKG_SubHeader'
+import SubHeader from '../../../../../components/DKG_SubHeader'
 import { message, Table } from 'antd';
-import IconBtn from '../../../../components/DKG_IconBtn';
+import IconBtn from '../../../../../components/DKG_IconBtn';
 import {EditOutlined }from '@ant-design/icons';
-import InteractionTable from '../../../../components/DKG_InteractionTable';
+import InteractionTable from '../../../../../components/DKG_InteractionTable';
 
 const ndtReportData = [
   { key: '1', null: 'Rolling Table Speed during Testing', noll: '', nill: '' },

@@ -17,7 +17,6 @@ const VIShiftDetailsForm = () => {
   const [millDropdownList, setMillDropdownList] = useState([])
   const [lineNumberDropdownList, setLineNumberDropdownList] = useState([])
   const [stdRailLengthList, setStdRailLengthList] = useState([])
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState(

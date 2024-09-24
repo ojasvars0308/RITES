@@ -17,11 +17,11 @@ import SmsVerification from '../dashboard/duty/sms/SmsVerification'
 import SmsHeatSummary from '../dashboard/duty/sms/SmsHeatSummary'
 import VisualInspectionForm from '../dashboard/duty/visualInspection/Inspection/VisualInspectionForm'
 import VIShiftSummary from '../dashboard/duty/visualInspection/VIShiftSummary/VIShiftSummary'
-import NDTShiftDetailsForm from '../dashboard/duty/ndt/NDTShiftDetailsForm'
-import NDTHomeForm from '../dashboard/duty/ndt/NDTHomeForm'
-import NDTCalibration from '../dashboard/duty/ndt/NDTCalibration'
-import NDTShiftSummary from '../dashboard/duty/ndt/NDTShiftSummary'
-import NDTReport from '../dashboard/duty/ndt/NDTReport'
+import NDTShiftDetailsForm from '../dashboard/duty/ndt/ndtShiftDetails/NDTShiftDetailsForm'
+import NDTHome from '../dashboard/duty/ndt/ndtHome/NDTHome'
+import NDTCalibrationForm from '../dashboard/duty/ndt/ndtCalibration/NDTCalibrationForm'
+import NDTShiftSummary from '../dashboard/duty/ndt/ndtShiftSummary/NDTShiftSummary'
+import NDTReport from '../dashboard/duty/ndt/ndtReport/NDTReport'
 import QCTSamples from '../dashboard/duty/qct/QCTSamples/qctSamples'
 import QCTSampleDec from '../dashboard/duty/qct/QCTSampleDec/qctSampleDec'
 import CalibrationLists from '../dashboard/duty/calibration/CalibrationList/CalibrationLists'
@@ -32,6 +32,8 @@ import WSRemarks from '../dashboard/duty/shortRail/WSRemarks/WSRemarks'
 import BulkCalibrationForm from '../dashboard/duty/calibration/BulkCalibration/BulkCalibrationForm'
 import NMCalibrationForm from '../dashboard/duty/calibration/NMCalibration/NMCalibrationForm'
 import NewTestSampleDeclaration from '../dashboard/duty/stage/testSample/NewTestSample/NewTestSampleDeclaration'
+import WeldingShiftDetailsForm from '../dashboard/duty/welding/weldingShiftDetails/WeldingShiftDetailsForm'
+import WeldingHome from '../dashboard/duty/welding/weldingHome/WeldingHome'
 
 const RoutesComponent = () => {
   return (
@@ -65,8 +67,8 @@ const RoutesComponent = () => {
             <Route path='/ndt'>
               <Route index element={<NDTShiftDetailsForm />} />
               <Route path='dutyStart' element={<NDTShiftDetailsForm />} />
-              <Route path='home' element={<NDTHomeForm />} />
-              <Route path='calibration' element={<NDTCalibration />} />
+              <Route path='home' element={<NDTHome />} />
+              <Route path='calibration' element={<NDTCalibrationForm />} />
               <Route path='shiftSummary' element={<NDTShiftSummary />} />
               <Route path='report' element={<NDTReport />} />
             </Route>
@@ -103,6 +105,16 @@ const RoutesComponent = () => {
               <Route index element={<TestSampleList />} />
               <Route path='list' element={<TestSampleList />} />
               <Route path='newSampleDeclaration' element={<NewTestSampleDeclaration />} />
+              {/* <Route path='home' element={<NDTHomeForm />} />
+              <Route path='calibration' element={<NDTCalibration />} />
+              <Route path='shiftSummary' element={<NDTShiftSummary />} />
+              <Route path='report' element={<NDTReport />} /> */}
+            </Route>
+
+            <Route path='/welding'>
+              <Route index element={<WeldingShiftDetailsForm />} />
+              <Route path='dutyStart' element={<WeldingShiftDetailsForm />} />
+              <Route path='home' element={<WeldingHome />} />
               {/* <Route path='home' element={<NDTHomeForm />} />
               <Route path='calibration' element={<NDTCalibration />} />
               <Route path='shiftSummary' element={<NDTShiftSummary />} />

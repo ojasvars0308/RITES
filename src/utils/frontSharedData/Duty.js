@@ -32,7 +32,8 @@ const dutyItemTabs = [
     {
       id: 6,
       title: 'Welding Inspection',
-      icon: <InsuranceOutlined />
+      icon: <InsuranceOutlined />,
+      link: '/welding/dutyStart'
     },
     {
       id: 7,

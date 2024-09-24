@@ -1,97 +1,29 @@
 import React, { useState, useEffect } from 'react'
-import SubHeader from '../../../../components/DKG_SubHeader'
+import SubHeader from '../../../../../components/DKG_SubHeader'
 import { message } from 'antd'
 import { useNavigate } from 'react-router-dom'
-import FormBody from '../../../../components/DKG_FormBody'
-import FormDropdownItem from '../../../../components/DKG_FormDropdownItem'
-import CustomDatePicker from '../../../../components/DKG_CustomDatePicker'
-import Btn from '../../../../components/DKG_Btn'
+import FormBody from '../../../../../components/DKG_FormBody'
+import FormDropdownItem from '../../../../../components/DKG_FormDropdownItem'
+import CustomDatePicker from '../../../../../components/DKG_CustomDatePicker'
+import data from '../../../../../utils/frontSharedData/NDT.json'
+import Btn from '../../../../../components/DKG_Btn'
+import configData from '../../../../../utils/configureData/fetchData.json'
 
-const shiftDropdownList = [
-    {
-      key: 'A',
-      value: 'A'
-    },
-    {
-      key: 'B',
-      value: 'B'
-    },
-    {
-      key: 'C',
-      value: 'C'
-    },
-]
-
-const millMapping = {
-    'URM': ['NDT 1', 'NDT 2'],
-    'RSM': ['LR', 'SR'],
-}
-
-const railGradeList = [
-    {
-      key: 'R260',
-      value: 'R260'
-    },
-    {
-      key: '350HT',
-      value: 'R260'
-    },
-    {
-      key: '1080HH',
-      value: '1080HH'
-    },
-    {
-      key: '880',
-      value: '880'
-    },
-    {
-      key: '880NC',
-      value: '880NC'
-    },
-]
-  
-const railSectionList = [
-    {
-      key: '60E1',
-      value: '60E1'
-    },
-    {
-      key: 'IRS 52',
-      value: 'IRS 52'
-    },
-    {
-      key: 'UIC 60',
-      value: 'UIC 60'
-    },
-    {
-      key: '60E1A1',
-      value: '60E1A1'
-    },
-    {
-      key: '136RE',
-      value: '136RE'
-    },
-]
+const { millMaping: sampleData, shiftDropdownList, railGradeList, railSectionList } = data;
 
 const NDTShiftDetailsForm = () => {
     const [millDropdownList, setMillDropdownList] = useState([])
     const [ndtDropdownList, setNdtDropdownList] = useState([])
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState(
         {
-            date: '',
-            shift: '',
-            mill: '',
-            ndt: '',
-            railGrade: '',
-            railSection: '',
+            date: '', shift: '', mill: '', ndt: '', railGrade: '', railSection: '',
         }
     );
 
-    const navigate = useNavigate()
-
     const populateData = () => {
-        const millDropdownList = Object.keys(millMapping).map( mill => {
+        const millDropdownList = Object.keys(sampleData).map( mill => {
           return {
             key: mill,
             value: mill
@@ -105,8 +37,8 @@ const NDTShiftDetailsForm = () => {
     }, [])
 
     useEffect(()=>{
-        if(millMapping[formData.mill]){
-          const ndtDropdownList = millMapping[formData.mill].map(mill => {
+        if(sampleData[formData.mill]){
+          const ndtDropdownList = sampleData[formData.mill].map(mill => {
             return {
               key: mill,
               value: mill
@@ -119,16 +51,13 @@ const NDTShiftDetailsForm = () => {
     const handleFormSubmit = () => {
         navigate('/ndt/home')
         const shiftDetail = { formData };
-    
-        fetch('http://localhost:8000/shiftDetails', {
+
+        fetch(configData.JSON_SERVER_URL , {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(shiftDetail)
-        }).then(() => {
-            console.log('new shift details added');
-        })
+        }).catch(error => console.error('Error fetching shift details:', error));
     
-        console.log("FORM SUBMIT CALLED")
         message.success('Form Submit Called')
       }
 
@@ -159,7 +88,9 @@ const NDTShiftDetailsForm = () => {
             <FormDropdownItem label="Rail Grade" name='railGrade' dropdownArray={railGradeList} visibleField='value' valueField='key' onChange={handleChange} required/>
             <FormDropdownItem label="Rail Section" name='railSection' dropdownArray={railSectionList} visibleField='value' valueField='key' onChange={handleChange} required />
 
-            <Btn htmlType='submit' className='w-[40%]'>Start Duty</Btn>
+            <div className='flex justify-center'>
+              <Btn htmlType='submit' className='w-36'>Start Duty</Btn>
+            </div>
         </FormBody>
     </>
   )

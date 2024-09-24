@@ -19,7 +19,6 @@ const DKG_CustomDatePicker = ({ label, value, onChange, name, className, disable
   return (
     <Form.Item 
       label={label}
-      rules={[{ required: required ? true : false, message: 'Please input your value!' }]}
       shouldUpdate={(prevValues, currentValues) => {
         console.log("PREV CURR: ", prevValues, currentValues)
         const update = moment(prevValues[name], 'DD/MM/YYYY', true) !== moment(currentValues[name], 'DD/MM/YYYY', true)
@@ -27,13 +26,13 @@ const DKG_CustomDatePicker = ({ label, value, onChange, name, className, disable
         return update
       }}
       className={className}
+      rules={[{ required: required ? true : false, message: 'Please input your value!' }]}
     >
-
-    <DatePicker
-      format="DD/MM/YYYY"
-      value={formattedValue}
-      onChange={handleChange}
-    />
+      <DatePicker
+        format="DD/MM/YYYY"
+        value={formattedValue}
+        onChange={handleChange}
+      />
     </Form.Item>
   );
 };

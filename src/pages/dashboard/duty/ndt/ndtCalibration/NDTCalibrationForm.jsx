@@ -1,36 +1,28 @@
 import React, { useState, useEffect } from 'react'
-import SubHeader from '../../../../components/DKG_SubHeader'
-import FormBody from '../../../../components/DKG_FormBody';
-import FormInputItem from '../../../../components/DKG_FormInputItem';
-import Btn from '../../../../components/DKG_Btn';
-import IconBtn from '../../../../components/DKG_IconBtn';
+import SubHeader from '../../../../../components/DKG_SubHeader'
+import FormBody from '../../../../../components/DKG_FormBody';
+import FormInputItem from '../../../../../components/DKG_FormInputItem';
+import Btn from '../../../../../components/DKG_Btn';
+import IconBtn from '../../../../../components/DKG_IconBtn';
 import { EditOutlined, PlusOutlined }from '@ant-design/icons';
 import { message, Checkbox } from 'antd';
 import { useNavigate } from 'react-router-dom'
-import CustomTimePicker from '../../../../components/DKG_CustomTimePicker';
+import CustomTimePicker from '../../../../../components/DKG_CustomTimePicker';
+import data from '../../../../../utils/frontSharedData/NDT.json'
+import configData from '../../../../../utils/configureData/fetchData.json'
 
-const checkBoxItems = [
-  { "key": 1, "value": "UT" },
-  { "key": 2, "value": "ECT" },
-  { "key": 3, "value": "FMG" },
-  { "key": 4, "value": "OSIRIS" },
-]
+const { checkBoxItems } = data;
 
 const NDTCalibration = () => {
   const [checkedValues, setCheckedValues] = useState([]);
   const [shiftDetails, setShiftDetails] = useState(null);
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState(
     {
       dataList: [
         {
-          checkedValues: [],
-          calTime: '',
-          calSpeed: '',
-          rclRep: '',
-          remarks: ''
+          checkedValues: [], calTime: '', calSpeed: '', rclRep: '', remarks: ''
         }
       ],
       shiftRemarks: ''
@@ -57,18 +49,15 @@ const NDTCalibration = () => {
     // }).then(() => {
     //     console.log('new shift details added');
     // })
-
-    console.log("FORM SUBMIT CALLED")
     message.success('Form Submit Called')
   }
 
   useEffect(() => {
-    fetch('http://localhost:8000/shiftDetails')
+    fetch(configData.JSON_SERVER_URL)
         .then(res => {
             return res.json()
         })
         .then((data) => {
-            console.log(data);
             setShiftDetails([...data])
         })
         .catch(error => console.error('Error fetching shift details:', error));
@@ -103,20 +92,19 @@ const NDTCalibration = () => {
 
       {
         shiftDetails &&
-          <section className="grid grid-cols-2 md:grid-cols-4 gap-2 lg:gap-8 relative border p-1 border-gray-500 rounded-sm">
-          <h3>Date: {shiftDetails[1].formData.date}</h3>
-          <h3>Shift: {shiftDetails[1].formData.shift}</h3>
-          <h3>Mill: {shiftDetails[1].formData.mill}</h3>
-          <h3>NDT: {shiftDetails[1].formData.ndt}</h3>
-          <h3>Rail Grade: {shiftDetails[1].formData.railGrade}</h3>
-          <h3>Rail Section: {shiftDetails[1].formData.railSection}</h3>
-          <div className='absolute top-0 right-0'>
-            <IconBtn icon={EditOutlined} onClick={() => message.success("Clicked")} />
-          </div>
-        </section>
+          <section className="!bg-offWhite opacity-70 grid grid-cols-2 md:grid-cols-2 gap-2 lg:gap-2 relative border p-1 border-gray-100 rounded-md mb-4 shadow-[4px_4px_4px_4px_rgba(0,0,0,0.1)] mt-4">
+            <h3>Date: {shiftDetails[1].formData.date}</h3>
+            <h3>Shift: {shiftDetails[1].formData.shift}</h3>
+            <h3>Mill: {shiftDetails[1].formData.mill}</h3>
+            <h3>NDT: {shiftDetails[1].formData.ndt}</h3>
+            <h3>Rail Grade: {shiftDetails[1].formData.railGrade}</h3>
+            <h3>Rail Section: {shiftDetails[1].formData.railSection}</h3>
+            <div className='absolute top-0 right-0'>
+              <IconBtn icon={EditOutlined} onClick={() => message.success("Clicked")} />
+            </div>
+          </section>
       }
-
-      <section>
+      <section className='w-full'>
         <FormBody
           initialValues={formData}
           onFinish={handleFormSubmit}
@@ -131,7 +119,7 @@ const NDTCalibration = () => {
                     <Checkbox.Group
                       options={checkBoxItems.map(item => ({key: item.key, label: item.value, value: item.key }))}
                       value={checkedValues}
-                      onChange={(fieldName, value) => handleNDTRoundValueChange(index, fieldName, value)}
+                      onChange={(fieldName, value) => handleNDTRoundValueChange(checkedValues, index, fieldName, value)}
                       className='mb-6'
                     />
                   </section>
@@ -148,11 +136,7 @@ const NDTCalibration = () => {
           }
 
           <div className='mb-8'>
-            <IconBtn 
-                icon={PlusOutlined} 
-                text='Add Calibration Round' 
-                onClick={handleAddCalibrationFields}
-            />
+            <IconBtn icon={PlusOutlined} text='Add Calibration Round' onClick={handleAddCalibrationFields} />
           </div>
 
           <hr />
@@ -160,7 +144,9 @@ const NDTCalibration = () => {
           <div className='mt-6'>
             <FormInputItem label='Remarks' placeholder='Enter Remarks' onChange={handleChange} name='shiftRemarks' required/>
 
-            <Btn htmlType='submit' className='w-[23%]'>Save</Btn>
+            <div className='flex justify-center mt-8'>
+              <Btn htmlType='submit'>Save</Btn>
+            </div>
           </div>
         </FormBody>
       </section>
