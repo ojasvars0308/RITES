@@ -196,11 +196,11 @@ const VisualInspectionForm = () => {
 
                 <div className='flex flex-wrap'>
                     <FormInputItem label='Heat Number' name='heatNumber' value={formData.heatNumber} onChange={handleChange} className='mr-2' required/>
-                    <FormInputItem label='Heat Status' name='heatStatus' value={formData.heatStatus} onChange={handleChange} required/>
+                    <FormInputItem label='Heat Status' name='heatStatus' value={formData.heatStatus} onChange={handleChange} className='w-[44%]' required/>
                 </div>
 
                 <div className='flex flex-wrap'>
-                    <FormInputItem label='Actual Offered Length' name='offeredLength' value={formData.offeredLength} onChange={handleChange} className='w-[50%]' required/>
+                    <FormInputItem label='Actual Offered Length' name='offeredLength' value={formData.offeredLength} onChange={handleChange} className='w-[46%]' required/>
                 </div>
             </section>
 
@@ -318,7 +318,7 @@ const VisualInspectionForm = () => {
             <hr className='w-full' />
 
             <div className='flex flex-wrap mt-4 mb-2'>
-              <FormInputItem label='Remarks' name='remarks' value={formData.remarks} onChange={handleChange} className='w-[55%]' required/>
+              <FormInputItem label='Remarks' name='remarks' value={formData.remarks} onChange={handleChange} className='w-[54%]' required/>
 
               <div className='mt-8 ml-4'>
                 <FileUploader />

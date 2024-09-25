@@ -111,6 +111,20 @@
         "railGrade": "350HT",
         "railSection": "IRS 52"
       }
+    },
+    {
+      "id": "9e01",
+      "formData": {
+        "date": "26/09/2024",
+        "shift": "C",
+        "mill": "RSM",
+        "lineNumber": "1",
+        "railGrade": "880NC",
+        "railSection": "60E1A1",
+        "stdRailLength": "65",
+        "otherIE": "",
+        "rclIE": "ojas"
+      }
     }
   ]
 }
