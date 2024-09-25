@@ -312,24 +312,15 @@ const VisualInspectionForm = () => {
           </h3>
           <div className="text-justify">
             <span className="font-semibold">UT</span> <br />
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum
-            saepe earum non quam ullam perferendis ipsa error fugit doloribus
-            facilis impedit iure rem enim doloremque, maiores natus nostrum
-            delectus quia!
+            Text
           </div>
           <div className="text-justify">
             <span className="font-semibold">Dim</span> <br />
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum
-            saepe earum non quam ullam perferendis ipsa error fugit doloribus
-            facilis impedit iure rem enim doloremque, maiores natus nostrum
-            delectus quia!
+            Text
           </div>
           <div className="text-justify">
             <span className="font-semibold">Visual</span> <br />
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum
-            saepe earum non quam ullam perferendis ipsa error fugit doloribus
-            facilis impedit iure rem enim doloremque, maiores natus nostrum
-            delectus quia!
+            Text
           </div>
 
           <div className="grid grid-cols-2">
