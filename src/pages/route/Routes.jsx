@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PrivateRoutes from './PrivateRoutes'
-import Layout from '../../components/Layout'
+import Layout from '../../components/CustomLayout'
 import Dashboard from '../dashboard/Dashboard'
 import Login from '../auth/Login'
 import PageNotFound from '../pageNotFound/PageNotFound'
@@ -13,6 +13,7 @@ import SmsHeatList from '../dashboard/duty/sms/SmsHeatList'
 import SmsCheckList from '../dashboard/duty/sms/SmsCheckList'
 import SmsVerification from '../dashboard/duty/sms/SmsVerification'
 import SmsHeatSummary from '../dashboard/duty/sms/SmsHeatSummary'
+import VisualInspectionForm from '../dashboard/duty/visualInspection/VisualInspectionForm'
 
 const RoutesComponent = () => {
   return (
@@ -21,7 +22,7 @@ const RoutesComponent = () => {
         <Route element = {<PrivateRoutes />}>
           <Route path='/' element={<Layout />}>
             <Route index element={<Dashboard />} />
-            <Route path='/sms'>
+            {/* <Route path='/sms'>
               <Route index element={<SmsDutyStartForm />} />
               <Route path='heatSummary' element={<SmsHeatSummary />} />
               <Route path='dutyStart' element={<SmsDutyStartForm />} />
@@ -33,6 +34,11 @@ const RoutesComponent = () => {
                 <Route path='checkList' element={<SmsCheckList />} />
                 <Route path='verification' element={<SmsVerification />} />
               </Route>
+            </Route> */}
+
+            <Route path='/visualInspection'>
+
+              <Route path='inspection' element={<VisualInspectionForm />} />
             </Route>
           </Route>
         </Route>

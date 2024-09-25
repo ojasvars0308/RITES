@@ -8,8 +8,6 @@ import { message } from 'antd'
 import data from '../../../../utils/db.json'
 import { useNavigate } from 'react-router-dom'
 
-// console.log("DATA DUTY START: ", shiftList)
-
 const railGradeList = [
   {
     key: 'R260',
@@ -71,8 +69,9 @@ const SmsDutyStartForm = () => {
     <FormBody
       initialValues={formData}
       onFinish={handleFormSubmit}
+      className='md:w-96 md:border md:border-gray-400 p-2 rounded-md md:shadow-2xl'
     >
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 gap-2">
       <CustomDatePicker label='Date' name='date' value={formData?.date} onChange={handleChange}/>
       <FormDropdownItem label='Shift' dropdownArray={shiftList} name='shift' onChange={handleChange} valueField='key' visibleField='value' />
       </div>

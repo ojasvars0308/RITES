@@ -7,7 +7,7 @@ const dutyItemTabs = [
     id: 1,
     title: 'SMS',
     icon: <HomeOutlined />,
-    link: '/sms/dutyStart'
+    // link: '/sms/dutyStart'
   },
   {
     id: 2,
@@ -28,6 +28,7 @@ const dutyItemTabs = [
     id: 5,
     title: 'Visual Inspection',
     icon: <HomeOutlined />
+    
   },
   {
     id: 6,

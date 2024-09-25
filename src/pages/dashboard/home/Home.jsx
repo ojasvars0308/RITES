@@ -58,8 +58,7 @@ const Home = () => {
 
   return (
     <div>
-      <FormDropdownItem label='Instrument Category' name='instrumentCategory' dropdownArray={instrumentCategoryList} valueField={'key'} visibleField={'value'} onChange={handleChange} />
-      <FormDropdownItem label ='Instrument' name='instrument' dropdownArray={instrumentList} valueField={'key'} visibleField={'value'} onChange = {handleChange}/>
+      <h1>Home</h1>
     </div>
   )
 }

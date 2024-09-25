@@ -8,7 +8,8 @@ module.exports = {
       colors: {
         pink: '#FF5580',
         pinkHover: '#ff5580e6',
-        darkBlue: '#058c2c',
+        darkBlue: '#193d3d',
+        darkBlueHover: '#327979',
         // darkBlue: '#0f172a',
         offWhite: "#F5F7F8",
         black: '#1b1b1b'

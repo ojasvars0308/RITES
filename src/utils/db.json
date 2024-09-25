@@ -197,6 +197,82 @@
       "stage": "Converter",
       "heatRemark": ""
     }
-  ]
-
+  ], 
+  "visualInspectionGeneralInfo": {
+    "date": "01/01/2024",
+    "shift": "A",
+    "railGrade": "R260",
+    "mill": "URM",
+    "line": "03",
+    "railSec": "60E1",
+    "length": "130m"
+  },
+  "visualInspectionAcceptanceData": {
+    "accLengthList": [
+      {
+        "key": "130",
+        "value": "130"
+      },
+      {
+        "key": "117",
+        "value": "117"
+      },
+      {
+        "key": "86.67",
+        "value": "86.67"
+      },
+      {
+        "key": "65",
+        "value": "65"
+      },
+      {
+        "key": "52",
+        "value": "52"
+      },
+      {
+          "key": "26",
+          "value": "26"
+      },
+      {
+          "key": "25",
+          "value": "25"
+      },
+      {
+          "key": "24",
+          "value": "24"
+      },
+      {
+          "key": "13",
+          "value": "13"
+      },
+      {
+          "key": "12",
+          "value": "12"
+      },
+      {
+          "key": "11",
+          "value": "11"
+      },
+      {
+          "key": "10",
+          "value": "10"
+      }
+    ],
+    "railClassList": [
+        {
+          "key": "A",
+          "value": "A"
+        },
+        {
+          "key": "A + 0.1",
+          "value": "A + 0.1"
+        }
+    ]
+  },
+  "visualInspectionDefectData": {
+    "Dimension": [ "HH", "LH", "OHT", "UHT", "NF", "WF", "TF(+)", "TF(-)", "HF(+)", "HF(-)", "HS", "LS", "TNW", "TKW", "Asy(+)", "Asy(-)", "OL", "SL", "OS", "FBC", "FBCX", "CP(+)", "CP(-)", "Other" ],
+    "Surface": [ "NMI", "MDF", "MDM", "LAP", "GM", "BR", "Crack", "BNT", "CE", "Other" ],
+    "Straightness": [ "KK", "TW", "-C -R/C", "WY", "NS", "BE", "US", "DS", "Other" ],
+    "Others": [ "NHN", "RM", "UT", "HNP", "Other" ]
+}
 }

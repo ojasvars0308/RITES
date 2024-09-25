@@ -12,8 +12,37 @@ label{
   @apply !font-medium
 }
 
-.ant-menu-submenu-arrow{
+/* .ant-menu-submenu-arrow{
   @apply hidden
+} */
+
+.ant-menu-submenu-title, .ant-menu-item{
+  /* @apply !text-white */
+}
+
+@media (max-width: 768px) { /* Tailwind's md breakpoint */
+  .custom-sider-css {
+    @apply !max-w-full 
+  }
+}
+
+
+.main-content::before{
+  content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('./assets/images/BgImage.png'); /* Replace with your image URL */
+    background-size: cover; /* Adjust as needed */
+    background-position: center; /* Adjust as needed */
+    opacity: 0.2; /* Change this value for desired opacity */
+    z-index: 0; /* Ensure it's behind the content */
+}
+
+.ant-menu-item-selected{
+  @apply !bg-[#327979] !text-white
 }
 
 .dashboard-search .ant-input, .dashboard-search .ant-btn{
@@ -89,4 +118,8 @@ label{
 }
 .checkbox-group label{
   @apply border-b-2 w-full pb-1
+}
+
+.vi-acpt-def .ant-form-item{
+  @apply mb-0
 }

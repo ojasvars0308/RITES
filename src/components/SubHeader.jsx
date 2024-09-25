@@ -8,7 +8,7 @@ const SubHeader = ({title, link}) => {
   return (
     <header className='shadow-sm py-2'>
       <IconBtn icon={ArrowLeftOutlined} onClick={()=>navigate(link)} className='mr-4 shadow-none bg-inherit'/>
-      <span className='font-medium'>{title}</span>
+      <span className='font-medium !text-xl'>{title}</span>
     </header>
   )
 }
