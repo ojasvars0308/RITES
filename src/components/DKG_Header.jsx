@@ -33,7 +33,7 @@ const DKG_Header = () => {
     }
   ]
   return (
-    <header className="!bg-white px-4 flex justify-between items-center w-full z-10 rounded-2xl ml-6">
+    <header className="!bg-white px-4 flex justify-between items-center w-full z-10 rounded-2xl">
       <div>
         <Logo height={90} width={180} />
       </div>

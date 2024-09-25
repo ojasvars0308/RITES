@@ -29,6 +29,10 @@ label{
   @apply !font-medium
 }
 
+.container {
+  width: fit-content;
+}
+
 .ant-menu-submenu-arrow{
   @apply hidden
 }

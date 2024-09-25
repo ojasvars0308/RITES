@@ -31,7 +31,7 @@ const Login = () => {
   }
   return (
     <>
-      <header className='bg-darkBlue text-offWhite p-4 w-full'>
+      <header className='bg-emerald-900 text-offWhite p-4 w-full'>
         <h1>Log In</h1>
       </header>
 
@@ -41,10 +41,15 @@ const Login = () => {
         <FormBody onFinish={handleFormSubmit} initialValues={formData}>
           <FormInputItem label="Employee ID" placeholder="123456" name='empId' onChange={handleFormValueChange} required />
           <FormInputItem label="Password" placeholder="*****" name='password' onChange={handleFormValueChange} required />
-          <Btn htmlType="submit" text="submit"/>
+
+          <div className='flex justify-center mt-4'>
+            <Btn htmlType='submit'>Save</Btn>
+          </div>
         </FormBody>
 
-        <h2 className='text-gray-500'>Account credentials unavailable ? <br /> Request Admin for your credentials.</h2>
+        <div className='flex items-center'>
+          <h2 className='text-gray-500'>Account credentials unavailable ? <br /> Request Admin for your credentials.</h2>
+        </div>
       </main>
     </>
   )
