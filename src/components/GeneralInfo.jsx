@@ -17,7 +17,7 @@ const capitalizeCamelCase = (str) => {
 
 const GeneralInfo = ({data, children}) => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 lg:gap-8 shadow-md p-2 border-gray-500 rounded-sm relative">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 lg:gap-8 shadow-md p-2 border-[#d9d9d9] border rounded-sm relative">
         {
             Object.keys(data).map(key => {
                 return (

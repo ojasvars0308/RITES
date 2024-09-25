@@ -9,7 +9,11 @@ import FormInputItem from "../../../../components/FormInputItem";
 import FormDropdownItem from "../../../../components/FormDropdownItem";
 import { Link } from "react-router-dom";
 import IconBtn from "../../../../components/IconBtn";
-import { DeleteOutlined, PlusOutlined, UploadOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  PlusOutlined,
+  UploadOutlined,
+} from "@ant-design/icons";
 import TextAreaComponent from "../../../../components/TextAreaComponent";
 import Btn from "../../../../components/Btn";
 import FormContainer from "../../../../components/FormContainer";
@@ -23,45 +27,35 @@ const {
 const { accLengthList, railClassList } = visualInspectionAcceptanceData;
 
 const viRejectionDetailsColumns = [
-  {
-    title: "Length",
-    dataIndex: "length",
-    key: "length",
-  },
-  {
-    title: "10m",
-    dataIndex: "m10",
-    key: "m10",
-  },
-  {
-    title: "11m",
-    dataIndex: "m11",
-    key: "m11",
-  },
-  {
-    title: "12m",
-    dataIndex: "m12",
-    key: "m12",
-  },
-  {
-    title: "13m",
-    dataIndex: "m13",
-    key: "m13",
-  },
-  {
-    title: "Comp. Length",
-    dataIndex: "compLength",
-    key: "compLength",
-  },
+  { title: "Length", dataIndex: "length", key: "length" },
+  { title: "No. of Pieces", dataIndex: "numberPieces", key: "numberPieces" },
 ];
 
 const viRejectionDetailsData = [
   {
-    length: "No. Of Pieces",
-    m10: "",
-    m11: "",
-    m12: "",
-    m13: "",
+    key: "1",
+    length: "13m",
+    numberPieces: "5",
+  },
+  {
+    key: "2",
+    length: "12m",
+    numberPieces: "3",
+  },
+  {
+    key: "3",
+    length: "11m",
+    numberPieces: "7",
+  },
+  {
+    key: "4",
+    length: "10m",
+    numberPieces: "1",
+  },
+  {
+    key: "5",
+    length: "Comp. Length",
+    numberPieces: "9",
   },
 ];
 
@@ -94,10 +88,10 @@ const VisualInspectionForm = () => {
       },
     ],
     remarks: "",
-    uploadedImage: ''
+    uploadedImage: "",
   });
 
-  const [previewUrl, setPreviewUrl] = useState(null)
+  const [previewUrl, setPreviewUrl] = useState(null);
 
   const [defectCategoryList, setDefectCategoryList] = useState([]);
   const [defectTypeList, setDefectTypeList] = useState([]);
@@ -172,84 +166,87 @@ const VisualInspectionForm = () => {
   };
 
   const addAcceptanceData = () => {
-    setFormData(prev => {
-      const acptDtLst = prev.acceptanceDataList
-      const updatedLst = [...acptDtLst, {accLength: "",
-        number: "",
-        railClass: "",}]
+    setFormData((prev) => {
+      const acptDtLst = prev.acceptanceDataList;
+      const updatedLst = [
+        ...acptDtLst,
+        { accLength: "", number: "", railClass: "" },
+      ];
 
-        return {
-          ...prev, 
-          acceptanceDataList: updatedLst
-        }
-    })
-  }
-
-  const deleteAcptItem = (index) => {
-    setFormData(prev => {
-      const acptDtLst = prev.acceptanceDataList
-      acptDtLst.splice(index, 1);
-      return{
-        ...prev,
-        acceptanceDataList: acptDtLst
-      }
-    })
-
-    setDefectTypeList(prev => {
-      const defTypeLst = prev;
-      defTypeLst.splice(index, 1)
-      return defTypeLst
-    })
-  }
-
-  const deleteDefItem = (index) => {
-    setFormData(prev => {
-      const defDtLst = prev.defectDataList
-      defDtLst.splice(index, 1);
-      return{
-        ...prev,
-        acceptanceDataList: defDtLst
-      }
-    })
-  }
-
-  const addDefectData = () => {
-    setFormData(prev => {
-      const defDataLst = prev.defectDataList;
-      defDataLst.push({defectCategory: "",
-        type: "",
-        location: "",
-        position: "",})
       return {
         ...prev,
-        defectDataList: defDataLst
-      }
-    })
-  }
+        acceptanceDataList: updatedLst,
+      };
+    });
+  };
+
+  const deleteAcptItem = (index) => {
+    setFormData((prev) => {
+      const acptDtLst = prev.acceptanceDataList;
+      acptDtLst.splice(index, 1);
+      return {
+        ...prev,
+        acceptanceDataList: acptDtLst,
+      };
+    });
+
+    setDefectTypeList((prev) => {
+      const defTypeLst = prev;
+      defTypeLst.splice(index, 1);
+      return defTypeLst;
+    });
+  };
+
+  const deleteDefItem = (index) => {
+    setFormData((prev) => {
+      const defDtLst = prev.defectDataList;
+      defDtLst.splice(index, 1);
+      return {
+        ...prev,
+        acceptanceDataList: defDtLst,
+      };
+    });
+  };
+
+  const addDefectData = () => {
+    setFormData((prev) => {
+      const defDataLst = prev.defectDataList;
+      defDataLst.push({
+        defectCategory: "",
+        type: "",
+        location: "",
+        position: "",
+      });
+      return {
+        ...prev,
+        defectDataList: defDataLst,
+      };
+    });
+  };
 
   const handleImgUploadChange = (info) => {
-    console.log(info.file.originFileObj)
-    if (info.file.status === 'done') {
+    console.log(info.file.originFileObj);
+    if (info.file.status === "done") {
       // Get the image URL
       const url = URL.createObjectURL(info.file.originFileObj);
-      setFormData(prev => {
+      setFormData((prev) => {
         return {
           ...prev,
-          uploadedImage: info.file.originFileObj
-        }
-      })
+          uploadedImage: info.file.originFileObj,
+        };
+      });
       setPreviewUrl(url);
-    } else if (info.file.status === 'removed') {
+    } else if (info.file.status === "removed") {
       // Reset state when image is removed
-      setFormData(prev => {
+      setFormData((prev) => {
         return {
           ...prev,
-          uploadedImage: null
-        }
-      })
-      setPreviewUrl('');
+          uploadedImage: null,
+        };
+      });
+      setPreviewUrl("");
     }
-  }
+  };
 
   useEffect(() => {
     populateDefectDataList();
@@ -340,7 +337,7 @@ const VisualInspectionForm = () => {
               {" "}
               Go to AI Photo
             </Link>
-            <Link to="#" className="text-blue-600">
+            <Link to="#" className="text-blue-600 text-right">
               {" "}
               Go to NDT Report
             </Link>
@@ -364,7 +361,10 @@ const VisualInspectionForm = () => {
 
           {formData.acceptanceDataList.map((record, index) => {
             return (
-              <div className=" relative flex flex-col gap-2 border p-2 py-4 rounded-md vi-acpt-def" key={index}>
+              <div
+                className=" relative flex flex-col gap-2 border p-2 py-4 rounded-md vi-acpt-def"
+                key={index}
+              >
                 <FormInputItem
                   placeholder="Number"
                   name="number"
@@ -394,27 +394,34 @@ const VisualInspectionForm = () => {
                     handleAcceptanceDataChange(index, fieldName, value)
                   }
                 />
-                <IconBtn icon={DeleteOutlined} className='absolute -top-4 right-0' onClick={()=>deleteAcptItem(index)} />
+                <IconBtn
+                  icon={DeleteOutlined}
+                  className="absolute -top-4 right-0"
+                  onClick={() => deleteAcptItem(index)}
+                />
               </div>
             );
           })}
 
           <IconBtn
             icon={PlusOutlined}
-            text="add"
-            className="-mt-4 w-1/4"
+            text="Add More Acceptance Data"
+            className="-mt-4 w-fit"
             onClick={addAcceptanceData}
           />
         </section>
 
-          <Divider />
+        <Divider />
 
         <section className="flex flex-col gap-4">
           <h3 className="font-semibold">Add Defect Data</h3>
 
           {formData.defectDataList.map((record, index) => {
             return (
-              <div className="relative flex flex-col gap-2 border p-2 py-4 rounded-md vi-acpt-def" key={index}>
+              <div
+                className="relative flex flex-col gap-2 border p-2 py-4 rounded-md vi-acpt-def"
+                key={index}
+              >
                 <FormInputItem
                   placeholder="Location"
                   name="location"
@@ -444,14 +451,26 @@ const VisualInspectionForm = () => {
                     handleDefectDataChange(index, fieldName, value)
                   }
                 />
-                <IconBtn icon={DeleteOutlined} className='absolute -top-4 right-0' onClick={()=>deleteDefItem(index)} />
+
+                <FormInputItem
+                  placeholder="Position"
+                  name="position"
+                  onChange={(fieldName, value) =>
+                    handleDefectDataChange(index, fieldName, value)
+                  }
+                />
+                <IconBtn
+                  icon={DeleteOutlined}
+                  className="absolute -top-4 right-0"
+                  onClick={() => deleteDefItem(index)}
+                />
               </div>
             );
           })}
           <IconBtn
             icon={PlusOutlined}
-            text="add"
-            className="-mt-4 w-1/4"
+            text="Add More Defect Data"
+            className="-mt-4 w-fit"
             onClick={addDefectData}
           />
         </section>
@@ -461,40 +480,47 @@ const VisualInspectionForm = () => {
         <section>
           <h3 className="font-semibold mb-2">Rejection Details</h3>
           <Table
-          dataSource={viRejectionDetailsData}
-          columns={viRejectionDetailsColumns}
-          scroll={{ x: true }}
-          pagination={{
-            pageSize: 5,
-            showSizeChanger: true,
-            pageSizeOptions: ["5", "10", "20"],
-          }}
-        />
+            dataSource={viRejectionDetailsData}
+            columns={viRejectionDetailsColumns}
+            scroll={{ x: true }}
+            pagination={{
+              pageSize: 5,
+              showSizeChanger: true,
+              pageSizeOptions: ["5", "10", "20"],
+            }}
+          />
         </section>
 
         <section className="flex flex-col gap-4">
           <h3 className="font-semibold">Remarks</h3>
-          <TextAreaComponent name='remarks' placeholder="Enter remarks" rows="5"/>
-
-          <Upload
-            accept="image/*"
-            showUploadList={false}
-            onChange={handleImgUploadChange}
-          >
-            <IconBtn text="Upload Image" icon={UploadOutlined} />
-          </Upload>
+          <TextAreaComponent
+            name="remarks"
+            placeholder="Enter remarks"
+            rows="5"
+          />
+          <div className="mx-auto">
+            <Upload
+              accept="image/*"
+              showUploadList={false}
+              onChange={handleImgUploadChange}
+            >
+              <IconBtn text="Upload Image" icon={UploadOutlined} />
+            </Upload>
+          </div>
 
           {previewUrl && (
-        <Image
-          src={previewUrl}
-          alt="Preview"
-          width={200}
-          height={200}
-          className="rounded shadow"
-        />
-      )}
+            <Image
+              src={previewUrl}
+              alt="Preview"
+              width={200}
+              height={200}
+              className="rounded shadow"
+            />
+          )}
 
-      <Btn htmlType='submit'>Save Inspection Data</Btn>
+          <Btn htmlType="submit" className="mx-auto">
+            Save Inspection Data
+          </Btn>
         </section>
       </FormBody>
     </FormContainer>
