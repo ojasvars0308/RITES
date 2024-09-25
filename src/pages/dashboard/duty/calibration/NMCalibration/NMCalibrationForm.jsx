@@ -6,82 +6,26 @@ import { message } from 'antd'
 import FormInputItem from '../../../../../components/DKG_FormInputItem'
 import CustomDatePicker from '../../../../../components/DKG_CustomDatePicker'
 import Btn from '../../../../../components/DKG_Btn'
+import IconBtn from '../../../../../components/DKG_IconBtn';
+import { EditOutlined }from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import data from '../../../../../utils/frontSharedData/Calibration.json'
+import configData from '../../../../../utils/configureData/fetchData.json'
 
-const instrumentMapping = {
-  'Measuring Instrument': ['Vernier', 'Micrometer', 'Feeler Gauge', 'Weighing Scale', 'Measuring Tape', 'Measuring Scale'],
-  'Testing Machines': ['Hydris', 'Leco / Gas Analyser', 'Spectro', 'Tensile Testing Machine', 'Hardness', 'TLT Machine', 'FWT System', 'FBW M/C'],
-  'Gauge (Working)': [ "Head & Web Gauge", "Height Gauge", "Fish Gauge", "Foot Gauge", "Asymmetry +", "Asymmetry -", "Toe Thk +", "Toe Thk -", "Crown (F)", "Crown (M)", "Foot Concavity", "Hole - Base", "Hole - End", "Right Angle", "FWT Bearer Head", "FWT Striker Head" ],
-  'Gauge (Master)': [],
-  'Straight Edge': ["3m","2m","1.5m","1m","0.85m","100mm"],
-  'Templates': ['FWT Bearer Head', 'FWT Striker Head']
-}
-
-const railSectionList = [
-    {
-      key: '60 E1 - Prime',
-      value: '60 E1 - Prime'
-    },
-    {
-      key: '60 E1 - IU',
-      value: '60 E1 - IU'
-    },
-    {
-      key: 'IRS 52 - Prime',
-      value: 'IRS 52 - Prime'
-    },
-    {
-        key: 'IRS 52 - IU',
-        value: 'IRS 52 - IU'
-    },
-    {
-        key: '60E1A1 - Prime',
-        value: '60E1A1 - Prime'
-    },
-    {
-        key: '60E1A1 - IU',
-        value: '60E1A1 - IU'
-    },
-    {
-        key: 'NA',
-        value: 'NA'
-    },
-  ]
-
-  const resultList = [
-    {
-      key: 'OK',
-      value: 'OK'
-    },
-    {
-      key: 'Not OK',
-      value: 'Not OK'
-    },
-    {
-      key: 'Discarded',
-      value: 'Discarded'
-    }
-  ]
+const { instrumentMapping: sampleData, railSectionList, resultList } = data;
 
 const NMCalibrationForm = () => {
   const [instrumentCategoryList, setInstrumentCategoryList] = useState([])
   const [instrumentList, setInstrumentList] = useState([])
   const [shiftDetails, setShiftDetails] = useState(null);
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    instrumentCategory: null,
-    instrument: null, 
-    instrumentDetail: '',
-    railSection: null,
-    serialNumber: '',
-    calibrationDate: new Date(),
-    calibrationUptoDate: '',
+    instrumentCategory: null, instrument: null,  instrumentDetail: '', railSection: null, serialNumber: '', calibrationDate: '', calibrationUptoDate: '',
   })
 
   const populateData = () => {
-    const instrumentCategoryList = Object.keys(instrumentMapping).map(inst => {
+    const instrumentCategoryList = Object.keys(sampleData).map(inst => {
       return {
         key: inst,
         value: inst
@@ -100,8 +44,8 @@ const NMCalibrationForm = () => {
   }
 
   const handleFormSubmit = (e) => {
-    console.log("FORM SUBMIT CALLED")
     message.success('Form Submit Called')
+    navigate('/calibration/calibrationList');
   }
 
   useEffect(()=> {
@@ -109,8 +53,8 @@ const NMCalibrationForm = () => {
   }, [])
 
   useEffect(()=>{
-    if(instrumentMapping[formData.instrumentCategory]){
-      const instrumentList = instrumentMapping[formData.instrumentCategory].map(inst => {
+    if(sampleData[formData.instrumentCategory]){
+      const instrumentList = sampleData[formData.instrumentCategory].map(inst => {
         return {
           key: inst,
           value: inst
@@ -120,54 +64,61 @@ const NMCalibrationForm = () => {
     }
   }, [formData.instrumentCategory, instrumentCategoryList])
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    navigate('/calibrationList');
-  }
-
   useEffect(() => {
-    fetch('http://localhost:8000/shiftDetails')
+    fetch(configData.JSON_SERVER_URL)
         .then(res => {
             return res.json()
         })
         .then((data) => {
-            console.log(data);
             setShiftDetails([...data])
         })
         .catch(error => console.error('Error fetching shift details:', error));
- }, []);
+  }, []);
 
   return (
     <>
-        <SubHeader title='New / Modify Calibration Detail' link='/calibrationList' />
+        <SubHeader title='New / Modify Calibration Detail' link='/calibration/lists' />
 
-        <div className='flex mt-2'>
-            {shiftDetails && 
-                <div className='flex flex-wrap mb-4'>
-                    <h6 className='font-medium mr-5 mt-2'>Date - <span className='font-light'>{shiftDetails[0].date}</span></h6>
-                    <h6 className='font-medium mr-5 mt-2'>Shift - <span className='font-light'>{shiftDetails[0].shift}</span></h6>
-                </div>
-            }
-        </div>
-
-        <div className='w-full border border-black-1 mb-4'/>
+        {shiftDetails && 
+          <section className="!bg-offWhite opacity-70 grid grid-cols-2 md:grid-cols-2 gap-2 lg:gap-2 relative border p-1 border-gray-100 rounded-md mb-2 shadow-[4px_4px_4px_4px_rgba(0,0,0,0.1)] mt-4">
+            <h3>Date: {shiftDetails[0].date}</h3>
+            <h3>Shift: {shiftDetails[0].shift}</h3>
+            <div className='absolute top-0 right-0'>
+                <IconBtn icon={EditOutlined} onClick={() => message.success("Clicked")} />
+            </div>
+          </section>
+        }
 
         <FormBody
             initialValues={formData}
             onFinish={handleFormSubmit}
         >
+          <div className='grid grid-cols-2'>
             <FormDropdownItem label='Instrument Category' name='instrumentCategory' dropdownArray={instrumentCategoryList} valueField={'key'} visibleField={'value'} onChange={handleChange} required />
-            <FormDropdownItem label ='Instrument' name='instrument' dropdownArray={instrumentList} valueField={'key'} visibleField={'value'} onChange = {handleChange} required />
+            <FormDropdownItem label ='Instrument' name='instrument' dropdownArray={instrumentList} valueField={'key'} visibleField={'value'} onChange = {handleChange} className='ml-4' required />
+          </div>
+
+          <div className='grid grid-cols-2'>
             <FormInputItem label='Instrument Detail' name='instrumentDetail' placeholder='Enter Instrument Detail' value={formData?.instrumentDetail} onChange={handleChange} required />
             {
                 (formData.instrumentCategory === 'Gauge (Working)' || formData.instrumentCategory === 'Gauge (Master)') && 
-                <FormDropdownItem label='Rail Section' name='railSection' dropdownArray={railSectionList} visibleField='value' valueField='key' onChange={handleChange} required />
+                <FormDropdownItem label='Rail Section' name='railSection' dropdownArray={railSectionList} visibleField='value' valueField='key' onChange={handleChange} className='ml-4' required />
             }
+          </div>
+
+          <div className='grid grid-cols-2'>
             <FormInputItem label='Serial Number' name='serialNumber' placeholder='Enter S. No.' value={formData?.serialNumber} onChange={handleChange} required />
-            <CustomDatePicker label='Calibration Date' name='calibrationDate' value={formData?.calibrationDate} onChange={handleChange} required />
+            <CustomDatePicker label='Calibration Date' name='calibrationDate' value={formData?.calibrationDate} onChange={handleChange} className='ml-4' required />
+          </div>
+
+          <div className='grid grid-cols-2'>
             <FormDropdownItem label ='Calibration Result' name='calibrationResult' dropdownArray={resultList} valueField='key' visibleField='value' onChange = {handleChange} required />
-            <CustomDatePicker label='Calibration Valid upto Date' name='calibrationUptoDate' value={formData?.calibrationUptoDate} onChange={handleChange} required />
-            <Btn htmlType='submit' onClick={handleClick}>Save</Btn>
+            <CustomDatePicker label='Cal. Valid upto Date' name='calibrationUptoDate' value={formData?.calibrationUptoDate} onChange={handleChange} className='ml-4' required />
+          </div>
+
+          <div className='flex justify-center mt-4'>
+            <Btn htmlType='submit'>Save</Btn>
+          </div>
         </FormBody>
     </>
   )
