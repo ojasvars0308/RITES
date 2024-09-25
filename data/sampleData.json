@@ -125,6 +125,20 @@
         "otherIE": "",
         "rclIE": "ojas"
       }
+    },
+    {
+      "id": "eb25",
+      "formData": {
+        "date": "26/09/2024",
+        "shift": "B",
+        "mill": "RSM",
+        "lineNumber": "1",
+        "railGrade": "880NC",
+        "railSection": "UIC 60",
+        "stdRailLength": "65",
+        "otherIE": "",
+        "rclIE": "ojas"
+      }
     }
   ]
 }

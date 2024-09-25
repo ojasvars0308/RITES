@@ -221,7 +221,7 @@ const VisualInspectionForm = () => {
                   <FormInputItem label='Visual - ' name='visual' value={formData.visual} onChange={handleChange} className='w-[50%]' />
                 </div>
                 
-                <div className='flex flex-wrap'>
+                <div className='flex justify-between flex-wrap'>
                     <a href='#' className='text-blue-500 mt-6 underline mr-6'>Hyperlink to AI Photo</a>
                     <a href='#' className='text-blue-500 mt-6 underline'>Hyperlink to NDT Report</a>
                 </div>
