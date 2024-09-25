@@ -33,10 +33,10 @@ const Login = () => {
   }
   return (
     <>
-      <header className='bg-darkBlue text-offWhite p-4 fixed top-0 w-full'>
+      <header className='bg-darkBlue text-offWhite p-4 fixed top-0 w-full z-30'>
         <h1>Log In</h1>
       </header>
-    <FormContainer className='my-20 main-content border-none !shadow-none'>
+    <FormContainer className='mt-20 main-content border-none !shadow-none'>
       <main className='w-full p-4 flex flex-col h-fit justify-center items-center gap-8 bg-white relative z-20 rounded-md'>
         <Logo width={300} height={200} />
         <FormBody onFinish={handleFormSubmit} initialValues={formData}>
