@@ -159,7 +159,7 @@ const VisualInspectionForm = () => {
   }, []);
 
   return (
-    <div className='flex flex-col justify-center w-[410px]'>
+    <div className='flex flex-col justify-center container'>
         <SubHeader title='Visual Inspection' link='/visual/home' />
       
         {
