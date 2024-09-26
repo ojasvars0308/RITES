@@ -263,12 +263,6 @@ const VisualInspectionForm = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-x-2">
-          <FormInputItem
-            label="S. No."
-            name="sNo"
-            onChange={handleChange}
-            required
-          />
           <CustomDatePicker
             label="Date"
             name="date"
@@ -276,17 +270,18 @@ const VisualInspectionForm = () => {
             onChange={handleChange}
             required
           />
-          <FormDropdownItem
-            label="Shift"
-            dropdownArray={shiftList}
-            visibleField="value"
-            valueField="key"
-            name="shift"
-            onChange={handleChange}
-          />
+            <FormDropdownItem
+              label="Shift"
+              dropdownArray={shiftList}
+              visibleField="value"
+              valueField="key"
+              name="shift"
+              onChange={handleChange}
+              required
+            />
           <FormInputItem
-            label="Act. Len. (in m.)"
-            name="actualOfferedLength"
+            label="S. No."
+            name="sNo"
             onChange={handleChange}
             required
           />
@@ -302,6 +297,12 @@ const VisualInspectionForm = () => {
             onChange={handleChange}
             required
           />
+          <FormInputItem
+            label="Act. Offered Len. (in m.)"
+            name="actualOfferedLength"
+            onChange={handleChange}
+            required
+          />
         </div>
 
         <Divider className="mt-0 mb-4" />
@@ -311,15 +312,15 @@ const VisualInspectionForm = () => {
             Feedback from AI System for Dim and Visual
           </h3>
           <div className="text-justify">
-            <span className="font-semibold">UT</span> <br />
+            <span className="font-semibold">UT: </span>
             Text
           </div>
           <div className="text-justify">
-            <span className="font-semibold">Dim</span> <br />
+            <span className="font-semibold">Dim: </span>
             Text
           </div>
           <div className="text-justify">
-            <span className="font-semibold">Visual</span> <br />
+            <span className="font-semibold">Visual: </span>
             Text
           </div>
 
@@ -356,14 +357,6 @@ const VisualInspectionForm = () => {
                 className=" relative flex flex-col gap-2 border p-2 py-4 rounded-md vi-acpt-def"
                 key={index}
               >
-                <FormInputItem
-                  placeholder="Number"
-                  name="number"
-                  onChange={(fieldName, value) =>
-                    handleAcceptanceDataChange(index, fieldName, value)
-                  }
-                />
-
                 <FormDropdownItem
                   dropdownArray={accLengthList}
                   name="accLength"
@@ -374,6 +367,14 @@ const VisualInspectionForm = () => {
                     handleAcceptanceDataChange(index, fieldName, value)
                   }
                 />
+                <FormInputItem
+                  placeholder="Number"
+                  name="number"
+                  onChange={(fieldName, value) =>
+                    handleAcceptanceDataChange(index, fieldName, value)
+                  }
+                />
+
 
                 <FormDropdownItem
                   dropdownArray={railClassList}
@@ -413,13 +414,6 @@ const VisualInspectionForm = () => {
                 className="relative flex flex-col gap-2 border p-2 py-4 rounded-md vi-acpt-def"
                 key={index}
               >
-                <FormInputItem
-                  placeholder="Location"
-                  name="location"
-                  onChange={(fieldName, value) =>
-                    handleDefectDataChange(index, fieldName, value)
-                  }
-                />
 
                 <FormDropdownItem
                   dropdownArray={defectCategoryList}
@@ -442,6 +436,13 @@ const VisualInspectionForm = () => {
                     handleDefectDataChange(index, fieldName, value)
                   }
                 />
+                  <FormInputItem
+                    placeholder="Location"
+                    name="location"
+                    onChange={(fieldName, value) =>
+                      handleDefectDataChange(index, fieldName, value)
+                    }
+                  />
 
                 <FormInputItem
                   placeholder="Position"
@@ -466,7 +467,7 @@ const VisualInspectionForm = () => {
           />
         </section>
 
-        <Divider />
+        <Divider  />
 
         <section>
           <h3 className="font-semibold mb-2">Rejection Details</h3>

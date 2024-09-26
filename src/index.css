@@ -123,3 +123,7 @@ label{
 .vi-acpt-def .ant-form-item{
   @apply mb-0
 }
+
+.ant-divider{
+  border-block-start: 1px solid #9b9b9b;
+}
