@@ -131,3 +131,7 @@ label{
 .date-component .ant-picker{
   @apply w-full
 }
+
+.ant-table-filter-trigger{
+  @apply !text-white
+}

@@ -88,7 +88,7 @@ const Dashboard = () => {
     }
 
   return (
-    <div className='flex flex-col gap-4 lg:gap-8 bg-white p-4'>
+    <div className='flex flex-col gap-4 lg:gap-8 bg-white p-4 md:w-4/5 mx-auto'>
     <section>
       <Search placeholder='Search' className='dashboard-search' />
     </section>

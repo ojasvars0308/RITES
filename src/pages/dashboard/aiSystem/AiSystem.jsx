@@ -1,26 +1,84 @@
-import { Radio, Table } from 'antd'
-import React, { useState } from 'react'
+import { Button, Input, Radio, Space, Table } from 'antd'
+import React, { useRef, useState } from 'react'
 import CustomDatePicker from '../../../components/CustomDatePicker'
 import FormBody from '../../../components/FormBody'
+import Btn from '../../../components/Btn'
 import moment from 'moment'
+import {SearchOutlined} from '@ant-design/icons';
+import Highlighter from 'react-highlight-words';
 
 // Sample data
 const data = [
   {
-    key: '1',
-    railID: '001',
-    surfaceDefectDetection: { precision: 0.95, recall: 0.93 },
-    dimensionalVariationDetection: { precision: 0.90, recall: 0.88 },
-    ocr: 'True',
+      key: '1',
+      railID: 'U110324B001',
+      surfaceDefectDetection: { precision: 0.91, recall: 0.89 },
+      dimensionalVariationDetection: { precision: 0.88, recall: 0.84 },
+      ocr: 'True',
   },
   {
-    key: '2',
-    railID: '002',
-    surfaceDefectDetection: { precision: 0.92, recall: 0.90 },
-    dimensionalVariationDetection: { precision: 0.87, recall: 0.85 },
-    ocr: 'True',
+      key: '2',
+      railID: 'U110324B002',
+      surfaceDefectDetection: { precision: 0.93, recall: 0.92 },
+      dimensionalVariationDetection: { precision: 0.86, recall: 0.83 },
+      ocr: 'False',
   },
-  // Add more data as needed
+  {
+      key: '3',
+      railID: 'U110324B003',
+      surfaceDefectDetection: { precision: 0.90, recall: 0.91 },
+      dimensionalVariationDetection: { precision: 0.89, recall: 0.87 },
+      ocr: 'True',
+  },
+  {
+      key: '4',
+      railID: 'U110324B004',
+      surfaceDefectDetection: { precision: 0.85, recall: 0.88 },
+      dimensionalVariationDetection: { precision: 0.87, recall: 0.86 },
+      ocr: 'True',
+  },
+  {
+      key: '5',
+      railID: 'U110324B005',
+      surfaceDefectDetection: { precision: 0.92, recall: 0.90 },
+      dimensionalVariationDetection: { precision: 0.84, recall: 0.82 },
+      ocr: 'True',
+  },
+  {
+      key: '6',
+      railID: 'U110324B006',
+      surfaceDefectDetection: { precision: 0.94, recall: 0.93 },
+      dimensionalVariationDetection: { precision: 0.90, recall: 0.88 },
+      ocr: 'True',
+  },
+  {
+      key: '7',
+      railID: 'U110324B007',
+      surfaceDefectDetection: { precision: 0.89, recall: 0.87 },
+      dimensionalVariationDetection: { precision: 0.85, recall: 0.81 },
+      ocr: 'False',
+  },
+  {
+      key: '8',
+      railID: 'U110324B008',
+      surfaceDefectDetection: { precision: 0.86, recall: 0.84 },
+      dimensionalVariationDetection: { precision: 0.88, recall: 0.90 },
+      ocr: 'True',
+  },
+  {
+      key: '9',
+      railID: 'U110324B009',
+      surfaceDefectDetection: { precision: 0.95, recall: 0.94 },
+      dimensionalVariationDetection: { precision: 0.91, recall: 0.89 },
+      ocr: 'True',
+  },
+  {
+      key: '10',
+      railID: 'U110324B010',
+      surfaceDefectDetection: { precision: 0.87, recall: 0.86 },
+      dimensionalVariationDetection: { precision: 0.82, recall: 0.80 },
+      ocr: 'False',
+  },
 ];
 
 
@@ -73,11 +131,120 @@ const AiSystem = () => {
     setYearEndDate(value)
   }
 
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  const searchInput = useRef(null);
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText('');
+  };
+
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+      <div
+        style={{
+          padding: 8,
+        }}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <Input
+          ref={searchInput}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{
+            marginBottom: 8,
+            display: 'block',
+          }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Search
+          </Button>
+          <Button
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Reset
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              confirm({
+                closeDropdown: false,
+              });
+              setSearchText(selectedKeys[0]);
+              setSearchedColumn(dataIndex);
+            }}
+          >
+            Filter
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              close();
+            }}
+          >
+            close
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined
+        style={{
+          color: filtered ? '#1677ff' : undefined,
+        }}
+      />
+    ),
+    onFilter: (value, record) =>
+      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{
+            backgroundColor: '#ffc069',
+            padding: 0,
+          }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ''}
+        />
+      ) : (
+        text
+      ),
+  });
+
   const columns = [
     {
       title: 'Rail ID',
       dataIndex: 'railID',
       key: 'railID',
+      ...getColumnSearchProps('railID')
     },
     {
       title: 'Surface Defect Detection',
@@ -115,35 +282,84 @@ const AiSystem = () => {
       title: 'OCR',
       dataIndex: 'ocr',
       key: 'ocr',
+      filters: [
+        {
+          text: "True",
+          value: "True"
+        },
+        {
+          text: "False",
+          value: "False"
+        },
+      ],
+      onFilter: (value, record) => record?.ocr?.indexOf(value) === 0,
     },
+  ];
+
+  const tabColorList = [
+    "#004B4D", // Deep Teal
+    "#2E1A47", // Midnight Purple
+    "#2B3A70", // Slate Blue
+    "#3B3C36", // Dark Olive Green
+    "#4A0C0C", // Crimson Red
+    "#1E1A78", // Indigo Night
+    "#003B5C", // Deep Sea Blue
+    "#4A5A3D"  // Moss Green
   ];
 
   const tabs = [
     {
-      title: "Total \n Rail IDs",
-      value: 10,
+      title: ["Total", "Rail IDs"],
+      value: "10",
     },
     {
-      title: "Average Precision \n Surface Defect",
-      value: 9.0,
+      title: ["Avg. Precision", "Surface Defect"],
+      value: "0.91",
     },
     {
-      title: "Average Recall \n Surface Defect",
-      value: 9.0,
+      title: ["Avg. Recall", "Surface Defect"],
+      value: "0.87",
     },
     {
-      title: "Average Precision \n Dimensional Variation",
-      value: 9.0,
+      title: ["Avg. Precision", "Dim. Variation"],
+      value: "0.54",
     },
     {
-      title: "Average Recall \n Dimensional Variation",
-      value: 9.0,
+      title: ["Avg. Recall", "Dim. Variation"],
+      value: "0.45",
     },
     {
-      title: "True OCR \n Percentage",
-      value: 9.0,
+      title: ["True", "OCR"],
+      value: "93%",
     },
   ]
+
+  const renderTabs = () => {
+    return tabs.map((tab, index) => (
+      <div key={index} className='p-4 border shadow-lg rounded-lg' 
+        style={{ backgroundColor: tabColorList[index] }}
+      >
+        <div className='!text-4xl font-bold text-white text-center'>{tab.value}</div> <br />
+        {/* <div className='flex-1'> 
+
+
+        {
+          tab.title.map(item => {
+            return (
+              <>
+              <span className='font-semibold text-white text-2xl'>{item}</span> <br />
+              </>
+            )
+          })
+        }
+        </div> */}
+
+        <div className='text-white text-center'>{tab.title[0]}</div>
+        <div className='text-white text-center !text-2xl'>{tab.title[1]}</div>
+        {/* <span className='font-semibold text-white'>{tab.title}</span> */}
+      </div>
+    ));
+  };
 
 
   return (
@@ -174,7 +390,7 @@ const AiSystem = () => {
         <Radio value='yearly'>Annually</Radio>
       </Radio.Group>
     </div>
-      <div className='flex gap-8'>
+      <div className='flex gap-8 items-center'>
     {
       timePeriod === 'shift' &&
       <CustomDatePicker label='Shift Date' value={shiftDate} name='shiftDate' onChange={handleShiftChange} />
@@ -201,8 +417,13 @@ const AiSystem = () => {
       <CustomDatePicker label='Year Start Date' name='weekStartDate' value={yearStartDate} disabled />
       </>
     }
+    <Btn htmlType='submit'> Search </Btn>
      </div>
     </FormBody>
+
+    <section className='grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 md:gap-x-8 mb-8'>
+      {renderTabs()}
+    </section>
 
     <Table
       columns={columns}

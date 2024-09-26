@@ -139,7 +139,7 @@ const SideNav = ({ collapsed, toggleCollapse }) => {
 
       </Sider>
         <Divider className="m-0 w-4" />
-        <IconBtn text="Logout" icon={LogoutOutlined} className="bg-offWhite" onClick={()=>dispatch(logout())} />
+        <IconBtn text="Logout" icon={LogoutOutlined} className="bg-offWhite overflow-hidden" onClick={()=>dispatch(logout())} />
     </Layout>
   );
 };
