@@ -118,6 +118,33 @@ const AiSystem = () => {
     },
   ];
 
+  const tabs = [
+    {
+      title: "Total \n Rail IDs",
+      value: 10,
+    },
+    {
+      title: "Average Precision \n Surface Defect",
+      value: 9.0,
+    },
+    {
+      title: "Average Recall \n Surface Defect",
+      value: 9.0,
+    },
+    {
+      title: "Average Precision \n Dimensional Variation",
+      value: 9.0,
+    },
+    {
+      title: "Average Recall \n Dimensional Variation",
+      value: 9.0,
+    },
+    {
+      title: "True OCR \n Percentage",
+      value: 9.0,
+    },
+  ]
+
 
   return (
     <>
@@ -135,19 +162,19 @@ const AiSystem = () => {
       }
     >
 
-     <h1 className='font-semibold mb-4'>AI System Accuracy Dashboard</h1> 
+     <h1 className='font-semibold mb-4 md:!text-2xl -mt-2 text-center'>AI System Accuracy Dashboard</h1> 
      <div>
-      <h2 className='font-medium'>
+      <h2 className='font-medium md:!text-xl'>
       Time Period
       </h2>
-      <Radio.Group value={timePeriod} onChange={(e) => setTimePeriod(e.target.value)} className='flex gap-8 mb-4'>
+      <Radio.Group value={timePeriod} onChange={(e) => setTimePeriod(e.target.value)} className='flex gap-2 md:gap-8 mb-4'>
         <Radio value='shift'>Shift</Radio>
         <Radio value='weekly'>Weekly</Radio>
         <Radio value='monthly'>Monthly</Radio>
         <Radio value='yearly'>Annually</Radio>
       </Radio.Group>
     </div>
-      <div>
+      <div className='flex gap-8'>
     {
       timePeriod === 'shift' &&
       <CustomDatePicker label='Shift Date' value={shiftDate} name='shiftDate' onChange={handleShiftChange} />
@@ -169,11 +196,9 @@ const AiSystem = () => {
     }
     {
       timePeriod === 'yearly' &&
-      <>
        <>
       <CustomDatePicker label='Year End Date' name='yearEndDate' value={yearEndDate} onChange={handleYearEndChange}/>
       <CustomDatePicker label='Year Start Date' name='weekStartDate' value={yearStartDate} disabled />
-      </>
       </>
     }
      </div>
@@ -181,6 +206,7 @@ const AiSystem = () => {
 
     <Table
       columns={columns}
+      scroll={{ x: true }}
       dataSource={data}
       pagination={{
         pageSize: 5,

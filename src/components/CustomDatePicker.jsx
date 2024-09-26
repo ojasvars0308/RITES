@@ -18,6 +18,7 @@ const CustomDatePicker = ({ label, value, onChange, name, disabled }) => {
 
   return (
     <Form.Item label={label} 
+    className='date-component'
     // name={name}
     shouldUpdate={(prevValues, currentValues) => {
       console.log("PREV CURR: ", prevValues, currentValues)

@@ -262,14 +262,16 @@ const VisualInspectionForm = () => {
           {formData.railId}
         </div>
 
-        <div className="grid grid-cols-2 gap-x-2">
+        <div className="">
+          <div className="grid grid-cols-3 gap-x-2">
+
           <CustomDatePicker
             label="Date"
             name="date"
             value={formData.date}
             onChange={handleChange}
             required
-          />
+            />
             <FormDropdownItem
               label="Shift"
               dropdownArray={shiftList}
@@ -278,25 +280,30 @@ const VisualInspectionForm = () => {
               name="shift"
               onChange={handleChange}
               required
-            />
+              />
           <FormInputItem
             label="S. No."
             name="sNo"
             onChange={handleChange}
             required
-          />
+            />
+            </div>
+
+            <div className="grid grid-cols-2 gap-x-2">
+
           <FormInputItem
             label="Heat Number"
             name="heatNo"
             onChange={handleChange}
             required
-          />
+            />
           <FormInputItem
             label="Heat Status"
             name="heatStatus"
             onChange={handleChange}
             required
-          />
+            />
+            </div>
           <FormInputItem
             label="Act. Offered Len. (in m.)"
             name="actualOfferedLength"

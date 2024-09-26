@@ -127,3 +127,7 @@ label{
 .ant-divider{
   border-block-start: 1px solid #9b9b9b;
 }
+
+.date-component .ant-picker{
+  @apply w-full
+}
