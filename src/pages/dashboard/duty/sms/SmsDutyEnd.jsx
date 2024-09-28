@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import SubHeader from '../../../../components/SubHeader'
+import SubHeader from '../../../../components/DKG_SubHeader'
 import {EditOutlined, FileSearchOutlined, EyeOutlined, PieChartOutlined}from '@ant-design/icons';
-import IconBtn from '../../../../components/IconBtn';
+import IconBtn from '../../../../components/DKG_IconBtn';
 import { message } from 'antd';
-import FormBody from '../../../../components/FormBody';
-import FormInputItem from '../../../../components/FormInputItem';
-import Btn from '../../../../components/Btn';
-import TabList from '../../../../components/TabList';
+import FormBody from '../../../../components/DKG_FormBody';
+import FormInputItem from '../../../../components/DKG_FormInputItem';
+import Btn from '../../../../components/DKG_Btn';
+import TabList from '../../../../components/DKG_TabList';
 
 const smsDutyEndTabs = [
   {
